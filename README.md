@@ -187,3 +187,13 @@ data/             # コンテンツ（MDX ファイル）
   gallery/        # ギャラリー
 lib/              # ユーティリティ（MDX読み込み、Firebase、ソート）
 ```
+
+## License
+
+This project is licensed under the MIT License.
+
+However, all content (including articles, images, and branding such as the Raizo character) is not covered by the MIT License and remains the intellectual property of the author.
+
+Unauthorized use, reproduction, or distribution of these materials is prohibited.
+
+※ コード部分はMITライセンスですが、記事・画像・キャラクター等のコンテンツは著作権により保護されています。
