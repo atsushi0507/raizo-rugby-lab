@@ -1,0 +1,181 @@
+'use client';
+
+import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
+import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import type { GalleryFrontmatter } from '@/lib/mdx';
+
+export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [viewerIndex, setViewerIndex] = useState<number | null>(null);
+
+  // 背景スクロールを無効化
+  useEffect(() => {
+    if (isOpen || viewerIndex !== null) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen, viewerIndex]);
+
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (viewerIndex !== null) {
+      if (e.key === 'Escape') setViewerIndex(null);
+      if (e.key === 'ArrowLeft') setViewerIndex((viewerIndex - 1 + album.images.length) % album.images.length);
+      if (e.key === 'ArrowRight') setViewerIndex((viewerIndex + 1) % album.images.length);
+    } else if (isOpen && e.key === 'Escape') {
+      setIsOpen(false);
+    }
+  }, [isOpen, viewerIndex, album.images.length]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
+  return (
+    <>
+      {/* コレクションカード */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="text-left group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow w-full"
+      >
+        <div className="aspect-square overflow-hidden bg-gray-200 relative">
+          <Image
+            src={album.coverImage}
+            alt={album.title}
+            fill
+            className="object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <div className="flex items-center">
+                <ImageIcon size={16} className="mr-2" />
+                <span className="text-sm">{album.images.length}枚</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="p-4">
+          <h3 className="font-bold text-lg mb-2 group-hover:text-green-600 transition-colors">
+            {album.title}
+          </h3>
+          <p className="text-sm text-gray-600 mb-3">{album.description}</p>
+          <div className="flex items-center justify-between text-xs text-gray-500">
+            <span className="font-semibold">{album.match}</span>
+            <span>
+              {new Date(album.date).toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </span>
+          </div>
+        </div>
+      </button>
+
+      {/* アルバムモーダル */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/60 flex items-center justify-center p-4"
+          onClick={() => setIsOpen(false)}
+        >
+          <div
+            className="bg-white rounded-xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* ヘッダー */}
+            <div className="flex items-center justify-between px-6 py-4 border-b shrink-0">
+              <div>
+                <h3 className="font-bold text-lg">{album.title}</h3>
+                <p className="text-sm text-gray-500">{album.match} · {album.images.length}枚</p>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="閉じる"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* 画像グリッド（スクロール可能） */}
+            <div className="overflow-y-auto p-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {album.images.map((src, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setViewerIndex(i)}
+                    className="aspect-square relative rounded-lg overflow-hidden bg-gray-100 hover:opacity-80 transition-opacity"
+                  >
+                    <Image
+                      src={src}
+                      alt={`${album.title} - ${i + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* フルスクリーンビューア */}
+      {viewerIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={() => setViewerIndex(null)}
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); setViewerIndex(null); }}
+            className="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/20 transition-colors z-10"
+            aria-label="閉じる"
+          >
+            <X size={28} />
+          </button>
+
+          {album.images.length > 1 && (
+            <>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setViewerIndex((viewerIndex - 1 + album.images.length) % album.images.length);
+                }}
+                className="absolute left-4 text-white p-2 rounded-full hover:bg-white/20 transition-colors z-10"
+                aria-label="前の写真"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setViewerIndex((viewerIndex + 1) % album.images.length);
+                }}
+                className="absolute right-4 text-white p-2 rounded-full hover:bg-white/20 transition-colors z-10"
+                aria-label="次の写真"
+              >
+                <ChevronRight size={32} />
+              </button>
+            </>
+          )}
+
+          <div className="relative w-full max-w-4xl aspect-video mx-8" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={album.images[viewerIndex]}
+              alt={`${album.title} - ${viewerIndex + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
+
+          <div className="absolute bottom-4 text-white text-sm">
+            {viewerIndex + 1} / {album.images.length}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

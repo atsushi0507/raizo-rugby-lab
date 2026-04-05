@@ -61,18 +61,15 @@ character: "/images/test-char.png"
 `;
 }
 
-function makeGalleryMdx(id: string): string {
-  return `---
-id: "${id}"
+function makeGalleryYaml(id: string): string {
+  return `id: "${id}"
 title: "テストギャラリー ${id}"
 description: "テスト説明"
 coverImage: "https://example.com/img.jpg"
+images:
+  - "https://example.com/img1.jpg"
 match: "テスト vs テスト"
 date: "2026-01-01"
-photoCount: 1
----
-
-テスト本文
 `;
 }
 
@@ -151,7 +148,7 @@ describe('Property 1: MDX ファイル自動検出', () => {
     );
   });
 
-  test('getAllGallery() returns count equal to .mdx file count in data/gallery/', async () => {
+  test('getAllGallery() returns count equal to .yaml file count in data/gallery/', async () => {
     // Validates: Requirements 2.1, 2.2
     await fc.assert(
       fc.asyncProperty(
@@ -160,13 +157,13 @@ describe('Property 1: MDX ファイル自動検出', () => {
           const tempFilenames: string[] = [];
           for (const rawId of extraIds) {
             const id = `tmp-gallery-${rawId}`;
-            const filename = `${id}.mdx`;
+            const filename = `${id}.yaml`;
             if (tempFilenames.includes(filename)) continue;
             tempFilenames.push(filename);
-            writeTempMdx(galleryDir, filename, makeGalleryMdx(id));
+            writeTempMdx(galleryDir, filename, makeGalleryYaml(id));
           }
 
-          const expectedCount = countMdxFiles(galleryDir);
+          const expectedCount = countContentFiles(galleryDir);
           const gallery = await getAllGallery();
           return gallery.length === expectedCount;
         }

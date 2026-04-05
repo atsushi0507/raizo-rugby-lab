@@ -60,9 +60,9 @@ export interface GalleryFrontmatter {
   title: string;
   description: string;
   coverImage: string;
+  images: string[];
   match: string;
   date: string;
-  photoCount: number;
 }
 
 export type ContentFrontmatter =
@@ -182,9 +182,9 @@ function validateGalleryFrontmatter(
     title: assertString(data, 'title', filePath),
     description: assertString(data, 'description', filePath),
     coverImage: assertString(data, 'coverImage', filePath),
+    images: assertStringArray(data, 'images', filePath),
     match: assertString(data, 'match', filePath),
     date: assertString(data, 'date', filePath),
-    photoCount: assertNumber(data, 'photoCount', filePath),
   };
 }
 
@@ -262,12 +262,10 @@ export async function getAllPositions(): Promise<PositionFrontmatter[]> {
 
 export async function getAllGallery(): Promise<GalleryFrontmatter[]> {
   const dir = getDataDir('gallery');
-  const files = getMdxFiles(dir);
+  const files = getYamlFiles(dir);
   return files.map((filename) => {
     const filePath = path.join(dir, filename);
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    const matter = require('gray-matter');
-    const { data } = matter(raw);
-    return validateGalleryFrontmatter(data as Record<string, unknown>, filePath);
+    const data = parseYaml(filePath);
+    return validateGalleryFrontmatter(data, filePath);
   });
 }
