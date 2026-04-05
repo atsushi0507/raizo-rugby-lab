@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getAllPositions } from '@/lib/mdx';
 import { Users, Zap } from 'lucide-react';
 
@@ -127,21 +128,45 @@ function PositionCard({ position }: { position: PositionFrontmatter }) {
             : 'bg-gradient-to-br from-blue-50 to-cyan-50'
         }`}
       >
-        <div className="flex items-center justify-between mb-2">
-          <span
-            className={`text-sm font-semibold px-3 py-1 rounded ${
-              position.category === 'フォワード'
-                ? 'bg-red-200 text-red-800'
-                : 'bg-blue-200 text-blue-800'
-            }`}
-          >
-            {position.category}
-          </span>
-          <span className="text-3xl">{position.character}</span>
+        <div className="flex items-stretch justify-between gap-4">
+          {/* 左：テキスト群 */}
+          <div className="flex-1">
+            <div className="mb-2">
+              <span
+                className={`text-sm font-semibold px-3 py-1 rounded ${
+                  position.category === 'フォワード'
+                    ? 'bg-red-200 text-red-800'
+                    : 'bg-blue-200 text-blue-800'
+                }`}
+              >
+                {position.category}
+              </span>
+            </div>
+
+            <div className="text-4xl font-bold mb-1 text-gray-700">
+              {position.number}
+            </div>
+
+            <h3 className="text-2xl font-bold mb-1">
+              {position.name}
+            </h3>
+
+            <p className="text-sm text-gray-600">
+              {position.nameEn}
+            </p>
+          </div>
+
+          {/* 右：キャラ画像（高さ揃える） */}
+          <div className="w-half aspect-square rounded-full overflow-hidden">
+            <Image
+              src={position.character}
+              alt={position.name}
+              width={112}
+              height={112}
+              className="w-full h-full object-cover transition-transform hover:scale-110"
+            />
+          </div>
         </div>
-        <div className="text-4xl font-bold mb-1 text-gray-700">{position.number}</div>
-        <h3 className="text-2xl font-bold mb-1">{position.name}</h3>
-        <p className="text-sm text-gray-600">{position.nameEn}</p>
       </div>
 
       {/* 説明 */}

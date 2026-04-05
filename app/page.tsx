@@ -4,7 +4,7 @@ import { getAllArticles } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
 import ArticleCard from '@/components/ArticleCard';
 
-const INSTAGRAM_URL = 'https://www.instagram.com/rugby_insight/';
+const INSTAGRAM_URL = 'https://www.instagram.com/rugby.raizo/';
 
 export default async function HomePage() {
   const allArticles = await getAllArticles();
@@ -50,14 +50,14 @@ export default async function HomePage() {
                 href="/articles"
                 className="inline-flex items-center justify-center px-6 py-3 bg-white text-green-700 font-semibold rounded-lg hover:bg-green-50 transition-colors shadow-lg"
               >
-                記事を読む
+                記事一覧を見る
                 <ArrowRight size={20} className="ml-2" />
               </Link>
               <Link
                 href="/about"
                 className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
               >
-                About
+                このサイトについて
               </Link>
             </div>
           </div>
@@ -147,10 +147,10 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-8 md:p-12 text-white text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Instagramで最新情報をチェック
+            Instagramでラグビー観戦をもっと深く
           </h2>
           <p className="text-lg mb-8 text-purple-100">
-            試合のハイライト解説やポイント図解を毎日投稿中
+            試合の見方が変わる分析と観戦記録を発信中
           </p>
           <a
             href={INSTAGRAM_URL}
@@ -158,7 +158,7 @@ export default async function HomePage() {
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-purple-50 transition-colors shadow-lg"
           >
-            フォローする
+            Instagramを見る
             <ArrowRight size={20} className="ml-2" />
           </a>
         </div>

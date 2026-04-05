@@ -4,8 +4,18 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Rugby Insight',
+  title: {
+    default: 'ライゾウのラグビーラボ',
+    template: "%s | ライゾウのラグビーラボ"
+  },
   description: 'ラグビーの観戦体験を深めるための解説・分析メディア。中級者向けに戦術と技術を分かりやすく解説します。',
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.png", type: "image/png" }
+    ],
+    apple: "/apple-touch-icon.png"
+  }
 };
 
 export default function RootLayout({

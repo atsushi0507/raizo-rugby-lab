@@ -7,7 +7,7 @@ export default function AboutPage() {
       <div className="mb-12 text-center">
         <div className="mb-4 text-5xl">🏉</div>
         <h1 className="text-3xl md:text-4xl font-bold mb-4">About</h1>
-        <p className="text-xl text-gray-600">Rugby Insight</p>
+        <p className="text-xl text-gray-600">ライゾウのラグビーラボ</p>
       </div>
 
       {/* MVV */}
@@ -68,7 +68,7 @@ export default function AboutPage() {
             試合を見ていて「なぜあのプレーが成功したのか」「なぜあの判断をしたのか」と思ったことはありませんか？
           </p>
           <p className="text-lg text-gray-800 leading-relaxed mb-6">
-            Rugby Insightは、そんな「なぜ」を解き明かし、観戦体験を深めるメディアです。
+            ライゾウのラグビーラボは、そんな「なぜ」を解き明かし、観戦体験を深めるメディアです。
           </p>
           <p className="text-lg text-gray-800 leading-relaxed">
             戦術の意図、技術の背景、判断の理由を分かりやすく解説し、
@@ -150,7 +150,7 @@ export default function AboutPage() {
       </section>
 
       {/* お問い合わせ */}
-      <section className="text-center">
+      {/* <section className="text-center">
         <div className="bg-gray-50 rounded-lg p-8">
           <h2 className="text-2xl font-bold mb-4">お問い合わせ</h2>
           <p className="text-gray-600 mb-6">ご質問やご要望がありましたら、お気軽にご連絡ください。</p>
@@ -161,7 +161,7 @@ export default function AboutPage() {
             メールを送る
           </a>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

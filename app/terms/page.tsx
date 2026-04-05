@@ -1,4 +1,4 @@
-import { Shield, Copyright, Ban, AlertTriangle } from 'lucide-react';
+import { Shield, Copyright, Ban, AlertTriangle, Instagram } from 'lucide-react';
 
 export default function TermsPage() {
   return (
@@ -19,7 +19,7 @@ export default function TermsPage() {
         </div>
 
         <p className="text-gray-700 mb-4">
-          Rugby Insightに掲載されているすべてのコンテンツ（記事、画像、イラスト、動画、図解など）は、当サイトまたはコンテンツ提供者が著作権を保有しています。
+          ライゾウのラグビーラボに掲載されているすべてのコンテンツ（記事、画像、イラスト、動画、図解など）は、当サイトまたはコンテンツ提供者が著作権を保有しています。
         </p>
 
         <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg mb-6">
@@ -107,8 +107,8 @@ export default function TermsPage() {
           <div className="mt-4 p-4 bg-white rounded border border-green-200">
             <p className="text-sm text-gray-700">
               <strong>引用の例：</strong><br />
-              「Rugby Insightの記事によると、『[引用部分]』とのことです。」<br />
-              出典：<a href="https://rugbyinsight.com" className="text-green-600 hover:underline">Rugby Insight - 記事タイトル</a>
+              「ライゾウのラグビーラボの記事によると、『[引用部分]』とのことです。」<br />
+              出典：<a href="https://raizo-rugby-lab.com" className="text-green-600 hover:underline">ライゾウのラグビーラボ - 記事タイトル</a>
             </p>
           </div>
         </div>
@@ -138,11 +138,21 @@ export default function TermsPage() {
               </li>
             ))}
           </ul>
-          <a
+          {/* <a
             href="mailto:info@rugbyinsight.com"
             className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
-          >
-            お問い合わせ
+          > */}
+          <a>
+            <a
+              href="https://www.instagram.com/rugby.raizo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 text-white hover:opacity-80 transition-opacity"
+              aria-label="Instagram"
+            >
+            <Instagram size={20} />
+          </a>
+            ご質問・ご相談はInstagramのDMからお気軽にご連絡くださ。
           </a>
         </div>
       </section>
@@ -183,7 +193,7 @@ export default function TermsPage() {
       </section>
 
       {/* お問い合わせ */}
-      <section className="bg-gray-50 rounded-lg p-8 text-center">
+      {/* <section className="bg-gray-50 rounded-lg p-8 text-center">
         <h2 className="text-2xl font-bold mb-4">ご不明な点がございましたら</h2>
         <p className="text-gray-600 mb-6">利用規約に関するご質問は、お気軽にお問い合わせください。</p>
         <a
@@ -192,7 +202,7 @@ export default function TermsPage() {
         >
           お問い合わせ
         </a>
-      </section>
+      </section> */}
     </div>
   );
 }

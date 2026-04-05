@@ -9,7 +9,7 @@ export default function RulesPage() {
       icon: '🏉',
     },
     {
-      title: 'ノックオン',
+      title: 'ノックフォワード',
       description:
         'ボールを前に落としたり、手や腕で前に弾いたりすること。相手ボールのスクラムで再開される。',
       icon: '⚠️',

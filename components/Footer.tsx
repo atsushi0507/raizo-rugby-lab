@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <span className="text-2xl">🏉</span>
-              <span className="font-bold text-lg">Rugby Insight</span>
+              <span className="font-bold text-lg">ライゾウのラグビーラボ</span>
             </div>
             <p className="text-sm text-gray-600">
               ラグビーの観戦体験を深めるための解説・分析メディア。
@@ -37,7 +37,7 @@ export function Footer() {
             <h3 className="font-semibold mb-4">フォローする</h3>
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/rugby.raizo/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 text-white hover:opacity-80 transition-opacity"
@@ -45,7 +45,7 @@ export function Footer() {
               >
                 <Instagram size={20} />
               </a>
-              <a
+              {/* <a
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -53,14 +53,14 @@ export function Footer() {
                 aria-label="Twitter"
               >
                 <Twitter size={20} />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
 
         {/* コピーライト */}
         <div className="mt-8 pt-8 border-t text-center text-sm text-gray-500">
-          © 2026 Rugby Insight. All rights reserved.
+          © 2026 ライゾウのラグビーラボ. All rights reserved.
         </div>
       </div>
     </footer>

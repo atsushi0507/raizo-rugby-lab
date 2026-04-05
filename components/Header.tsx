@@ -28,10 +28,10 @@ export function Header() {
               <span className="font-bold text-xl">ライゾウのラグビーラボ</span>
             ) : (
               <Image
-                src="https://images.unsplash.com/photo-1544298621-35a764e29e0e?w=120&h=40&fit=crop&auto=format"
+                src="/header_logo.png"
                 alt="Rugby Insight"
-                width={120}
-                height={40}
+                width={180}
+                height={60}
                 onError={() => setLogoError(true)}
               />
             )}
@@ -53,7 +53,7 @@ export function Header() {
           {/* Instagram & モバイルメニューボタン */}
           <div className="flex items-center space-x-4">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/rugby.raizo/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 hover:text-pink-600 transition-colors"
