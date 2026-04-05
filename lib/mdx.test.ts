@@ -10,15 +10,19 @@ import { getAllArticles, getAllPositions, getAllGallery, validateArticleFrontmat
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+function countContentFiles(dir: string): number {
+  if (!fs.existsSync(dir)) return 0;
+  return fs.readdirSync(dir).filter((f) => f.endsWith('.yaml') || f.endsWith('.yml')).length;
+}
+
 function countMdxFiles(dir: string): number {
   if (!fs.existsSync(dir)) return 0;
   return fs.readdirSync(dir).filter((f) => f.endsWith('.mdx')).length;
 }
 
-// Minimal valid MDX content generators for each content type
-function makeArticleMdx(id: string): string {
-  return `---
-id: "${id}"
+// Minimal valid YAML content for articles
+function makeArticleYaml(id: string): string {
+  return `id: "${id}"
 title: "テスト記事 ${id}"
 category: "解説"
 tags: ["テスト"]
@@ -27,9 +31,13 @@ excerpt: "テスト用の抜粋"
 date: "2026-01-01"
 readTime: "3分"
 level: "初級"
----
-
-テスト本文
+introduction: "テスト導入"
+conversations: []
+structure:
+  situation: "テスト状況"
+  decision: "テスト判断"
+  result: "テスト結果"
+watchPoints: []
 `;
 }
 
@@ -92,25 +100,25 @@ describe('Property 1: MDX ファイル自動検出', () => {
   const positionsDir = path.join(process.cwd(), 'data', 'positions');
   const galleryDir = path.join(process.cwd(), 'data', 'gallery');
 
-  test('getAllArticles() returns count equal to .mdx file count in data/articles/', async () => {
+  test('getAllArticles() returns count equal to .yaml file count in data/articles/', async () => {
     // Validates: Requirements 2.1, 2.2
     await fc.assert(
       fc.asyncProperty(
-        // Generate 0–5 additional MDX files to add alongside existing ones
+        // Generate 0–5 additional YAML files to add alongside existing ones
         fc.array(fc.nat({ max: 9999 }), { minLength: 0, maxLength: 5 }),
         async (extraIds) => {
-          // Write extra temp MDX files
+          // Write extra temp YAML files
           const tempFilenames: string[] = [];
           for (const rawId of extraIds) {
             const id = `tmp-article-${rawId}`;
-            const filename = `${id}.mdx`;
+            const filename = `${id}.yaml`;
             // Avoid duplicate filenames within this run
             if (tempFilenames.includes(filename)) continue;
             tempFilenames.push(filename);
-            writeTempMdx(articlesDir, filename, makeArticleMdx(id));
+            writeTempMdx(articlesDir, filename, makeArticleYaml(id));
           }
 
-          const expectedCount = countMdxFiles(articlesDir);
+          const expectedCount = countContentFiles(articlesDir);
           const articles = await getAllArticles();
           return articles.length === expectedCount;
         }

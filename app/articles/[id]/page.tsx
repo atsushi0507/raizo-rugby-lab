@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getArticleById, getAllArticles } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
 import LikeButton from '@/components/LikeButton';
@@ -9,16 +8,9 @@ import ArticleCard from '@/components/ArticleCard';
 import { Conversation } from '@/components/mdx/Conversation';
 import { Structure } from '@/components/mdx/Structure';
 import { Video } from '@/components/mdx/Video';
-import { CharacterCard } from '@/components/mdx/CharacterCard';
+import { WatchPoints } from '@/components/mdx/WatchPoints';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/rugby_insight/';
-
-const mdxComponents = {
-  Conversation,
-  Structure,
-  Video,
-  CharacterCard,
-};
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -32,13 +24,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const { frontmatter, content } = article;
-
   // いいね数を取得
   let likeCount = 0;
   try {
-    const counts = await getLikeCounts([frontmatter.id]);
-    likeCount = counts[frontmatter.id] ?? 0;
+    const counts = await getLikeCounts([article.id]);
+    likeCount = counts[article.id] ?? 0;
   } catch {
     // Firebase 接続失敗時はいいね数 0 で表示
   }
@@ -48,20 +38,15 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   let relatedLikeCounts: Record<string, number> = {};
   try {
     const allArticles = await getAllArticles();
-    const others = allArticles.filter((a) => a.id !== frontmatter.id);
-
-    // スコアリング：同カテゴリ +2、共通タグ1つにつき +1
+    const others = allArticles.filter((a) => a.id !== article.id);
     const scored = others.map((a) => {
       let score = 0;
-      if (a.category === frontmatter.category) score += 2;
-      const commonTags = a.tags.filter((t) => frontmatter.tags.includes(t));
-      score += commonTags.length;
+      if (a.category === article.category) score += 2;
+      score += a.tags.filter((t) => article.tags.includes(t)).length;
       return { article: a, score };
     });
-
     scored.sort((a, b) => b.score - a.score);
     relatedArticles = scored.slice(0, 2).map((s) => s.article);
-
     if (relatedArticles.length > 0) {
       relatedLikeCounts = await getLikeCounts(relatedArticles.map((a) => a.id));
     }
@@ -70,14 +55,14 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   }
 
   const levelColorClass =
-    frontmatter.level === '初級'
+    article.level === '初級'
       ? 'bg-green-100 text-green-700'
-      : frontmatter.level === '中級'
+      : article.level === '中級'
         ? 'bg-yellow-100 text-yellow-700'
         : 'bg-red-100 text-red-700';
 
   const categoryColorClass =
-    frontmatter.category === '解説'
+    article.category === '解説'
       ? 'bg-blue-100 text-blue-700'
       : 'bg-purple-100 text-purple-700';
 
@@ -95,19 +80,19 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       {/* メタ情報 */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
         <span className={`text-xs font-semibold px-2 py-1 rounded ${categoryColorClass}`}>
-          {frontmatter.category}
+          {article.category}
         </span>
         <span className={`text-xs font-semibold px-2 py-1 rounded ${levelColorClass}`}>
-          {frontmatter.level}
+          {article.level}
         </span>
         <div className="flex items-center text-xs text-gray-500 gap-1">
           <Clock size={12} />
-          <span>{frontmatter.readTime}</span>
+          <span>{article.readTime}</span>
         </div>
         <div className="flex items-center text-xs text-gray-500 gap-1">
           <Calendar size={12} />
           <span>
-            {new Date(frontmatter.date).toLocaleDateString('ja-JP', {
+            {new Date(article.date).toLocaleDateString('ja-JP', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
@@ -117,16 +102,13 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       </div>
 
       {/* タイトル */}
-      <h1 className="text-2xl md:text-3xl font-bold mb-4">{frontmatter.title}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-4">{article.title}</h1>
 
       {/* タグ */}
-      {frontmatter.tags.length > 0 && (
+      {article.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-6">
-          {frontmatter.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded"
-            >
+          {article.tags.map((tag) => (
+            <span key={tag} className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
               #{tag}
             </span>
           ))}
@@ -135,32 +117,56 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
       {/* いいねボタン */}
       <div className="flex items-center gap-3 mb-8 pb-6 border-b">
-        <LikeButton
-          articleId={frontmatter.id}
-          initialCount={likeCount}
-          initialLiked={false}
-        />
+        <LikeButton articleId={article.id} initialCount={likeCount} initialLiked={false} />
       </div>
 
-      {/* MDX 本文 */}
+      {/* 記事本文 */}
       <div className="prose prose-gray max-w-none mb-12">
-        <MDXRemote
-          source={content}
-          components={mdxComponents}
-          options={{
-            scope: { frontmatter },
-          }}
-        />
+        {/* 導入 */}
+        {article.introduction && (
+          <section className="mb-8">
+            <h2>🧠 導入</h2>
+            <p>{article.introduction}</p>
+          </section>
+        )}
+
+        {/* 会話で理解する */}
+        {article.conversations.length > 0 && (
+          <section className="mb-8">
+            <h2>💬 会話で理解する</h2>
+            <Conversation items={article.conversations} />
+          </section>
+        )}
+
+        {/* プレー構造を分解 */}
+        {article.structure && (
+          <section className="mb-8">
+            <h2>🧩 プレー構造を分解</h2>
+            <Structure {...article.structure} />
+          </section>
+        )}
+
+        {/* 観戦ポイント */}
+        {article.watchPoints.length > 0 && (
+          <section className="mb-8">
+            <h2>👀 観戦ポイント</h2>
+            <WatchPoints items={article.watchPoints} />
+          </section>
+        )}
+
+        {/* 動画 */}
+        {article.videoUrl && (
+          <section className="mb-8">
+            <h2>🎥 試合映像</h2>
+            <Video url={article.videoUrl} />
+          </section>
+        )}
       </div>
 
       {/* 記事末尾のいいねボタン */}
       <div className="flex items-center justify-center gap-3 mb-12 py-6 border-t border-b">
         <span className="text-sm text-gray-600">この記事が役に立ったら</span>
-        <LikeButton
-          articleId={frontmatter.id}
-          initialCount={likeCount}
-          initialLiked={false}
-        />
+        <LikeButton articleId={article.id} initialCount={likeCount} initialLiked={false} />
       </div>
 
       {/* Instagram CTA */}

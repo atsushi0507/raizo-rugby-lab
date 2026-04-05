@@ -39,7 +39,9 @@ export default function LikeButton({
     setLiked(ids.includes(articleId));
   }, [articleId]);
 
-  async function handleClick() {
+  async function handleClick(e: React.MouseEvent) {
+    e.stopPropagation();
+    e.preventDefault();
     if (disabled) return;
 
     const wasLiked = liked;

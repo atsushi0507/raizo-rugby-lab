@@ -1,8 +1,23 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import yaml from 'js-yaml';
 
 // ─── Type Definitions ────────────────────────────────────────────────────────
+
+export interface ConversationItem {
+  speaker: string;
+  avatar: string;
+  message: string;
+}
+
+export interface StructureData {
+  situation: string;
+  situationImage?: string;
+  decision: string;
+  decisionImage?: string;
+  result: string;
+  resultImage?: string;
+}
 
 export interface ArticleFrontmatter {
   id: string;
@@ -18,6 +33,13 @@ export interface ArticleFrontmatter {
   position?: string;
   season?: string;
   videoUrl?: string;
+}
+
+export interface ArticleData extends ArticleFrontmatter {
+  introduction: string;
+  conversations: ConversationItem[];
+  structure: StructureData;
+  watchPoints: string[];
 }
 
 export interface PositionFrontmatter {
@@ -58,7 +80,7 @@ function assertString(
   const value = data[field];
   if (typeof value !== 'string' || value.trim() === '') {
     throw new Error(
-      `MDX parse error in "${filePath}": field "${field}" must be a non-empty string (got ${JSON.stringify(value)})`
+      `Parse error in "${filePath}": field "${field}" must be a non-empty string (got ${JSON.stringify(value)})`
     );
   }
   return value;
@@ -75,7 +97,7 @@ function assertStringArray(
     value.some((item) => typeof item !== 'string')
   ) {
     throw new Error(
-      `MDX parse error in "${filePath}": field "${field}" must be an array of strings (got ${JSON.stringify(value)})`
+      `Parse error in "${filePath}": field "${field}" must be an array of strings (got ${JSON.stringify(value)})`
     );
   }
   return value as string[];
@@ -89,7 +111,7 @@ function assertNumber(
   const value = data[field];
   if (typeof value !== 'number') {
     throw new Error(
-      `MDX parse error in "${filePath}": field "${field}" must be a number (got ${JSON.stringify(value)})`
+      `Parse error in "${filePath}": field "${field}" must be a number (got ${JSON.stringify(value)})`
     );
   }
   return value;
@@ -104,7 +126,7 @@ function assertOneOf<T extends string>(
   const value = data[field];
   if (!allowed.includes(value as T)) {
     throw new Error(
-      `MDX parse error in "${filePath}": field "${field}" must be one of ${JSON.stringify(allowed)} (got ${JSON.stringify(value)})`
+      `Parse error in "${filePath}": field "${field}" must be one of ${JSON.stringify(allowed)} (got ${JSON.stringify(value)})`
     );
   }
   return value as T;
@@ -172,39 +194,54 @@ function getDataDir(subDir: string): string {
   return path.join(process.cwd(), 'data', subDir);
 }
 
+function getYamlFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => f.endsWith('.yaml') || f.endsWith('.yml'));
+}
+
 function getMdxFiles(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'));
+}
+
+function parseYaml(filePath: string): Record<string, unknown> {
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  const data = yaml.load(raw);
+  if (typeof data !== 'object' || data === null) {
+    throw new Error(`Parse error in "${filePath}": file must contain a YAML object`);
+  }
+  return data as Record<string, unknown>;
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 export async function getAllArticles(): Promise<ArticleFrontmatter[]> {
   const dir = getDataDir('articles');
-  const files = getMdxFiles(dir);
+  const files = getYamlFiles(dir);
   return files.map((filename) => {
     const filePath = path.join(dir, filename);
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    const { data } = matter(raw);
-    return validateArticleFrontmatter(data as Record<string, unknown>, filePath);
+    const data = parseYaml(filePath);
+    return validateArticleFrontmatter(data, filePath);
   });
 }
 
 export async function getArticleById(
   id: string
-): Promise<{ frontmatter: ArticleFrontmatter; content: string } | null> {
+): Promise<ArticleData | null> {
   const dir = getDataDir('articles');
-  const files = getMdxFiles(dir);
+  const files = getYamlFiles(dir);
   for (const filename of files) {
     const filePath = path.join(dir, filename);
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    const { data, content } = matter(raw);
-    const frontmatter = validateArticleFrontmatter(
-      data as Record<string, unknown>,
-      filePath
-    );
+    const data = parseYaml(filePath);
+    const frontmatter = validateArticleFrontmatter(data, filePath);
     if (frontmatter.id === id) {
-      return { frontmatter, content };
+      return {
+        ...frontmatter,
+        introduction: (data.introduction as string) ?? '',
+        conversations: (data.conversations as ConversationItem[]) ?? [],
+        structure: (data.structure as StructureData) ?? { situation: '', decision: '', result: '' },
+        watchPoints: (data.watchPoints as string[]) ?? [],
+      };
     }
   }
   return null;
@@ -216,6 +253,8 @@ export async function getAllPositions(): Promise<PositionFrontmatter[]> {
   return files.map((filename) => {
     const filePath = path.join(dir, filename);
     const raw = fs.readFileSync(filePath, 'utf-8');
+    // positions still use MDX with gray-matter frontmatter
+    const matter = require('gray-matter');
     const { data } = matter(raw);
     return validatePositionFrontmatter(data as Record<string, unknown>, filePath);
   });
@@ -227,6 +266,7 @@ export async function getAllGallery(): Promise<GalleryFrontmatter[]> {
   return files.map((filename) => {
     const filePath = path.join(dir, filename);
     const raw = fs.readFileSync(filePath, 'utf-8');
+    const matter = require('gray-matter');
     const { data } = matter(raw);
     return validateGalleryFrontmatter(data as Record<string, unknown>, filePath);
   });
