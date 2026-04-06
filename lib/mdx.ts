@@ -6,7 +6,6 @@ import yaml from 'js-yaml';
 
 export interface ConversationItem {
   speaker: string;
-  avatar: string;
   message: string;
 }
 

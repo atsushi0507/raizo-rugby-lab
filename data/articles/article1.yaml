@@ -10,19 +10,16 @@ level: "中級"
 team: "日本代表"
 position: "スクラムハーフ"
 season: "2026"
-videoUrl: "https://www.youtube.com/watch?v=ysz5S6PUM-U"
+videoUrl: "https://www.youtube.com/watch?v=dDtr_FzDXD8&list=RDdDtr_FzDXD8&start_radio=1"
 
 introduction: "なぜあのタイミングでスタンドオフではなく、直接センターにパスを出したのか？"
 
 conversations:
-  - speaker: "初心者くん"
-    avatar: "🤔"
+  - speaker: "リッチーくん"
     message: "スクラムハーフって、いつもスタンドオフにパスを出すんじゃないんですか？"
-  - speaker: "コーチ"
-    avatar: "👨‍🏫"
+  - speaker: "ライゾウ"
     message: "いい質問だね！実は、スクラムハーフは状況によって様々なパス選択をしているんだ。"
-  - speaker: "コーチ"
-    avatar: "👨‍🏫"
+  - speaker: "ライゾウ"
     message: "このシーンでは、相手ディフェンスの配置を見て、スタンドオフを飛ばして直接センターにパスを出しているんだよ。"
 
 structure:
