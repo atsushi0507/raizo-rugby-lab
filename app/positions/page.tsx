@@ -105,6 +105,29 @@ export default async function PositionsPage() {
           </div>
         </div>
       </div>
+
+      {/* Coming Soon */}
+      <div className="mt-16 relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-600 via-emerald-600 to-teal-700 p-8 md:p-12 text-white text-center">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.2) 0%, transparent 50%)',
+          }}
+        />
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+            <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
+            随時追加中
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            全15ポジション、順次公開予定
+          </h2>
+          <p className="text-green-100 max-w-lg mx-auto">
+            各ポジションの役割・魅力・観戦ポイントを、キャラクターと一緒に深掘りしていきます。お楽しみに。
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -193,6 +193,31 @@ export default function RulesPage() {
           </div>
         </div>
       </section>
+
+      {/* Coming Soon */}
+      <section className="mt-16">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-8 md:p-12 text-white text-center">
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                'radial-gradient(circle at 30% 40%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.2) 0%, transparent 50%)',
+            }}
+          />
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
+              <span className="w-2 h-2 rounded-full bg-blue-300 animate-pulse" />
+              随時追加中
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+              もっと深いルール解説、準備中
+            </h2>
+            <p className="text-blue-100 max-w-lg mx-auto">
+              反則の種類やレフリーのシグナル、最新のルール改正まで。観戦がもっと面白くなる知識を順次追加していきます。
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
