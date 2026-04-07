@@ -14,7 +14,7 @@ export function Footer() {
             </div>
             <p className="text-sm text-gray-600">
               ラグビーの観戦体験を深めるための解説・分析メディア。
-              中級者向けに戦術と技術を分かりやすく解説します。
+              「なぜ」を理解して、もっと楽しく観戦しよう。
             </p>
           </div>
 

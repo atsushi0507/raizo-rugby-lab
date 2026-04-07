@@ -8,7 +8,19 @@ export const metadata: Metadata = {
     default: 'ライゾウのラグビーラボ',
     template: "%s | ライゾウのラグビーラボ"
   },
-  description: 'ラグビーの観戦体験を深めるための解説・分析メディア。中級者向けに戦術と技術を分かりやすく解説します。',
+  description: 'ラグビーの観戦体験を深めるための解説・分析メディア。プレーの「なぜ」を理解して、もっと楽しく観戦しよう。',
+  openGraph: {
+    title: 'ライゾウのラグビーラボ',
+    description: 'ラグビーの観戦体験を深めるための解説・分析メディア。プレーの「なぜ」を理解して、もっと楽しく観戦しよう。',
+    images: [{ url: '/raizo_with_ball.png', width: 1200, height: 630, alt: 'ライゾウのラグビーラボ' }],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ライゾウのラグビーラボ',
+    description: 'ラグビーの観戦体験を深めるための解説・分析メディア。プレーの「なぜ」を理解して、もっと楽しく観戦しよう。',
+    images: ['/raizo_with_ball.png'],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },

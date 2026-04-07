@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
 import { getArticleById, getAllArticles } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
@@ -76,6 +77,17 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         <ArrowLeft size={16} className="mr-1" />
         記事一覧に戻る
       </Link>
+
+      {/* サムネイル */}
+      <div className="relative aspect-video rounded-lg overflow-hidden mb-8 bg-gray-200">
+        <Image
+          src={article.thumbnail}
+          alt={article.title}
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
 
       {/* メタ情報 */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -154,7 +166,27 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* 動画 */}
+        {/* 解説動画（俯瞰図アニメーション） */}
+        <section className="mb-8">
+          <h2>📐 プレー解説動画</h2>
+          <div className="my-4 rounded-lg overflow-hidden shadow-md bg-gray-900 mx-auto" style={{ maxWidth: '400px', aspectRatio: '1280 / 1080' }}>
+            <video
+              controls
+              playsInline
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 50%', transform: 'scale(1.12)' }}
+              preload="metadata"
+            >
+              <source src={article.analysisVideoUrl} type="video/mp4" />
+              お使いのブラウザは動画タグをサポートしていません。
+            </video>
+          </div>
+          <p className="text-sm text-gray-600 text-center">
+            選手の動きを俯瞰図で確認しよう
+          </p>
+        </section>
+
+        {/* 試合映像（YouTube）- videoUrl が設定されている場合のみ */}
         {article.videoUrl && (
           <section className="mb-8">
             <h2>🎥 試合映像</h2>
@@ -173,7 +205,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl p-6 text-white text-center mb-12">
         <p className="font-bold text-lg mb-2">もっとラグビーを楽しもう</p>
         <p className="text-sm text-purple-100 mb-4">
-          試合のハイライト解説やポイント図解を毎日投稿中
+          試合のハイライト解説やポイント図解を投稿中
         </p>
         <a
           href={INSTAGRAM_URL}

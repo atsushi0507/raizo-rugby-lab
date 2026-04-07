@@ -142,7 +142,7 @@ export default function TermsPage() {
             href="mailto:info@rugbyinsight.com"
             className="inline-block px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
           > */}
-          <a>
+          <div className="flex items-center gap-3">
             <a
               href="https://www.instagram.com/rugby.raizo/"
               target="_blank"
@@ -150,10 +150,10 @@ export default function TermsPage() {
               className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 text-white hover:opacity-80 transition-opacity"
               aria-label="Instagram"
             >
-            <Instagram size={20} />
-          </a>
-            ご質問・ご相談はInstagramのDMからお気軽にご連絡くださ。
-          </a>
+              <Instagram size={20} />
+            </a>
+            <span className="text-gray-700">ご質問・ご相談はInstagramのDMからお気軽にご連絡ください。</span>
+          </div>
         </div>
       </section>
 

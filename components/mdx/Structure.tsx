@@ -30,12 +30,13 @@ function Section({ label, emoji, text, image, colorClass, borderClass, headingCl
         <p className="text-gray-800">{text}</p>
       </div>
       {image && (
-        <div className="rounded-lg overflow-hidden shadow-md mb-6 relative aspect-video">
+        <div className="rounded-lg overflow-hidden shadow-md mb-6 relative mx-auto" style={{ maxWidth: '400px', aspectRatio: '1280 / 1080' }}>
           <Image
             src={image}
             alt={label}
             fill
             className="object-cover"
+            style={{ objectPosition: 'center 50%', transform: 'scale(1.12)' }}
           />
         </div>
       )}
