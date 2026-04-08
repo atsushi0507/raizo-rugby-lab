@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { getAllPositions } from '@/lib/mdx';
 import { Users, Zap } from 'lucide-react';
+import { FieldMap } from '@/components/FieldMap';
 
 export default async function PositionsPage() {
   const positions = await getAllPositions();
@@ -18,22 +19,8 @@ export default async function PositionsPage() {
         </p>
       </div>
 
-      {/* フィールド図（簡易版） */}
-      <div className="mb-12 bg-green-100 rounded-lg p-8 border-4 border-green-600">
-        <div className="text-center mb-4">
-          <span className="text-sm font-semibold text-green-800">フィールド配置（イメージ）</span>
-        </div>
-        <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-          <div className="col-span-3 bg-blue-100 rounded p-4 text-center">
-            <span className="text-xs font-semibold text-blue-700">バックス（9-15番）</span>
-            <div className="mt-2 text-2xl">🏃⚡🎯</div>
-          </div>
-          <div className="col-span-3 bg-red-100 rounded p-4 text-center">
-            <span className="text-xs font-semibold text-red-700">フォワード（1-8番）</span>
-            <div className="mt-2 text-2xl">💪🦁🏋️</div>
-          </div>
-        </div>
-      </div>
+      {/* フィールド配置図 */}
+      <FieldMap />
 
       {/* フォワード */}
       {forwards.length > 0 && (
