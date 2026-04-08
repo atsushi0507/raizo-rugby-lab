@@ -61,7 +61,9 @@ export interface GalleryFrontmatter {
   description: string;
   coverImage: string;
   images: string[];
-  match: string;
+  home: string;
+  away: string;
+  season: string;
   date: string;
 }
 
@@ -183,7 +185,9 @@ function validateGalleryFrontmatter(
     description: assertString(data, 'description', filePath),
     coverImage: assertString(data, 'coverImage', filePath),
     images: assertStringArray(data, 'images', filePath),
-    match: assertString(data, 'match', filePath),
+    home: assertString(data, 'home', filePath),
+    away: assertString(data, 'away', filePath),
+    season: assertString(data, 'season', filePath),
     date: assertString(data, 'date', filePath),
   };
 }

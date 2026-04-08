@@ -63,7 +63,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
           </h3>
           <p className="text-sm text-gray-600 mb-3">{album.description}</p>
           <div className="flex items-center justify-between text-xs text-gray-500">
-            <span className="font-semibold">{album.match}</span>
+            <span className="font-semibold">{album.home} vs {album.away}</span>
             <span>
               {new Date(album.date).toLocaleDateString('ja-JP', {
                 year: 'numeric',
@@ -89,7 +89,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
             <div className="flex items-center justify-between px-6 py-4 border-b shrink-0">
               <div>
                 <h3 className="font-bold text-lg">{album.title}</h3>
-                <p className="text-sm text-gray-500">{album.match} · {album.images.length}枚</p>
+                <p className="text-sm text-gray-500">{album.home} vs {album.away} · {album.images.length}枚</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}

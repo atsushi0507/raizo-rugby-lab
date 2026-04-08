@@ -1,9 +1,20 @@
 import { getAllGallery } from '@/lib/mdx';
 import { Image as ImageIcon } from 'lucide-react';
-import { GalleryAlbum } from '@/components/GalleryAlbum';
+import { GalleryGrid } from '@/components/GalleryGrid';
 
 export default async function GalleryPage() {
   const albums = await getAllGallery();
+
+  // date 降順でソート
+  const sorted = [...albums].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  // フィルター用の選択肢を抽出
+  const seasons = Array.from(new Set(sorted.map((a) => a.season))).sort().reverse();
+  const teams = Array.from(
+    new Set(sorted.flatMap((a) => [a.home, a.away]))
+  ).sort();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -14,17 +25,13 @@ export default async function GalleryPage() {
         </p>
       </div>
 
-      {albums.length === 0 ? (
+      {sorted.length === 0 ? (
         <div className="text-center py-16 text-gray-500">
           <ImageIcon size={48} className="mx-auto mb-4 opacity-40" />
           <p>ギャラリーはまだありません</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {albums.map((album) => (
-            <GalleryAlbum key={album.id} album={album} />
-          ))}
-        </div>
+        <GalleryGrid albums={sorted} seasons={seasons} teams={teams} />
       )}
     </div>
   );

@@ -68,7 +68,9 @@ description: "テスト説明"
 coverImage: "https://example.com/img.jpg"
 images:
   - "https://example.com/img1.jpg"
-match: "テスト vs テスト"
+home: "チームA"
+away: "チームB"
+season: "2026"
 date: "2026-01-01"
 `;
 }

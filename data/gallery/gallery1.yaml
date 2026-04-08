@@ -9,5 +9,7 @@ images:
   - "https://res.cloudinary.com/ddbfkxo9j/image/upload/q_auto/f_auto/v1775570860/IMG_0243_k6zchp.jpg"
   - "https://res.cloudinary.com/ddbfkxo9j/image/upload/q_auto/f_auto/v1775570900/IMG_0221_sn9ikq.jpg"
   - "https://res.cloudinary.com/ddbfkxo9j/image/upload/q_auto/f_auto/v1775570927/IMG_0287_tzwcvd.jpg"
-match: "ブラックラムズ東京 vs 神戸スティーラーズ"
+season: "2025-26"
+home: "ブラックラムズ東京"
+away: "神戸スティーラーズ"
 date: "2026-04-05"
