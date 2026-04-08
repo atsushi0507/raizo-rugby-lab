@@ -171,8 +171,8 @@ export default async function HomePage() {
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
                 <BookOpen size={24} className="text-blue-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">解説・分析記事</h3>
-              <p className="text-sm text-gray-600">プレーの「なぜ」を読み解く</p>
+              <h3 className="font-bold text-lg mb-2">プレーを読み解く</h3>
+              <p className="text-sm text-gray-600">あの判断の裏側にある戦術を知る</p>
             </Link>
 
             <Link
@@ -183,7 +183,7 @@ export default async function HomePage() {
                 <Scale size={24} className="text-purple-600" />
               </div>
               <h3 className="font-bold text-lg mb-2">ルールを学ぶ</h3>
-              <p className="text-sm text-gray-600">大原則から理解するルール解説</p>
+              <p className="text-sm text-gray-600">大原則から理解して観戦をもっと楽しく</p>
             </Link>
 
             <Link
@@ -193,8 +193,8 @@ export default async function HomePage() {
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
                 <Users size={24} className="text-green-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">ポジション解説</h3>
-              <p className="text-sm text-gray-600">各ポジションの役割を理解</p>
+              <h3 className="font-bold text-lg mb-2">ポジションを知る</h3>
+              <p className="text-sm text-gray-600">選手の判断と思考を追体験する</p>
             </Link>
 
             <Link
@@ -204,8 +204,8 @@ export default async function HomePage() {
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
                 <ImageIcon size={24} className="text-orange-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">ギャラリー</h3>
-              <p className="text-sm text-gray-600">試合の瞬間を写真で振り返る</p>
+              <h3 className="font-bold text-lg mb-2">試合を振り返る</h3>
+              <p className="text-sm text-gray-600">あの瞬間を写真で追体験する</p>
             </Link>
           </div>
         </div>
