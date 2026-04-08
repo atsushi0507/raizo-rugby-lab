@@ -1,0 +1,149 @@
+- id: "knock-forward"
+  title: "ノックフォワード"
+  description: "ボールを前に落としたり、手や腕で前に弾いたりすること。相手ボールのスクラムで再開される。"
+  detail: "ボールをキャッチしようとして前方に落としてしまうプレー。意図的でなくても反則となる。パスを受ける際やキックキャッチの場面で起きやすい。相手ボールのスクラムで再開される。"
+  level: "初級"
+  principleId: "backward-ball"
+  icon: "⚠️"
+  illustration: "/rules/knock-forward.png"
+  relatedRuleIds: ["throw-forward"]
+
+- id: "throw-forward"
+  title: "スローフォワード"
+  description: "ボールを前方にパスすること。ラグビーではボールは横か後ろにしかパスできない。"
+  detail: "パスが前方に投げられた場合の反則。ラグビーの最も基本的なルールの一つで、ボールは必ず横か後ろに投げなければならない。走っている勢いでパスが前に流れてしまうケースが多い。"
+  level: "初級"
+  principleId: "backward-ball"
+  icon: "🏉"
+  illustration: "/rules/throw-forward.png"
+  relatedRuleIds: ["knock-forward"]
+
+- id: "lineout-not-straight"
+  title: "スローインの不正"
+  description: "ラインアウトでボールをまっすぐ投げ入れないこと。"
+  detail: "ラインアウトでフッカーがボールを投げ入れる際、両チームの列の中央にまっすぐ投げなければならない。自チーム側に偏った投げ入れは反則となる。"
+  level: "中級"
+  principleId: "backward-ball"
+  icon: "📐"
+  illustration: "/rules/lineout-not-straight.png"
+  relatedRuleIds: []
+
+- id: "obstruction"
+  title: "オブストラクション"
+  description: "ボールを持っていない選手が相手の動きを妨害すること。"
+  detail: "ボールキャリアでない選手が、相手ディフェンダーの進路を意図的にブロックする行為。攻撃側がランナーの前に立ってシールドを作るような動きが該当する。ペナルティキックが与えられる。"
+  level: "中級"
+  principleId: "no-obstruction"
+  icon: "🚫"
+  illustration: "/rules/obstruction.png"
+  relatedRuleIds: ["shepherding"]
+
+- id: "shepherding"
+  title: "シェパーディング"
+  description: "ボールキャリアを守るために、味方選手が相手の進路を塞ぐ行為。"
+  detail: "ボールを持っている選手の前や横に立って、相手ディフェンダーがタックルできないようにブロックする行為。オブストラクションの一種で、ペナルティの対象となる。"
+  level: "中級"
+  principleId: "no-obstruction"
+  icon: "🛑"
+  illustration: "/rules/shepherding.png"
+  relatedRuleIds: ["obstruction"]
+
+- id: "offside"
+  title: "オフサイド"
+  description: "プレーに参加できない位置にいること。ボールより前にいるとオフサイド。"
+  detail: "ラグビーにおけるオフサイドは、プレーヤーがボールより前の位置からプレーに関与すること。ラック、モール、スクラム、キックなど場面ごとにオフサイドラインの基準が異なる。最も頻繁に見られる反則の一つ。"
+  level: "初級"
+  principleId: "offside-line"
+  icon: "🚫"
+  illustration: "/rules/offside.png"
+  relatedRuleIds: []
+
+- id: "not-release"
+  title: "ノットリリースザボール"
+  description: "タックルされた選手がボールを離さないこと。"
+  detail: "タックルを受けて地面に倒れた選手は、速やかにボールを手放さなければならない。ボールを抱え込んだままでいると反則となり、相手にペナルティキックが与えられる。攻撃側の反則として非常に多い。"
+  level: "初級"
+  principleId: "stay-on-feet"
+  icon: "🤲"
+  illustration: "/rules/not-release.png"
+  relatedRuleIds: ["not-roll-away", "sealing-off"]
+
+- id: "not-roll-away"
+  title: "ノットロールアウェイ"
+  description: "タックルした選手がボールの近くから退かないこと。"
+  detail: "タックルを完了した選手は、すぐにボールから離れなければならない。ボールの上や近くに留まり続けると、相手のボール確保を妨害したとして反則になる。ディフェンス側の反則として頻出。"
+  level: "初級"
+  principleId: "stay-on-feet"
+  icon: "🔄"
+  illustration: "/rules/not-roll-away.png"
+  relatedRuleIds: ["not-release", "off-feet"]
+
+- id: "sealing-off"
+  title: "シーリングオフ"
+  description: "ラックでボールの上に覆いかぶさり、相手のボール争奪を妨げること。"
+  detail: "ラックにおいて、ボールの上に体を預けて相手がボールにアクセスできないようにする行為。立ってプレーするという原則に反し、ペナルティの対象となる。"
+  level: "中級"
+  principleId: "stay-on-feet"
+  icon: "⬇️"
+  illustration: "/rules/sealing-off.png"
+  relatedRuleIds: ["not-release", "off-feet"]
+
+- id: "off-feet"
+  title: "オフフィート"
+  description: "ラックやモールで足で立っていない状態でプレーに参加すること。"
+  detail: "ラックやモールに参加する選手は、自分の足で体重を支えて立っていなければならない。膝をついたり、地面に倒れた状態でボールに働きかけると反則となる。"
+  level: "中級"
+  principleId: "stay-on-feet"
+  icon: "🦶"
+  illustration: "/rules/off-feet.png"
+  relatedRuleIds: ["not-roll-away", "sealing-off"]
+
+- id: "high-tackle"
+  title: "ハイタックル"
+  description: "肩より上の高さでタックルすること。危険なプレーとして厳しく罰せられる。"
+  detail: "相手の肩のラインより上（首や頭）へのタックルは、重大な危険行為として厳しく罰せられる。ペナルティキックだけでなく、イエローカードやレッドカードの対象にもなる。選手の安全を守るため、近年特に厳格化されている。"
+  level: "初級"
+  principleId: "player-safety"
+  icon: "💥"
+  illustration: "/rules/high-tackle.png"
+  relatedRuleIds: ["no-arm-tackle", "dangerous-tackle"]
+
+- id: "no-arm-tackle"
+  title: "ノーアームタックル"
+  description: "腕を使わずに体当たりでタックルすること。"
+  detail: "タックルの際は必ず腕を使って相手を掴まなければならない。肩だけで突っ込むショルダーチャージは危険なプレーとして反則になる。"
+  level: "初級"
+  principleId: "player-safety"
+  icon: "💪"
+  illustration: "/rules/no-arm-tackle.png"
+  relatedRuleIds: ["high-tackle", "dangerous-tackle"]
+
+- id: "dangerous-tackle"
+  title: "危険なタックル"
+  description: "スピアタックルやショルダーチャージなど、相手を危険にさらすタックル。"
+  detail: "相手を頭から地面に落とすスピアタックル、腕を使わないショルダーチャージ、空中にいる選手へのタックルなど。レッドカードの対象となる重大な反則。"
+  level: "中級"
+  principleId: "player-safety"
+  icon: "🚨"
+  illustration: "/rules/dangerous-tackle.png"
+  relatedRuleIds: ["high-tackle", "no-arm-tackle"]
+
+- id: "jackal"
+  title: "ジャッカル（スティール）"
+  description: "タックル後、立った状態でボールを奪い取るプレー。"
+  detail: "タックルが成立した直後、ディフェンス側の選手が立った状態でボールに手をかけ、奪い取るプレー。ラックが形成される前に行う必要があり、成立条件が厳密に定められている。成功すればターンオーバーとなる。"
+  level: "上級"
+  principleId: "fair-contest"
+  icon: "🦅"
+  illustration: "/rules/jackal.png"
+  relatedRuleIds: ["ruck-entry"]
+
+- id: "ruck-entry"
+  title: "ラックへの正しい参加"
+  description: "ラックには後方（ゲート）から参加しなければならない。"
+  detail: "ラックに参加する選手は、ラックの最後尾から入らなければならない（ゲートから入る）。横や前から飛び込むとペナルティの対象となる。フェアなボール争奪を保つための重要なルール。"
+  level: "中級"
+  principleId: "fair-contest"
+  icon: "🚪"
+  illustration: "/rules/ruck-entry.png"
+  relatedRuleIds: ["jackal"]

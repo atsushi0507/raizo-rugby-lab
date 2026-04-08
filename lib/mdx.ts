@@ -270,3 +270,46 @@ export async function getAllGallery(): Promise<GalleryFrontmatter[]> {
     return validateGalleryFrontmatter(data, filePath);
   });
 }
+
+// ─── Rule Types ───────────────────────────────────────────────────────────────
+
+export interface RulePrinciple {
+  id: string;
+  title: string;
+  subtitle: string;
+  emoji: string;
+  color: string;
+}
+
+export interface RuleData {
+  id: string;
+  title: string;
+  description: string;
+  detail: string;
+  level: '初級' | '中級' | '上級';
+  principleId: string;
+  icon: string;
+  illustration: string;
+  relatedRuleIds: string[];
+}
+
+// ─── Rule Loaders ─────────────────────────────────────────────────────────────
+
+export async function getAllPrinciples(): Promise<RulePrinciple[]> {
+  const filePath = path.join(getDataDir('rules'), 'principles.yaml');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as RulePrinciple[];
+}
+
+export async function getAllRules(): Promise<RuleData[]> {
+  const filePath = path.join(getDataDir('rules'), 'rules.yaml');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as RuleData[];
+}
+
+export async function getRuleById(id: string): Promise<RuleData | null> {
+  const rules = await getAllRules();
+  return rules.find((r) => r.id === id) ?? null;
+}

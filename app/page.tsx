@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, TrendingUp, Users, Image as ImageIcon } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, BookOpen, Scale, Users, Image as ImageIcon } from 'lucide-react';
 import { getAllArticles } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
 import ArticleCard from '@/components/ArticleCard';
@@ -9,12 +10,10 @@ const INSTAGRAM_URL = 'https://www.instagram.com/rugby.raizo/';
 export default async function HomePage() {
   const allArticles = await getAllArticles();
 
-  // 公開日降順でソートし、上位3件を取得
   const latestArticles = [...allArticles]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
 
-  // いいね数を取得（失敗時は空オブジェクトにフォールバック）
   let likeCounts: Record<string, number> = {};
   try {
     likeCounts = await getLikeCounts(latestArticles.map((a) => a.id));
@@ -64,32 +63,101 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 最新記事 */}
+      {/* キャラクター紹介セクション */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold">最新記事</h2>
-          <Link
-            href="/articles"
-            className="text-green-600 hover:text-green-700 font-semibold flex items-center"
-          >
-            すべて見る
-            <ArrowRight size={20} className="ml-1" />
-          </Link>
+        <h2 className="text-2xl md:text-3xl font-bold mb-3 text-center">
+          2人と一緒に、ラグビーを読み解こう
+        </h2>
+        <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+          「なんであのプレーが成功したの？」そんな素朴な疑問から、戦術の深い世界へ。
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* ライゾウ */}
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-white shadow-sm shrink-0">
+                <Image
+                  src="/icons/raizo.png"
+                  alt="ライゾウ"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">ライゾウ</h3>
+                <p className="text-sm text-blue-600 font-medium">解説役 / SO（スタンドオフ）</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              チームの司令塔として試合を組み立ててきた経験を活かし、選手がフィールドで何を考え、なぜその判断をしたのかを解き明かす。戦術の「なぜ」を、誰にでも分かる言葉で伝える。
+            </p>
+          </div>
+
+          {/* リッチーくん */}
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-white shadow-sm shrink-0">
+                <Image
+                  src="/icons/richie.png"
+                  alt="リッチーくん"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">リッチーくん</h3>
+                <p className="text-sm text-green-600 font-medium">質問役 / ラグビー大好きモモンガ</p>
+              </div>
+            </div>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              ラグビーが大好きだけど、戦術はまだまだ勉強中。「なんでスタンドオフを飛ばしたの？」「あのタックルはなぜ反則？」純粋な疑問が、ライゾウの深い解説を引き出す。
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {latestArticles.map((article) => (
-            <ArticleCard
-              key={article.id}
-              article={article}
-              likeCount={likeCounts[article.id] ?? 0}
-            />
-          ))}
+        <div className="text-center mt-8">
+          <p className="text-gray-500 text-sm mb-4">2人の会話を通じて、難しい戦術もスッと理解できます</p>
+          <Link
+            href="/articles"
+            className="inline-flex items-center text-green-600 hover:text-green-700 font-semibold text-sm"
+          >
+            記事を読んでみる
+            <ArrowRight size={16} className="ml-1" />
+          </Link>
         </div>
       </section>
 
-      {/* カテゴリナビゲーション */}
+      {/* 最新記事 */}
       <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold">最新記事</h2>
+            <Link
+              href="/articles"
+              className="text-green-600 hover:text-green-700 font-semibold flex items-center"
+            >
+              すべて見る
+              <ArrowRight size={20} className="ml-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {latestArticles.map((article) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                likeCount={likeCounts[article.id] ?? 0}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* コンテンツを探す */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
             コンテンツを探す
@@ -97,30 +165,30 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
-              href="/articles?category=解説"
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+              href="/articles"
+              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group border"
             >
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
                 <BookOpen size={24} className="text-blue-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">解説記事</h3>
-              <p className="text-sm text-gray-600">プレーの意味を分かりやすく解説</p>
+              <h3 className="font-bold text-lg mb-2">解説・分析記事</h3>
+              <p className="text-sm text-gray-600">プレーの「なぜ」を読み解く</p>
             </Link>
 
             <Link
-              href="/articles?category=分析"
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+              href="/rules"
+              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group border"
             >
               <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
-                <TrendingUp size={24} className="text-purple-600" />
+                <Scale size={24} className="text-purple-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">分析記事</h3>
-              <p className="text-sm text-gray-600">戦術と判断を深く掘り下げる</p>
+              <h3 className="font-bold text-lg mb-2">ルールを学ぶ</h3>
+              <p className="text-sm text-gray-600">大原則から理解するルール解説</p>
             </Link>
 
             <Link
               href="/positions"
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group border"
             >
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
                 <Users size={24} className="text-green-600" />
@@ -131,7 +199,7 @@ export default async function HomePage() {
 
             <Link
               href="/gallery"
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group"
+              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow group border"
             >
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
                 <ImageIcon size={24} className="text-orange-600" />
