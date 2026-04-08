@@ -6,33 +6,66 @@ category: "バックス"
 catch: "攻撃の意思決定者"
 
 watchPoints:
-  - "ボールを受ける前にどこを見ているか"
-  - "パス・キック・ランの選択"
-  - "外側の人数が揃っているか"
+  - text: "パスをもらう前の視線"
+    timing: "ボールが来る前"
+    detail: "外の人数を確認している"
+  - text: "パス・キック・ランの選択"
+    timing: "ボールを受けた瞬間"
+    detail: "ディフェンスの配置で判断が変わる"
+  - text: "外側の人数が揃っているか"
+    timing: "攻撃ライン形成時"
+    detail: "数的有利を作れるかの判断材料"
 
 decision:
   - condition: "外が余っている"
     action: "パス"
+    reason: "ディフェンスの人数差を使ってゲインできるため"
   - condition: "前が空いている"
     action: "ラン"
+    reason: "ディフェンスラインにギャップがあり自ら突破できるため"
   - condition: "プレッシャーが強い"
     action: "キック"
+    reason: "陣地を回復し、相手にプレッシャーを返すため"
+
+decisionConversation:
+  - speaker: "リッチーくん"
+    message: "ライゾウ、スタンドオフってボールをもらったらまず何を考えるの？"
+  - speaker: "ライゾウ"
+    message: "まず外を見るんだ。味方と相手の人数を数えて、外が余っていればパスを選ぶ。人数差があればゲインできるからね。"
+  - speaker: "リッチーくん"
+    message: "じゃあ外が余ってないときは？"
+  - speaker: "ライゾウ"
+    message: "前にギャップがあれば自分で走る。でもディフェンスが詰めてきてどこも空いてなければ、キックで陣地を回復する。大事なのは、ボールをもらう前にもう判断を終わらせていること。"
+  - speaker: "リッチーくん"
+    message: "もらう前に！？ だからボールが来る前に外を見てるんだ…！"
 
 scenes:
   - "ラインブレイク直前の判断"
   - "ディフェンスが詰めてきた瞬間"
   - "数的有利が生まれる場面"
 
+commonMistakes:
+  - "外が足りないのにパスしてしまう"
+  - "判断が遅れてタックルされる"
+  - "キックの精度が低く陣地を回復できない"
+
 relations:
   - number: 9
     name: "スクラムハーフ"
-    description: "ボール供給を受ける"
+    role: "ボール供給"
+    description: "テンポの良い球出しが10番の判断時間を作る"
+  - number: 10
+    name: "スタンドオフ（自分）"
+    role: "判断"
+    description: "状況を読み、パス・キック・ランを選択する"
   - number: 12
     name: "インサイドセンター"
-    description: "判断の受け手"
+    role: "実行"
+    description: "10番の判断を受けてラインを突破する"
   - number: 15
     name: "フルバック"
-    description: "キック後のカバー"
+    role: "カバー"
+    description: "キック後のカバーリングと攻撃参加"
 
 skills:
   - name: "キック精度"
@@ -51,6 +84,6 @@ levelGuide:
   beginner: "パスかキックかの選択を見る"
   intermediate: "ディフェンスの配置と人数差を確認する"
 
-cta: "このポジションの見方を知る"
+cta: "なぜ10番はキックを選ぶのか？"
 icon: "/positions/so_10_icon.png"
 character: "/positions/so_10_character.png"

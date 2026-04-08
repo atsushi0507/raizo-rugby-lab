@@ -49,10 +49,12 @@ export interface PositionFrontmatter {
   nameEn: string;
   category: 'フォワード' | 'バックス';
   catch: string;
-  watchPoints: string[];
-  decision: { condition: string; action: string }[];
+  watchPoints: { text: string; timing?: string; detail?: string }[];
+  decision: { condition: string; action: string; reason?: string }[];
+  decisionConversation: { speaker: string; message: string }[];
   scenes: string[];
-  relations: { number: number; name: string; description: string }[];
+  commonMistakes: string[];
+  relations: { number: number; name: string; role: string; description: string }[];
   skills: { name: string; description: string }[];
   roles: string[];
   levelGuide: { beginner: string; intermediate: string };
@@ -174,10 +176,12 @@ function validatePositionFrontmatter(
     nameEn: assertString(data, 'nameEn', filePath),
     category: assertOneOf(data, 'category', ['フォワード', 'バックス'] as const, filePath),
     catch: assertString(data, 'catch', filePath),
-    watchPoints: (data.watchPoints as string[]) ?? [],
-    decision: (data.decision as { condition: string; action: string }[]) ?? [],
+    watchPoints: (data.watchPoints as { text: string; timing?: string; detail?: string }[]) ?? [],
+    decision: (data.decision as { condition: string; action: string; reason?: string }[]) ?? [],
+    decisionConversation: (data.decisionConversation as { speaker: string; message: string }[]) ?? [],
     scenes: (data.scenes as string[]) ?? [],
-    relations: (data.relations as { number: number; name: string; description: string }[]) ?? [],
+    commonMistakes: (data.commonMistakes as string[]) ?? [],
+    relations: (data.relations as { number: number; name: string; role: string; description: string }[]) ?? [],
     skills: (data.skills as { name: string; description: string }[]) ?? [],
     roles: (data.roles as string[]) ?? [],
     levelGuide: (data.levelGuide as { beginner: string; intermediate: string }) ?? { beginner: '', intermediate: '' },

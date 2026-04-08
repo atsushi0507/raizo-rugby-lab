@@ -123,7 +123,7 @@ function PositionCard({ position }: { position: PositionFrontmatter }) {
                 {position.watchPoints.slice(0, 2).map((wp, i) => (
                   <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
                     <span className="text-green-500 mt-0.5">•</span>
-                    <span>{wp}</span>
+                    <span>{wp.text}</span>
                   </li>
                 ))}
               </ul>
