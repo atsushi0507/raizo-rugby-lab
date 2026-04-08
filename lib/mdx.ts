@@ -44,13 +44,19 @@ export interface ArticleData extends ArticleFrontmatter {
 
 export interface PositionFrontmatter {
   id: string;
-  number: string;
+  number: number;
   name: string;
   nameEn: string;
   category: 'フォワード' | 'バックス';
-  description: string;
-  role: string[];
-  requiredSkills: string[];
+  catch: string;
+  watchPoints: string[];
+  decision: { condition: string; action: string }[];
+  scenes: string[];
+  relations: { number: number; name: string; description: string }[];
+  skills: { name: string; description: string }[];
+  roles: string[];
+  levelGuide: { beginner: string; intermediate: string };
+  cta: string;
   icon: string;
   character: string;
 }
@@ -163,13 +169,19 @@ function validatePositionFrontmatter(
 ): PositionFrontmatter {
   return {
     id: assertString(data, 'id', filePath),
-    number: assertString(data, 'number', filePath),
+    number: assertNumber(data, 'number', filePath),
     name: assertString(data, 'name', filePath),
     nameEn: assertString(data, 'nameEn', filePath),
     category: assertOneOf(data, 'category', ['フォワード', 'バックス'] as const, filePath),
-    description: assertString(data, 'description', filePath),
-    role: assertStringArray(data, 'role', filePath),
-    requiredSkills: assertStringArray(data, 'requiredSkills', filePath),
+    catch: assertString(data, 'catch', filePath),
+    watchPoints: (data.watchPoints as string[]) ?? [],
+    decision: (data.decision as { condition: string; action: string }[]) ?? [],
+    scenes: (data.scenes as string[]) ?? [],
+    relations: (data.relations as { number: number; name: string; description: string }[]) ?? [],
+    skills: (data.skills as { name: string; description: string }[]) ?? [],
+    roles: (data.roles as string[]) ?? [],
+    levelGuide: (data.levelGuide as { beginner: string; intermediate: string }) ?? { beginner: '', intermediate: '' },
+    cta: (data.cta as string) ?? 'このポジションの見方を知る',
     icon: assertString(data, 'icon', filePath),
     character: assertString(data, 'character', filePath),
   };
@@ -254,15 +266,17 @@ export async function getArticleById(
 
 export async function getAllPositions(): Promise<PositionFrontmatter[]> {
   const dir = getDataDir('positions');
-  const files = getMdxFiles(dir);
+  const files = getYamlFiles(dir);
   return files.map((filename) => {
     const filePath = path.join(dir, filename);
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    // positions still use MDX with gray-matter frontmatter
-    const matter = require('gray-matter');
-    const { data } = matter(raw);
-    return validatePositionFrontmatter(data as Record<string, unknown>, filePath);
+    const data = parseYaml(filePath);
+    return validatePositionFrontmatter(data, filePath);
   });
+}
+
+export async function getPositionById(id: string): Promise<PositionFrontmatter | null> {
+  const positions = await getAllPositions();
+  return positions.find((p) => p.id === id) ?? null;
 }
 
 export async function getAllGallery(): Promise<GalleryFrontmatter[]> {

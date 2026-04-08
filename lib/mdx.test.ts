@@ -41,23 +41,25 @@ watchPoints: []
 `;
 }
 
-function makePositionMdx(id: string): string {
-  return `---
-id: "${id}"
-number: "${id}"
-name: "テストポジション${id}"
-nameEn: "Test Position ${id}"
+function makePositionYaml(id: string): string {
+  return `id: "${id}"
+number: 99
+name: "テストポジション"
+nameEn: "Test Position"
 category: "フォワード"
-description: "テスト説明"
-role:
-  - "テスト役割"
-requiredSkills:
-  - "テストスキル"
-icon: "/images/test.png"
-character: "/images/test-char.png"
----
-
-テスト本文
+catch: "テストキャッチ"
+watchPoints: []
+decision: []
+scenes: []
+relations: []
+skills: []
+roles: []
+levelGuide:
+  beginner: "テスト"
+  intermediate: "テスト"
+cta: "テスト"
+icon: "/positions/test.png"
+character: "/positions/test.png"
 `;
 }
 
@@ -126,7 +128,7 @@ describe('Property 1: MDX ファイル自動検出', () => {
     );
   });
 
-  test('getAllPositions() returns count equal to .mdx file count in data/positions/', async () => {
+  test('getAllPositions() returns count equal to .yaml file count in data/positions/', async () => {
     // Validates: Requirements 2.1, 2.2
     await fc.assert(
       fc.asyncProperty(
@@ -135,13 +137,13 @@ describe('Property 1: MDX ファイル自動検出', () => {
           const tempFilenames: string[] = [];
           for (const rawId of extraIds) {
             const id = `tmp-pos-${rawId}`;
-            const filename = `${id}.mdx`;
+            const filename = `${id}.yaml`;
             if (tempFilenames.includes(filename)) continue;
             tempFilenames.push(filename);
-            writeTempMdx(positionsDir, filename, makePositionMdx(id));
+            writeTempMdx(positionsDir, filename, makePositionYaml(id));
           }
 
-          const expectedCount = countMdxFiles(positionsDir);
+          const expectedCount = countContentFiles(positionsDir);
           const positions = await getAllPositions();
           return positions.length === expectedCount;
         }

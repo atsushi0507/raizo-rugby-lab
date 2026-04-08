@@ -1,0 +1,56 @@
+id: "so10"
+number: 10
+name: "スタンドオフ"
+nameEn: "Stand-off / Fly Half"
+category: "バックス"
+catch: "攻撃の意思決定者"
+
+watchPoints:
+  - "ボールを受ける前にどこを見ているか"
+  - "パス・キック・ランの選択"
+  - "外側の人数が揃っているか"
+
+decision:
+  - condition: "外が余っている"
+    action: "パス"
+  - condition: "前が空いている"
+    action: "ラン"
+  - condition: "プレッシャーが強い"
+    action: "キック"
+
+scenes:
+  - "ラインブレイク直前の判断"
+  - "ディフェンスが詰めてきた瞬間"
+  - "数的有利が生まれる場面"
+
+relations:
+  - number: 9
+    name: "スクラムハーフ"
+    description: "ボール供給を受ける"
+  - number: 12
+    name: "インサイドセンター"
+    description: "判断の受け手"
+  - number: 15
+    name: "フルバック"
+    description: "キック後のカバー"
+
+skills:
+  - name: "キック精度"
+    description: "陣地回復やプレッシャー回避に直結"
+  - name: "戦術眼"
+    description: "ディフェンスのズレや人数差を見抜く"
+  - name: "ゲームメイク"
+    description: "攻撃のテンポと方向性を決定する"
+
+roles:
+  - "攻撃の組み立てと指揮"
+  - "タクティカルキック"
+  - "ディフェンスラインの統率"
+
+levelGuide:
+  beginner: "パスかキックかの選択を見る"
+  intermediate: "ディフェンスの配置と人数差を確認する"
+
+cta: "このポジションの見方を知る"
+icon: "/positions/so_10_icon.png"
+character: "/positions/so_10_character.png"
