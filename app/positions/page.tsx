@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ArrowRight, Eye, GitBranch } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'ポジション解説 - 選手の判断と思考を追体験する',
+  description: '15のポジションそれぞれの観戦ポイント・判断の分岐・思考プロセスを解説。試合中の選手の頭の中を覗いてみよう。',
+};
 import { getAllPositions } from '@/lib/mdx';
 import type { PositionFrontmatter } from '@/lib/mdx';
 import { FieldMap } from '@/components/FieldMap';

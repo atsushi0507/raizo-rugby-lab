@@ -1,6 +1,12 @@
 import Link from 'next/link';
-import { BookOpen, Users, Flag, AlertCircle } from 'lucide-react';
-import { getAllPrinciples, getAllRules } from '@/lib/mdx';
+import type { Metadata } from 'next';
+import { BookOpen, Users, Flag, AlertCircle, ArrowRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'ルール解説 - 大原則から理解するラグビーのルール',
+  description: 'ラグビーのルールを6つの大原則から理解する。個別のルールも根っこを知れば覚えやすい。セットプレーの仕組みも解説。',
+};
+import { getAllPrinciples, getAllRules, getAllSetPieces } from '@/lib/mdx';
 import type { RulePrinciple, RuleData } from '@/lib/mdx';
 
 const PRINCIPLE_COLORS: Record<string, { bg: string; border: string; text: string; badge: string }> = {
@@ -19,18 +25,14 @@ const LEVEL_COLORS: Record<string, string> = {
 };
 
 export default async function RulesPage() {
-  const principles = await getAllPrinciples();
-  const rules = await getAllRules();
+  const [principles, rules, setPieces] = await Promise.all([
+    getAllPrinciples(),
+    getAllRules(),
+    getAllSetPieces(),
+  ]);
 
   const rulesByPrinciple = (principleId: string) =>
     rules.filter((r) => r.principleId === principleId);
-
-  const setPieces = [
-    { title: 'スクラム', description: '軽い反則の後、両チームのフォワード8人ずつが組んで、ボールを奪い合うセットプレー。', details: ['フッカーがボールを足で掻き出す', '押し込みでプレッシャーをかける', 'スクラムハーフがボールを供給'] },
-    { title: 'ラインアウト', description: 'ボールがタッチラインの外に出た後、タッチラインから投げ入れて再開するセットプレー。', details: ['フッカーが投げ入れる', 'ジャンパーが空中でキャッチ', 'リフターが持ち上げる'] },
-    { title: 'ラック', description: 'タックル後、地面にあるボールの上に両チームの選手が立って形成される密集状態。', details: ['ボールを確保するために入る', '立ったまま押し合う', '手でボールを触ってはいけない'] },
-    { title: 'モール', description: 'ボールキャリアが立ったまま、両チームの選手に囲まれて形成される密集状態。', details: ['ボールキャリアは立っている', '前に押し込むことができる', '崩すと反則になる'] },
-  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,25 +71,27 @@ export default async function RulesPage() {
           <Users size={32} className="text-purple-600 mr-3" />
           <h2 className="text-2xl md:text-3xl font-bold">セットプレー</h2>
         </div>
-        <div className="space-y-6">
-          {setPieces.map((piece, index) => (
-            <div key={index} className="bg-white border rounded-lg overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {setPieces.map((piece) => (
+            <Link
+              key={piece.id}
+              href={'/rules/setpiece-' + piece.id}
+              className="bg-white border rounded-lg overflow-hidden hover:shadow-md transition-shadow group"
+            >
               <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 border-b">
-                <h3 className="font-bold text-xl mb-2">{piece.title}</h3>
-                <p className="text-gray-700">{piece.description}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl">{piece.icon}</span>
+                  <h3 className="font-bold text-xl group-hover:text-green-600 transition-colors">{piece.title}</h3>
+                </div>
+                <p className="text-gray-700 text-sm">{piece.description}</p>
               </div>
-              <div className="p-6">
-                <h4 className="font-semibold mb-3 text-gray-700">ポイント：</h4>
-                <ul className="space-y-2">
-                  {piece.details.map((detail, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="text-purple-600 mr-2">▸</span>
-                      <span className="text-gray-600">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="p-4 flex items-center justify-between">
+                <span className="text-xs text-gray-500">{piece.points.length}つのポイント</span>
+                <span className="text-sm text-green-600 font-semibold flex items-center gap-1 group-hover:text-green-700">
+                  詳しく見る <ArrowRight size={14} />
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

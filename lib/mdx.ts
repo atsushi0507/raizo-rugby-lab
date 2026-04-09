@@ -313,6 +313,20 @@ export interface RuleData {
   icon: string;
   illustration: string;
   relatedRuleIds: string[];
+  conversation: { speaker: string; message: string }[];
+}
+
+export interface SetPieceData {
+  id: string;
+  title: string;
+  icon: string;
+  description: string;
+  detail: string;
+  points: string[];
+  triggerConditions: string[];
+  relatedRuleIds: string[];
+  illustration: string;
+  conversation: { speaker: string; message: string }[];
 }
 
 // ─── Rule Loaders ─────────────────────────────────────────────────────────────
@@ -334,4 +348,16 @@ export async function getAllRules(): Promise<RuleData[]> {
 export async function getRuleById(id: string): Promise<RuleData | null> {
   const rules = await getAllRules();
   return rules.find((r) => r.id === id) ?? null;
+}
+
+export async function getAllSetPieces(): Promise<SetPieceData[]> {
+  const filePath = path.join(getDataDir('rules'), 'setpieces.yaml');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as SetPieceData[];
+}
+
+export async function getSetPieceById(id: string): Promise<SetPieceData | null> {
+  const pieces = await getAllSetPieces();
+  return pieces.find((p) => p.id === id) ?? null;
 }

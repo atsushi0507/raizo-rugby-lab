@@ -4,6 +4,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com'),
   title: {
     default: 'ライゾウのラグビーラボ',
     template: "%s | ライゾウのラグビーラボ"

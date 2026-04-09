@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import { getAllArticles } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
 import ArticleListClient from '@/components/ArticleListClient';
+
+export const metadata: Metadata = {
+  title: '記事一覧 - プレーの「なぜ」を読み解く',
+  description: 'ラグビーの解説・分析記事一覧。戦術と判断の裏側を、会話形式で分かりやすく解説します。',
+};
 
 export default async function ArticlesPage() {
   const articles = await getAllArticles();

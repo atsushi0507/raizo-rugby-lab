@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { getAllGallery } from '@/lib/mdx';
+
+export const metadata: Metadata = {
+  title: 'ギャラリー - 試合の瞬間を写真で振り返る',
+  description: '試合の瞬間、選手たちの表情、スタジアムの熱気。写真で振り返るラグビーの魅力。',
+};
 import { Image as ImageIcon } from 'lucide-react';
 import { GalleryGrid } from '@/components/GalleryGrid';
 

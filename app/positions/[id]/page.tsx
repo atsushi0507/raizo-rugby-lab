@@ -1,12 +1,23 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { ArrowLeft, Eye, GitBranch, Film, AlertTriangle, Link2, Zap, BookOpen, ArrowRight, MessageCircle } from 'lucide-react';
 import { getPositionById } from '@/lib/mdx';
 import { Conversation } from '@/components/mdx/Conversation';
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const position = await getPositionById(id);
+  if (!position) return { title: 'ポジションが見つかりません' };
+  return {
+    title: `${position.name}（${position.number}番）- ${position.catch}`,
+    description: `${position.name}の観戦ポイント・判断の分岐・思考プロセスを解説。${position.catch}。`,
+  };
 }
 
 export default async function PositionDetailPage({ params }: PageProps) {

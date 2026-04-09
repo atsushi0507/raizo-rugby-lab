@@ -1,6 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ArrowRight, Search, Users, BarChart3 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'このメディアについて - ライゾウのラグビーラボ',
+  description: '「なんとなく観ている」から「理解して楽しむ」へ。プレーの裏にある戦術や判断を解き明かし、観戦体験を一段深くするメディアです。',
+};
 
 export default function AboutPage() {
   return (

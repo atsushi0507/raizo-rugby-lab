@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { ArrowRight, BookOpen, Scale, Users, Image as ImageIcon } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'ラグビーの「なぜ」を読み解く解説メディア',
+  description: 'プレーの裏にある戦術と判断を解き明かし、ラグビー観戦をもっと深く楽しくする。ライゾウとリッチーくんの会話で、難しい戦術もスッと理解できます。',
+};
 import { getAllArticles } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
 import ArticleCard from '@/components/ArticleCard';

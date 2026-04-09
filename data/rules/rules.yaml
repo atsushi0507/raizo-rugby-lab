@@ -7,6 +7,15 @@
   icon: "⚠️"
   illustration: "/rules/knock-forward.png"
   relatedRuleIds: ["throw-forward"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "ノックオンとノックフォワードって同じ？"
+    - speaker: "ライゾウ"
+      message: "ほぼ同じ意味だよ。ボールを前に落としたら反則。キャッチミスでも、パスを受け損ねても、前に落ちたらノックオンになる。"
+    - speaker: "リッチーくん"
+      message: "わざとじゃなくてもダメなの？"
+    - speaker: "ライゾウ"
+      message: "そう、意図は関係ない。だからキャッチの技術がすごく大事なんだ。雨の日は特にノックオンが増えるよ。"
 
 - id: "throw-forward"
   title: "スローフォワード"
@@ -17,6 +26,11 @@
   icon: "🏉"
   illustration: "/rules/throw-forward.png"
   relatedRuleIds: ["knock-forward"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "走りながらパスすると前に飛んじゃいそうだけど…"
+    - speaker: "ライゾウ"
+      message: "いいところに気づいたね。走る勢いでパスが前に流れるのはよくあること。だから受け手は少し後ろから走り込むのが基本なんだ。"
 
 - id: "lineout-not-straight"
   title: "スローインの不正"
@@ -27,6 +41,11 @@
   icon: "📐"
   illustration: "/rules/lineout-not-straight.png"
   relatedRuleIds: []
+  conversation:
+    - speaker: "リッチーくん"
+      message: "味方の方に投げちゃダメなの？"
+    - speaker: "ライゾウ"
+      message: "まっすぐ投げるのがルール。でもサインプレーで投げる位置を変えることで、実質的に味方が有利にキャッチできるようにしてるんだ。"
 
 - id: "obstruction"
   title: "オブストラクション"
@@ -37,6 +56,11 @@
   icon: "🚫"
   illustration: "/rules/obstruction.png"
   relatedRuleIds: ["shepherding"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "味方を守るために前に立つのはダメなの？"
+    - speaker: "ライゾウ"
+      message: "ラグビーではボールを持っていない選手が相手の邪魔をしちゃいけないんだ。フェアにプレーするための大原則だよ。"
 
 - id: "shepherding"
   title: "シェパーディング"
@@ -47,6 +71,7 @@
   icon: "🛑"
   illustration: "/rules/shepherding.png"
   relatedRuleIds: ["obstruction"]
+  conversation: []
 
 - id: "offside"
   title: "オフサイド"
@@ -57,6 +82,11 @@
   icon: "🚫"
   illustration: "/rules/offside.png"
   relatedRuleIds: []
+  conversation:
+    - speaker: "リッチーくん"
+      message: "オフサイドってサッカーと同じ？"
+    - speaker: "ライゾウ"
+      message: "考え方は似てるけど、ラグビーの方が複雑。ラック、モール、スクラム、キックで全部オフサイドラインが違うんだ。でも基本は『ボールより前からプレーに参加しない』ということ。"
 
 - id: "not-release"
   title: "ノットリリースザボール"
@@ -67,6 +97,11 @@
   icon: "🤲"
   illustration: "/rules/not-release.png"
   relatedRuleIds: ["not-roll-away", "sealing-off"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "タックルされたらボール離さなきゃいけないの？もったいなくない？"
+    - speaker: "ライゾウ"
+      message: "倒れた選手がボールを抱え込むと、プレーが止まっちゃうんだ。素早く離して味方に繋ぐのが攻撃を続けるコツだよ。"
 
 - id: "not-roll-away"
   title: "ノットロールアウェイ"
@@ -77,6 +112,11 @@
   icon: "🔄"
   illustration: "/rules/not-roll-away.png"
   relatedRuleIds: ["not-release", "off-feet"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "タックルした後、そのまま寝てたらダメなの？"
+    - speaker: "ライゾウ"
+      message: "タックルした選手はすぐにボールから離れないといけない。寝たままだと相手のボール確保を邪魔してることになるからね。"
 
 - id: "sealing-off"
   title: "シーリングオフ"
@@ -87,6 +127,7 @@
   icon: "⬇️"
   illustration: "/rules/sealing-off.png"
   relatedRuleIds: ["not-release", "off-feet"]
+  conversation: []
 
 - id: "off-feet"
   title: "オフフィート"
@@ -97,6 +138,7 @@
   icon: "🦶"
   illustration: "/rules/off-feet.png"
   relatedRuleIds: ["not-roll-away", "sealing-off"]
+  conversation: []
 
 - id: "high-tackle"
   title: "ハイタックル"
@@ -107,6 +149,11 @@
   icon: "💥"
   illustration: "/rules/high-tackle.png"
   relatedRuleIds: ["no-arm-tackle", "dangerous-tackle"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "ハイタックルってどこからがダメなの？"
+    - speaker: "ライゾウ"
+      message: "肩のラインより上。首や頭に当たるタックルは一発でカードが出ることもある。選手の安全を守るために、年々厳しくなってるよ。"
 
 - id: "no-arm-tackle"
   title: "ノーアームタックル"
@@ -117,6 +164,7 @@
   icon: "💪"
   illustration: "/rules/no-arm-tackle.png"
   relatedRuleIds: ["high-tackle", "dangerous-tackle"]
+  conversation: []
 
 - id: "dangerous-tackle"
   title: "危険なタックル"
@@ -127,6 +175,7 @@
   icon: "🚨"
   illustration: "/rules/dangerous-tackle.png"
   relatedRuleIds: ["high-tackle", "no-arm-tackle"]
+  conversation: []
 
 - id: "jackal"
   title: "ジャッカル（スティール）"
@@ -137,6 +186,15 @@
   icon: "🦅"
   illustration: "/rules/jackal.png"
   relatedRuleIds: ["ruck-entry"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "ジャッカルってかっこいいけど、どうやったら成功するの？"
+    - speaker: "ライゾウ"
+      message: "タックルが成立した瞬間に、立ったままボールに手をかける。ラックが形成される前にやらないといけないから、スピードと判断力が命だよ。"
+    - speaker: "リッチーくん"
+      message: "失敗したらどうなるの？"
+    - speaker: "ライゾウ"
+      message: "立っていなかったり、ラックが形成された後に手を出すとペナルティ。リスクとリターンが大きいプレーなんだ。"
 
 - id: "ruck-entry"
   title: "ラックへの正しい参加"
@@ -147,3 +205,4 @@
   icon: "🚪"
   illustration: "/rules/ruck-entry.png"
   relatedRuleIds: ["jackal"]
+  conversation: []

@@ -1,8 +1,24 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
 import { getArticleById, getAllArticles } from '@/lib/mdx';
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const article = await getArticleById(id);
+  if (!article) return { title: '記事が見つかりません' };
+  return {
+    title: article.title,
+    description: article.excerpt,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      images: [{ url: article.thumbnail }],
+    },
+  };
+}
 import { getLikeCounts } from '@/lib/likes';
 import LikeButton from '@/components/LikeButton';
 import ArticleCard from '@/components/ArticleCard';
@@ -67,8 +83,27 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       ? 'bg-blue-100 text-blue-700'
       : 'bg-purple-100 text-purple-700';
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    image: article.thumbnail,
+    datePublished: article.date,
+    author: { '@type': 'Organization', name: 'ライゾウのラグビーラボ' },
+    publisher: { '@type': 'Organization', name: 'ライゾウのラグビーラボ' },
+    mainEntityOfPage: `${siteUrl}/articles/${article.id}`,
+  };
+
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* 戻るリンク */}
       <Link
         href="/articles"
@@ -234,5 +269,6 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         </section>
       )}
     </div>
+    </>
   );
 }
