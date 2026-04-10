@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ImageIcon, MessageCircle } from 'lucide-react';
 import type { Metadata } from 'next';
-import { getRuleById, getSetPieceById, getAllRules, getAllPrinciples } from '@/lib/mdx';
+import { getRuleById, getSetPieceById, getAllRules, getAllPrinciples, getAllSetPieces } from '@/lib/mdx';
 import { Conversation } from '@/components/mdx/Conversation';
 
 const LEVEL_COLORS: Record<string, string> = {
@@ -47,9 +47,10 @@ export default async function RuleDetailPage({ params }: PageProps) {
   const rule = await getRuleById(id);
   if (!rule) notFound();
 
-  const [allRules, principles] = await Promise.all([getAllRules(), getAllPrinciples()]);
+  const [allRules, principles, allSetPieces] = await Promise.all([getAllRules(), getAllPrinciples(), getAllSetPieces()]);
   const principle = principles.find((p) => p.id === rule.principleId);
   const relatedRules = rule.relatedRuleIds.map((rid) => allRules.find((r) => r.id === rid)).filter(Boolean);
+  const relatedSetPieces = (rule.relatedSetPieceIds ?? []).map((sid) => allSetPieces.find((s) => s.id === sid)).filter(Boolean);
   const principleColor = principle ? (PRINCIPLE_BADGE[principle.color] ?? 'bg-gray-100 text-gray-700') : 'bg-gray-100 text-gray-700';
 
   return (
@@ -100,6 +101,25 @@ export default async function RuleDetailPage({ params }: PageProps) {
                 </div>
                 <h3 className="font-bold text-sm group-hover:text-green-600 transition-colors">{related.title}</h3>
                 <p className="text-xs text-gray-500 mt-1 line-clamp-2">{related.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 試合再開方法 */}
+      {relatedSetPieces.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-xl font-bold mb-4">どうやって再開する？</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {relatedSetPieces.map((sp) => sp && (
+              <Link key={sp.id} href={'/rules/setpiece-' + sp.id} className="bg-white border rounded-lg p-4 hover:shadow-md transition-shadow group">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-lg">{sp.icon}</span>
+                  <span className="text-xs font-semibold px-2 py-0.5 rounded bg-purple-100 text-purple-700">セットプレー</span>
+                </div>
+                <h3 className="font-bold text-sm group-hover:text-green-600 transition-colors">{sp.title}で再開</h3>
+                <p className="text-xs text-gray-500 mt-1 line-clamp-2">{sp.description}</p>
               </Link>
             ))}
           </div>

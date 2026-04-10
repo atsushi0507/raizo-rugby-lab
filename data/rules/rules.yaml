@@ -8,6 +8,7 @@
   icon: "⚠️"
   illustration: "/rules/knock-forward.png"
   relatedRuleIds: ["throw-forward", "not-straight"]
+  relatedSetPieceIds: ["scrum"]
   conversation:
     - speaker: "リッチーくん"
       message: "今の落としただけに見えたけどダメなの！？"
@@ -27,6 +28,7 @@
   icon: "🏉"
   illustration: "/rules/throw-forward.png"
   relatedRuleIds: ["knock-forward"]
+  relatedSetPieceIds: ["scrum"]
   conversation:
     - speaker: "リッチーくん"
       message: "今ちょっと前に投げたよね！？"
@@ -46,6 +48,7 @@
   icon: "📏"
   illustration: "/rules/not-straight.png"
   relatedRuleIds: []
+  relatedSetPieceIds: ["scrum"]
   conversation:
     - speaker: "リッチーくん"
       message: "え、なんで今やり直しなの？普通に投げてたよ？"
@@ -66,6 +69,7 @@
   icon: "🤲"
   illustration: "/rules/not-release-the-ball.png"
   relatedRuleIds: ["not-roll-away"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "なんで今止められたの！？まだ持ってたのに！"
@@ -85,6 +89,7 @@
   icon: "🔄"
   illustration: "/rules/not-roll-away.png"
   relatedRuleIds: ["not-release-the-ball"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "え、タックル成功してるのに反則！？"
@@ -104,6 +109,7 @@
   icon: "🦶"
   illustration: "/rules/off-feet.png"
   relatedRuleIds: []
+  relatedSetPieceId: []
   conversation:
     - speaker: "リッチーくん"
       message: "なんで倒れただけで反則なの？"
@@ -124,6 +130,8 @@
   icon: "🚫"
   illustration: "/rules/offside.png"
   relatedRuleIds: ["ten-meter-rule"]
+  relatedSetPieceId: ""
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "なんであの人動いちゃダメなの！？"
@@ -143,6 +151,7 @@
   icon: "📏"
   illustration: "/rules/ten-meter-rule.png"
   relatedRuleIds: ["offside"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "え！？なんで急に下がってるの！？"
@@ -162,6 +171,7 @@
   icon: "❓"
   illustration: "/rules/accidental-offside.png"
   relatedRuleIds: []
+  relatedSetPieceIds: ["scrum"]
   conversation:
     - speaker: "リッチーくん"
       message: "え、今のも反則！？当たっただけじゃん！"
@@ -182,6 +192,7 @@
   icon: "🚫"
   illustration: "/rules/obstruction.png"
   relatedRuleIds: ["shepherding"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "あれナイスブロックじゃないの！？"
@@ -201,6 +212,7 @@
   icon: "🧍"
   illustration: "/rules/tackle-non-carrier.png"
   relatedRuleIds: ["obstruction"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "え！？今のタックルめっちゃいいタイミングじゃなかった！？"
@@ -229,6 +241,7 @@
   icon: "🤝"
   illustration: "/rules/holding-non-carrier.png"
   relatedRuleIds: ["obstruction", "tackle-player-without-ball"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "え、ボール持ってないのに押しちゃダメなの！？"
@@ -253,6 +266,7 @@
   icon: "📐"
   illustration: "/rules/lnot-straight.png"
   relatedRuleIds: ["not-straight"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "今の投げ方、普通に見えたけどダメなの！？"
@@ -276,6 +290,7 @@
   icon: "🦅"
   illustration: "/rules/steal.png"
   relatedRuleIds: []
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "うわ！いきなり取った！？何あれ！？"
@@ -299,6 +314,7 @@
   icon: "⬇️"
   illustration: "/rules/collapsing.png"
   relatedRuleIds: []
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "なんで崩したらダメなの？押されてたのに！"
@@ -318,6 +334,7 @@
   icon: "🚪"
   illustration: "/rules/gate-entry.png"
   relatedRuleIds: []
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "なんで横から入っちゃダメなの！？近いのに！"
@@ -338,6 +355,7 @@
   icon: "💥"
   illustration: "/rules/high-tackle.png"
   relatedRuleIds: ["shoulder-charge"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "うわ！今の危ない！！"
@@ -357,6 +375,7 @@
   icon: "💪"
   illustration: "/rules/shoulder-charge.png"
   relatedRuleIds: ["high-tackle"]
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "え！？ぶつかっただけでダメ！？"
@@ -376,6 +395,7 @@
   icon: "🚨"
   illustration: "/rules/late-charge.png"
   relatedRuleIds: []
+  relatedSetPieceIds: []
   conversation:
     - speaker: "リッチーくん"
       message: "今のあとから当たってる！ズルい！"

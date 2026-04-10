@@ -1,0 +1,91 @@
+id: "wtb14"
+number: 14
+name: "ウィング（オープンサイド）"
+nameEn: "Wing (Open Side)"
+category: "バックス"
+catch: "軌道を見つけて仕留めるフィニッシャー"
+
+watchPoints:
+  - text: "内側のディフェンスのズレ"
+    timing: "攻撃ライン形成時"
+    detail: "1人でも遅れや外れがあるかを見ている"
+  - text: "ボールの展開スピード"
+    timing: "パスが回っている最中"
+    detail: "自分に回ってくるまでの時間と角度を計算している"
+  - text: "自分の前のスペース（軌道）"
+    timing: "ボールを受ける直前"
+    detail: "どのコースを走れば止まらず抜けられるかを見ている"
+
+decision:
+  - condition: "外にスペースがある"
+    action: "加速して走り切る"
+    reason: "トップスピードでディフェンスに捕まらずトライできるため"
+  - condition: "内側にズレがある"
+    action: "内に切り込む"
+    reason: "ディフェンスのギャップを最短距離で突破できるため"
+  - condition: "前が塞がれている"
+    action: "外に流れる / サポートに回る"
+    reason: "無理に仕掛けず次のチャンスに備えるため"
+
+decisionConversation:
+  - speaker: "リッチーくん"
+    message: "フウガって、ボールもらったらすぐ走るだけなの？"
+  - speaker: "フウガ"
+    message: "…違う。もらう前に決めてる。どこを走るかは、もう見えてる。"
+  - speaker: "リッチーくん"
+    message: "見えてるって、何が？"
+  - speaker: "フウガ"
+    message: "軌道。ディフェンスのズレで、一瞬だけ通るラインがある。そこを走るだけだ。"
+  - speaker: "リッチーくん"
+    message: "じゃあ迷ったりはしないの？"
+  - speaker: "フウガ"
+    message: "迷ったら終わりだ。見つけた瞬間に、全部出す。"
+
+scenes:
+  - "ラインの外で待ち続ける場面"
+  - "ボールが一気に展開される瞬間"
+  - "ディフェンスの隙間を抜けてトライに持ち込む場面"
+
+commonMistakes:
+  - "内側を見ずにただ外で待っているだけになる"
+  - "加速のタイミングが遅れてスペースを逃す"
+  - "トップスピードに乗る前に捕まる"
+
+relations:
+  - number: 11
+    name: "ウィング（反対側）"
+    role: "対角のフィニッシャー"
+    description: "反対サイドでも同様にチャンスを狙う"
+  - number: 13
+    name: "アウトサイドセンター"
+    role: "展開"
+    description: "外にボールを供給し、14番のスペースを作る"
+  - number: 14
+    name: "ウィング（自分）"
+    role: "フィニッシュ"
+    description: "最後に走り切りトライを奪う"
+  - number: 15
+    name: "フルバック"
+    role: "サポート"
+    description: "ラインブレイク時の追走やカバーに入る"
+
+skills:
+  - name: "トップスピード"
+    description: "一度抜けたら捕まらない絶対的な速さ"
+  - name: "コース取り"
+    description: "ディフェンスのズレから最適な軌道を見つける力"
+  - name: "フィニッシュ力"
+    description: "確実にトライまで持ち込む決定力"
+
+roles:
+  - "トライを奪い切るフィニッシャー"
+  - "スペースの発見と活用"
+  - "外側で機会を待つポジショニング"
+
+levelGuide:
+  beginner: "どこで待っているかを見る"
+  intermediate: "どのタイミングで走り出すかを見る"
+
+cta: "なぜウィングは最後に走るだけでトライできるのか？"
+icon: "/positions/wtb_14_icon.png"
+character: "/positions/wtb_14_character.png"

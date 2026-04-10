@@ -271,11 +271,17 @@ export async function getArticleById(
 export async function getAllPositions(): Promise<PositionFrontmatter[]> {
   const dir = getDataDir('positions');
   const files = getYamlFiles(dir);
-  return files.map((filename) => {
-    const filePath = path.join(dir, filename);
-    const data = parseYaml(filePath);
-    return validatePositionFrontmatter(data, filePath);
-  });
+  const results: PositionFrontmatter[] = [];
+  for (const filename of files) {
+    try {
+      const filePath = path.join(dir, filename);
+      const data = parseYaml(filePath);
+      results.push(validatePositionFrontmatter(data, filePath));
+    } catch {
+      // 不完全なYAMLファイルはスキップ
+    }
+  }
+  return results;
 }
 
 export async function getPositionById(id: string): Promise<PositionFrontmatter | null> {
@@ -313,6 +319,7 @@ export interface RuleData {
   icon: string;
   illustration: string;
   relatedRuleIds: string[];
+  relatedSetPieceIds: string[];
   conversation: { speaker: string; message: string }[];
 }
 
