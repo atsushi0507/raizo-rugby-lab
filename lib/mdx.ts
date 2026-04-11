@@ -39,7 +39,7 @@ export interface ArticleData extends ArticleFrontmatter {
   conversations: ConversationItem[];
   structure: StructureData;
   watchPoints: string[];
-  analysisVideoUrl: string;
+  analysisVideoUrl?: string;
 }
 
 export interface PositionFrontmatter {
@@ -261,7 +261,7 @@ export async function getArticleById(
         conversations: (data.conversations as ConversationItem[]) ?? [],
         structure: (data.structure as StructureData) ?? { situation: '', decision: '', result: '' },
         watchPoints: (data.watchPoints as string[]) ?? [],
-        analysisVideoUrl: assertString(data, 'analysisVideoUrl', filePath),
+        analysisVideoUrl: (data.analysisVideoUrl as string) ?? undefined,
       };
     }
   }

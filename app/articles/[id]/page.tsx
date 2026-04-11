@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
-import { getArticleById, getAllArticles } from '@/lib/mdx';
+import { getArticleById, getAllArticles, getAllPositions } from '@/lib/mdx';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
@@ -69,6 +69,18 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     }
   } catch {
     // 関連記事取得失敗時は空で表示
+  }
+
+  // 記事に関連するポジションを取得（position フィールドは "SO10" 形式、id は "so10" 形式）
+  let relatedPosition: Awaited<ReturnType<typeof getAllPositions>>[number] | null = null;
+  if (article.position) {
+    try {
+      const allPositions = await getAllPositions();
+      const posKey = article.position.toLowerCase();
+      relatedPosition = allPositions.find((p) => p.id === posKey) ?? null;
+    } catch {
+      // ポジション取得失敗時はスキップ
+    }
   }
 
   const levelColorClass =
@@ -201,25 +213,27 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* 解説動画（俯瞰図アニメーション） */}
-        <section className="mb-8">
-          <h2>📐 プレー解説動画</h2>
-          <div className="my-4 rounded-lg overflow-hidden shadow-md bg-gray-900 mx-auto" style={{ maxWidth: '400px', aspectRatio: '1280 / 1080' }}>
-            <video
-              controls
-              playsInline
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 50%', transform: 'scale(1.12)' }}
-              preload="metadata"
-            >
-              <source src={article.analysisVideoUrl} type="video/mp4" />
-              お使いのブラウザは動画タグをサポートしていません。
-            </video>
-          </div>
-          <p className="text-sm text-gray-600 text-center">
-            選手の動きを俯瞰図で確認しよう
-          </p>
-        </section>
+        {/* 解説動画（俯瞰図アニメーション）- analysisVideoUrl が設定されている場合のみ */}
+        {article.analysisVideoUrl && (
+          <section className="mb-8">
+            <h2>📐 プレー解説動画</h2>
+            <div className="my-4 rounded-lg overflow-hidden shadow-md bg-gray-900 mx-auto" style={{ maxWidth: '400px', aspectRatio: '1280 / 1080' }}>
+              <video
+                controls
+                playsInline
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 50%', transform: 'scale(1.12)' }}
+                preload="metadata"
+              >
+                <source src={article.analysisVideoUrl} type="video/mp4" />
+                お使いのブラウザは動画タグをサポートしていません。
+              </video>
+            </div>
+            <p className="text-sm text-gray-600 text-center">
+              選手の動きを俯瞰図で確認しよう
+            </p>
+          </section>
+        )}
 
         {/* 試合映像（YouTube）- videoUrl が設定されている場合のみ */}
         {article.videoUrl && (
@@ -253,19 +267,40 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         </a>
       </div>
 
-      {/* 関連記事 */}
-      {relatedArticles.length > 0 && (
+      {/* もっと深く知る */}
+      {(relatedArticles.length > 0 || relatedPosition) && (
         <section>
-          <h2 className="text-xl font-bold mb-6">関連記事</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {relatedArticles.map((related) => (
-              <ArticleCard
-                key={related.id}
-                article={related}
-                likeCount={relatedLikeCounts[related.id] ?? 0}
-              />
-            ))}
-          </div>
+          <h2 className="text-xl font-bold mb-6">もっと深く知る</h2>
+
+          {/* ポジションへの導線 */}
+          {relatedPosition && (
+            <Link
+              href={'/positions/' + relatedPosition.id}
+              className="flex items-center gap-4 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-5 mb-6 hover:shadow-md transition-shadow group"
+            >
+              <div className="w-12 h-12 rounded-full overflow-hidden bg-white shadow-sm shrink-0">
+                <Image src={relatedPosition.icon} alt={relatedPosition.name} width={48} height={48} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs text-green-600 font-medium mb-0.5">{relatedPosition.name}の思考を覗いてみる</p>
+                <p className="font-semibold text-sm group-hover:text-green-600 transition-colors">{relatedPosition.catch}</p>
+              </div>
+              <ArrowRight size={16} className="text-gray-400 group-hover:text-green-600 transition-colors shrink-0" />
+            </Link>
+          )}
+
+          {/* 関連記事 */}
+          {relatedArticles.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {relatedArticles.map((related) => (
+                <ArticleCard
+                  key={related.id}
+                  article={related}
+                  likeCount={relatedLikeCounts[related.id] ?? 0}
+                />
+              ))}
+            </div>
+          )}
         </section>
       )}
     </div>

@@ -22,19 +22,19 @@ export function sortArticles(
 ): ArticleFrontmatter[] {
   const copy = [...articles];
 
+  const byDate = (a: ArticleFrontmatter, b: ArticleFrontmatter) =>
+    new Date(b.date).getTime() - new Date(a.date).getTime();
+
+  const byLevel = (a: ArticleFrontmatter, b: ArticleFrontmatter) =>
+    LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level];
+
   switch (order) {
     case 'level':
-      return copy.sort(
-        (a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level]
-      );
+      return copy.sort((a, b) => byLevel(a, b) || byDate(a, b));
     case 'popular':
-      return copy.sort(
-        (a, b) => (likeCounts[b.id] ?? 0) - (likeCounts[a.id] ?? 0)
-      );
+      return copy.sort((a, b) => (likeCounts[b.id] ?? 0) - (likeCounts[a.id] ?? 0) || byDate(a, b));
     case 'newest':
-      return copy.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      );
+      return copy.sort((a, b) => byDate(a, b) || byLevel(a, b));
     default:
       return copy;
   }
