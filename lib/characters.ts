@@ -6,6 +6,7 @@ const CHARACTER_ICONS: Record<string, string> = {
   'リッチーくん': '/icons/richie.png',
   'ライゾウ': '/icons/raizo.png',
   'フウガ': '/icons/fuga.png',
+  'ダイチ': '/icons/daichi.png',
 };
 
 /**
