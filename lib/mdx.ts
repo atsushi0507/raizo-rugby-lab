@@ -32,6 +32,9 @@ export interface ArticleFrontmatter {
   position?: string;
   season?: string;
   videoUrl?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  isFeatured?: boolean;
 }
 
 export interface ArticleData extends ArticleFrontmatter {
@@ -61,6 +64,9 @@ export interface PositionFrontmatter {
   cta: string;
   icon: string;
   character: string;
+  createdAt?: string;
+  updatedAt?: string;
+  isFeatured?: boolean;
 }
 
 export interface GalleryFrontmatter {
@@ -73,6 +79,9 @@ export interface GalleryFrontmatter {
   away: string;
   season: string;
   date: string;
+  createdAt?: string;
+  updatedAt?: string;
+  isFeatured?: boolean;
 }
 
 export type ContentFrontmatter =
@@ -162,6 +171,9 @@ export function validateArticleFrontmatter(
     ...(data.position !== undefined && { position: assertString(data, 'position', filePath) }),
     ...(data.season !== undefined && { season: assertString(data, 'season', filePath) }),
     ...(data.videoUrl !== undefined && { videoUrl: assertString(data, 'videoUrl', filePath) }),
+    ...(data.createdAt !== undefined && { createdAt: String(data.createdAt) }),
+    ...(data.updatedAt !== undefined && { updatedAt: String(data.updatedAt) }),
+    ...(data.isFeatured !== undefined && { isFeatured: Boolean(data.isFeatured) }),
   };
 }
 
@@ -188,6 +200,9 @@ function validatePositionFrontmatter(
     cta: (data.cta as string) ?? 'このポジションの見方を知る',
     icon: assertString(data, 'icon', filePath),
     character: assertString(data, 'character', filePath),
+    ...(data.createdAt !== undefined && { createdAt: String(data.createdAt) }),
+    ...(data.updatedAt !== undefined && { updatedAt: String(data.updatedAt) }),
+    ...(data.isFeatured !== undefined && { isFeatured: Boolean(data.isFeatured) }),
   };
 }
 
@@ -205,6 +220,9 @@ function validateGalleryFrontmatter(
     away: assertString(data, 'away', filePath),
     season: assertString(data, 'season', filePath),
     date: assertString(data, 'date', filePath),
+    ...(data.createdAt !== undefined && { createdAt: String(data.createdAt) }),
+    ...(data.updatedAt !== undefined && { updatedAt: String(data.updatedAt) }),
+    ...(data.isFeatured !== undefined && { isFeatured: Boolean(data.isFeatured) }),
   };
 }
 
@@ -367,4 +385,127 @@ export async function getAllSetPieces(): Promise<SetPieceData[]> {
 export async function getSetPieceById(id: string): Promise<SetPieceData | null> {
   const pieces = await getAllSetPieces();
   return pieces.find((p) => p.id === id) ?? null;
+}
+
+// ─── New Rule Section Types ───────────────────────────────────────────────────
+
+export interface RestartCategory {
+  id: string;
+  title: string;
+  icon: string;
+  tag?: string;
+  tagColor?: string;
+  items: string[];
+}
+
+export interface RestartLevelDef {
+  level: string;
+  description: string;
+  color: string;
+}
+
+export interface RestartItem {
+  id: string;
+  title: string;
+  icon: string;
+  description: string;
+  detail: string;
+  points: string[];
+  relatedRuleIds: string[];
+  relatedItemIds: string[];
+  illustration: string;
+  conversation: { speaker: string; message: string }[];
+}
+
+export interface RestartData {
+  categories: RestartCategory[];
+  levelDefinitions: RestartLevelDef[];
+  items: RestartItem[];
+}
+
+export interface PhaseData {
+  id: string;
+  title: string;
+  icon: string;
+  description: string;
+  detail: string;
+  points: string[];
+  relatedRuleIds: string[];
+  relatedItemIds: string[];
+  illustration: string;
+  conversation: { speaker: string; message: string }[];
+}
+
+export interface ScoringData {
+  id: string;
+  title: string;
+  points: number;
+  icon: string;
+  description: string;
+  detail: string;
+  illustration: string;
+  relatedItemIds: string[];
+  conversation: { speaker: string; message: string }[];
+}
+
+export interface GameplayData {
+  id: string;
+  title: string;
+  icon: string;
+  description: string;
+  detail: string;
+  relatedRuleIds: string[];
+  relatedItemIds: string[];
+  illustration: string;
+  conversation: { speaker: string; message: string }[];
+}
+
+// ─── New Rule Section Loaders ─────────────────────────────────────────────────
+
+export async function getRestartData(): Promise<RestartData> {
+  const filePath = path.join(getDataDir('rules'), 'restarts.yaml');
+  if (!fs.existsSync(filePath)) return { categories: [], levelDefinitions: [], items: [] };
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as RestartData;
+}
+
+export async function getRestartItemById(id: string): Promise<RestartItem | null> {
+  const data = await getRestartData();
+  return data.items.find((i) => i.id === id) ?? null;
+}
+
+export async function getAllPhases(): Promise<PhaseData[]> {
+  const filePath = path.join(getDataDir('rules'), 'phases.yaml');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as PhaseData[];
+}
+
+export async function getPhaseById(id: string): Promise<PhaseData | null> {
+  const phases = await getAllPhases();
+  return phases.find((p) => p.id === id) ?? null;
+}
+
+export async function getAllScoring(): Promise<ScoringData[]> {
+  const filePath = path.join(getDataDir('rules'), 'scoring.yaml');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as ScoringData[];
+}
+
+export async function getScoringById(id: string): Promise<ScoringData | null> {
+  const scoring = await getAllScoring();
+  return scoring.find((s) => s.id === id) ?? null;
+}
+
+export async function getAllGameplay(): Promise<GameplayData[]> {
+  const filePath = path.join(getDataDir('rules'), 'gameplay.yaml');
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, 'utf-8');
+  return yaml.load(raw) as GameplayData[];
+}
+
+export async function getGameplayById(id: string): Promise<GameplayData | null> {
+  const gameplay = await getAllGameplay();
+  return gameplay.find((g) => g.id === id) ?? null;
 }

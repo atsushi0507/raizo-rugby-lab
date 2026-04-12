@@ -18,6 +18,9 @@
       message: "えー！ミスでもダメなんだ…！"
     - speaker: "ライゾウ"
       message: "だからこそ基本のキャッチ精度が勝負を分ける。"
+  createdAt: "2026-04-10"
+  updatedAt: "2026-04-10"
+  isFeatured: true
 
 - id: "throw-forward"
   title: "スローフォワード"
@@ -58,6 +61,29 @@
       message: "そんな細かいんだ！"
     - speaker: "ライゾウ"
       message: "セットプレーは公平性が最優先だ。"
+
+- id: "fifty-22"
+  title: "50:22"
+  description: "自陣から蹴ったキックが相手の22m区域内でバウンドしてタッチを割ると、蹴った側のラインアウトで再開される。"
+  detail: "2021年に導入された比較的新しいルール。通常、キックが直接タッチを割ると相手ボールのラインアウトになるが、50:22では自陣（ハーフウェイラインより後ろ）から蹴ったキックが相手の22mエリア内でバウンドしてからタッチを割った場合、蹴った側のラインアウトで再開される。キックの戦術的価値を大きく変えたルール。"
+  level: "中級"
+  principleId: "backward-ball"
+  icon: "🦶"
+  illustration: "/rules/fifty-22.png"
+  relatedRuleIds: ["knock-forward"]
+  relatedSetPieceIds: ["lineout"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "50:22って何？数字の意味がわからない…"
+    - speaker: "ライゾウ"
+      message: "自陣の50m（ハーフウェイ）より後ろから蹴って、相手の22mエリア内でバウンドしてタッチを割ると、蹴った側のラインアウトになるんだ。"
+    - speaker: "リッチーくん"
+      message: "普通は相手ボールになるのに！？すごいご褒美だね！"
+    - speaker: "ライゾウ"
+      message: "そう。だからバックスのキック精度がより重要になった。このルールで試合の戦術が大きく変わったんだよ。"
+  createdAt: "2026-04-12"
+  updatedAt: "2026-04-12"
+  isFeatured: true
 
 # 2. プレーは必ず「立った状態」で行う (stay-on-feet)
 - id: "not-release-the-ball"
@@ -280,30 +306,6 @@
       message: "ジャンプする前に勝負決まっちゃうってこと！？"
     - speaker: "ライゾウ"
       message: "そうだ。だから“空中で公平に競る”ために厳密なんだ。"
-
-- id: "steal"
-  title: "スティール / ジャッカル"
-  description: "タックル直後の密集で、立ったままボールを奪い取るプレー 。"
-  detail: "競技規則上の名称は「スティール (旧名称: ジャッカル)」。タックルが起きた際、最初に到着した選手が立ったまま、相手のボールを直接争奪する高度な技術。成功すれば攻守が逆転する 。"
-  level: "中級"
-  principleId: "contest"
-  icon: "🦅"
-  illustration: "/rules/steal.png"
-  relatedRuleIds: []
-  relatedSetPieceIds: []
-  conversation:
-    - speaker: "リッチーくん"
-      message: "うわ！いきなり取った！？何あれ！？"
-    - speaker: "ライゾウ"
-      message: "ジャッカルだ。最速で入った証拠だな。"
-    - speaker: "リッチーくん"
-      message: "めちゃくちゃかっこいい…！"
-    - speaker: "ライゾウ"
-      message: "正しい姿勢とタイミングが揃わないと成立しない。"
-    - speaker: "リッチーくん"
-      message: "あれ、でも名前がスティールに変わったんだよね！？"
-    - speaker: "ライゾウ"
-      message: "...そうだな。"
 
 - id: "collapsing"
   title: "コラプシング"

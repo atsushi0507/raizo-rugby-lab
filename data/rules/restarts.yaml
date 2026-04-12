@@ -1,0 +1,147 @@
+# プレーの再開方法
+categories:
+  - id: "out-of-play"
+    title: "ボールが外に出たとき"
+    icon: "📤"
+    items: ["lineout", "quick-throw"]
+
+  - id: "minor-error"
+    title: "軽い反則・ミス（技術的なミス）をしたとき"
+    icon: "⚠️"
+    tag: "レベル1：ミスの修正"
+    tagColor: "green"
+    items: ["scrum"]
+
+  - id: "unfair-play"
+    title: "不当なプレー（アンフェアな行為）をしたとき"
+    icon: "🟡"
+    tag: "レベル2：不当への警告"
+    tagColor: "yellow"
+    items: ["free-kick"]
+
+  - id: "serious-foul"
+    title: "重大な反則・不正なプレーをしたとき"
+    icon: "🔴"
+    tag: "レベル3：重大な違反"
+    tagColor: "red"
+    items: ["penalty-kick"]
+
+  - id: "kickoff"
+    title: "得点が入った / 前後半の開始時"
+    icon: "🏈"
+    items: ["kickoff"]
+
+levelDefinitions:
+  - level: "レベル1：ミスの修正"
+    description: "技術的なエラー（ノックオン、スローフォワードなど）に対する再開。スクラムで再開される。"
+    color: "green"
+  - level: "レベル2：不当への警告"
+    description: "アンフェアな行為（不正なスクラム、ラインアウト違反など）に対する再開。フリーキックで再開される。"
+    color: "yellow"
+  - level: "レベル3：重大な違反"
+    description: "重大な反則や危険なプレーに対する再開。ペナルティキックで再開され、ゴールを狙うこともできる。"
+    color: "red"
+
+items:
+  - id: "lineout"
+    title: "ラインアウト"
+    icon: "⬆️"
+    description: "ボールがタッチラインの外に出た後、タッチラインから投げ入れて再開するセットプレー。"
+    detail: "ボールがタッチラインを越えた場合に行われる。投げ入れる権利は、最後にボールに触れたチームの相手側が持つ（ペナルティキックでタッチに蹴り出した場合は蹴った側）。フッカーが投げ入れ、ジャンパーが空中でキャッチし、リフターが持ち上げる。サインプレーで投げる位置やタイミングを変える戦術が重要。"
+    points:
+      - "フッカーが投げ入れる"
+      - "ジャンパーが空中でキャッチ"
+      - "リフターが持ち上げる"
+      - "サインプレーで相手を欺く"
+    relatedRuleIds: ["not-straight"]
+    relatedItemIds: ["quick-throw"]
+    illustration: "/rules/lineout.png"
+    conversation:
+      - speaker: "リッチーくん"
+        message: "ラインアウトって、ただ投げて取るだけじゃないの？"
+      - speaker: "ライゾウ"
+        message: "全然違うよ！サインプレーで投げる位置を変えたり、フェイクを入れたり。空中戦だから、タイミングが命なんだ。"
+
+  - id: "quick-throw"
+    title: "クイックスロー"
+    icon: "⚡"
+    description: "ラインアウトが形成される前に素早くボールを投げ入れる再開方法。"
+    detail: "ボールがタッチラインを越えた後、ラインアウトが形成される前に素早くボールを投げ入れることができる。同じボールを使い、他の選手が触れていないことが条件。スピーディーな攻撃の起点になる。"
+    points:
+      - "ラインアウト形成前に素早く投入"
+      - "同じボールを使用する必要がある"
+      - "他の選手が触れていないこと"
+    relatedRuleIds: []
+    relatedItemIds: ["lineout"]
+    illustration: "/rules/quick-throw.png"
+    conversation: []
+
+  - id: "scrum"
+    title: "スクラム"
+    icon: "🔄"
+    description: "軽い反則の後、両チームのフォワード8人ずつが組んで、ボールを奪い合うセットプレー。"
+    detail: "ノックオンやスローフォワードなどの軽い反則の後に行われる。両チームのフォワード8人が3列に組み合い、スクラムハーフがボールを投入する。フッカーが足でボールを掻き出し、No.8がコントロールしてスクラムハーフに渡す。押し込みでプレッシャーをかけることで相手のボール確保を妨害できる。"
+    points:
+      - "フッカーがボールを足で掻き出す"
+      - "押し込みでプレッシャーをかける"
+      - "スクラムハーフがボールを供給"
+      - "8人の結束力が問われる"
+    relatedRuleIds: ["knock-forward", "throw-forward"]
+    relatedItemIds: []
+    illustration: "/rules/scrum.png"
+    conversation:
+      - speaker: "リッチーくん"
+        message: "スクラムってなんで組むの？"
+      - speaker: "ライゾウ"
+        message: "軽い反則があったときに、フェアにボールを再開するための仕組みだよ。FWが強ければ相手ボールでも奪えるし、ペナルティを誘えることもある。"
+
+  - id: "free-kick"
+    title: "フリーキック"
+    icon: "🟡"
+    description: "不当なプレーに対して与えられるキック。ゴールを直接狙うことはできない。"
+    detail: "アンフェアな行為（不正なスクラム、ラインアウト違反など）に対して与えられる。ペナルティキックと異なり、ゴールを直接狙うことはできない。タッチに蹴り出してラインアウトを得るか、タップキックで素早く攻撃を再開するのが一般的。"
+    points:
+      - "ゴールを直接狙えない"
+      - "タッチに蹴り出してラインアウトを得る"
+      - "タップキックで素早く再開"
+    relatedRuleIds: []
+    relatedItemIds: ["penalty-kick"]
+    illustration: "/rules/free-kick.png"
+    conversation:
+      - speaker: "リッチーくん"
+        message: "フリーキックとペナルティキックって何が違うの？"
+      - speaker: "ライゾウ"
+        message: "フリーキックはゴールを狙えない。反則の重さが違うんだ。軽い不正にはフリーキック、重大な反則にはペナルティキックが与えられる。"
+
+  - id: "penalty-kick"
+    title: "ペナルティキック"
+    icon: "🔴"
+    description: "重大な反則に対して与えられるキック。ゴールを狙うこともできる。"
+    detail: "重大な反則や危険なプレーに対して与えられる。ゴールを狙って3点を獲得するか、タッチに蹴り出してラインアウトを得るか、タップキックで攻撃を再開するかを選択できる。試合の流れを大きく変える重要な場面。"
+    points:
+      - "ゴールを狙って3点獲得可能"
+      - "タッチに蹴り出してラインアウト"
+      - "タップキックで素早く再開"
+      - "試合の流れを変える重要な場面"
+    relatedRuleIds: ["high-tackle", "offside"]
+    relatedItemIds: ["free-kick"]
+    illustration: "/rules/penalty-kick.png"
+    conversation:
+      - speaker: "リッチーくん"
+        message: "ペナルティもらったらいつもゴール狙うの？"
+      - speaker: "ライゾウ"
+        message: "状況次第だね。点差が僅差ならゴールを狙う。大きくリードしてるならタッチに蹴ってラインアウトからトライを狙う方が効率的なこともある。"
+
+  - id: "kickoff"
+    title: "キックオフ / 試合再開のキック"
+    icon: "🏈"
+    description: "前後半の開始時や得点後に、センターラインからドロップキックで試合を再開する。"
+    detail: "試合開始、後半開始、得点後にセンターラインからドロップキックで行われる。ボールは10メートルライン以上飛ばなければならず、直接タッチラインを越えてはいけない。キックオフの質が最初の攻防を左右する。"
+    points:
+      - "センターラインからドロップキック"
+      - "10メートル以上飛ばす必要がある"
+      - "直接タッチを越えてはいけない"
+    relatedRuleIds: []
+    relatedItemIds: []
+    illustration: "/rules/kickoff.png"
+    conversation: []

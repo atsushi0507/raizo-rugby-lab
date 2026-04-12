@@ -7,14 +7,17 @@ export const metadata: Metadata = {
   title: 'ラグビーの「なぜ」を読み解く解説メディア',
   description: 'プレーの裏にある戦術と判断を解き明かし、ラグビー観戦をもっと深く楽しくする。ライゾウとリッチーくんの会話で、難しい戦術もスッと理解できます。',
 };
-import { getAllArticles } from '@/lib/mdx';
+import { getAllArticles, getAllPrinciples } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
+import { getFeaturedNews } from '@/lib/news';
 import ArticleCard from '@/components/ArticleCard';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/rugby.raizo/';
 
 export default async function HomePage() {
   const allArticles = await getAllArticles();
+  const principles = await getAllPrinciples();
+  const newsItems = await getFeaturedNews();
 
   const latestArticles = [...allArticles]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -68,6 +71,49 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 新着情報 */}
+      {newsItems.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-4">
+          <div className="bg-white border rounded-xl p-6">
+            <h2 className="font-bold text-lg mb-1 flex items-center gap-2">
+              🔔 最近の更新
+            </h2>
+            <p className="text-xs text-gray-500 mb-4">記事・ルール・ポジションなど、新しく追加・更新されたコンテンツ</p>
+            <div className="divide-y">
+              {newsItems.slice(0, 5).map((item) => {
+                const displayDate = item.isUpdated ? item.updatedAt : item.createdAt;
+                return (
+                  <Link
+                    key={item.category + '-' + item.id}
+                    href={item.href}
+                    className="flex items-center gap-3 py-3 hover:bg-gray-50 -mx-2 px-2 rounded transition-colors group"
+                  >
+                    <span className="text-xs text-gray-400 whitespace-nowrap w-20 shrink-0">
+                      {new Date(displayDate).toLocaleDateString('ja-JP', { month: 'short', day: 'numeric' })}
+                    </span>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      {item.isNew && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-500 text-white">NEW</span>
+                      )}
+                      {item.isUpdated && (
+                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-500 text-white">UPDATE</span>
+                      )}
+                      <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${
+                        item.category === '記事' ? 'bg-blue-100 text-blue-700' :
+                        item.category === 'ポジション' ? 'bg-green-100 text-green-700' :
+                        item.category === 'ギャラリー' ? 'bg-orange-100 text-orange-700' :
+                        'bg-purple-100 text-purple-700'
+                      }`}>{item.category}</span>
+                      <span className="text-sm text-gray-800 group-hover:text-green-600 transition-colors">{item.title}</span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* キャラクター紹介セクション */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -161,6 +207,40 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ルールの大原則ピックアップ */}
+      {principles.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold">ルールの「なぜ」を知る</h2>
+              <p className="text-sm text-gray-500 mt-1">6つの大原則を押さえれば、反則の意味が見えてくる</p>
+            </div>
+            <Link
+              href="/rules"
+              className="text-green-600 hover:text-green-700 font-semibold flex items-center text-sm"
+            >
+              すべて見る
+              <ArrowRight size={16} className="ml-1" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {principles.slice(0, 3).map((p) => (
+              <Link
+                key={p.id}
+                href="/rules"
+                className="bg-white border rounded-xl p-5 hover:shadow-md transition-shadow group"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-2xl">{p.emoji}</span>
+                  <h3 className="font-bold text-sm group-hover:text-green-600 transition-colors">{p.title}</h3>
+                </div>
+                <p className="text-xs text-gray-500">{p.subtitle}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* コンテンツを探す */}
       <section className="py-16">

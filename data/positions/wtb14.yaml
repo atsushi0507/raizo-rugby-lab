@@ -40,6 +40,8 @@ decisionConversation:
     message: "じゃあ迷ったりはしないの？"
   - speaker: "フウガ"
     message: "迷ったら終わりだ。見つけた瞬間に、全部出す。"
+  - speaker: "ライゾウ"
+    message: "オープンサイドウィングは“最後に走る役”じゃない。外で待ちながら、内側で生まれたズレを見続けている。だから一瞬のチャンスを逃さず、最短の軌道で仕留められるんだ。WTB、準備で勝つポジションだ。"
 
 scenes:
   - "ラインの外で待ち続ける場面"
@@ -89,3 +91,7 @@ levelGuide:
 cta: "なぜウィングは最後に走るだけでトライできるのか？"
 icon: "/positions/rw_14_icon.png"
 character: "/positions/rw_14_character.png"
+
+createdAt: "2026-04-11"
+updatedAt: "2026-04-11"
+isFeatured: true

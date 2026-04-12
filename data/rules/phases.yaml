@@ -1,0 +1,97 @@
+# プレーの流れと密集（フェーズ）
+- id: "tackle"
+  title: "タックル"
+  icon: "💥"
+  description: "ボールキャリアーが相手に捕まり、地面に倒された状態。"
+  detail: "ボールを持った選手が相手ディフェンダーに捕まり、地面に倒される行為。タックルが成立すると、ボールキャリアはボールを離さなければならず、タックラーはボールから離れなければならない。ここからラックが形成される。"
+  points:
+    - "ボールキャリアは倒されたらボールを離す"
+    - "タックラーはボールから離れる"
+    - "ここからラックが形成される"
+  relatedRuleIds: ["not-release", "not-roll-away", "high-tackle"]
+  relatedItemIds: ["ruck"]
+  illustration: "/rules/tackle.png"
+  conversation:
+    - speaker: "リッチーくん"
+      message: "タックルされたらどうなるの？"
+    - speaker: "ライゾウ"
+      message: "倒されたらすぐボールを離す。タックルした方もすぐ離れる。そこからラックが始まるんだ。"
+
+- id: "ruck"
+  title: "ラック"
+  icon: "⚡"
+  description: "地上にあるボールの周囲で、両チームの選手が立ったまま身体を密着させている状態。"
+  detail: "タックルが成立した後、ボールが地面にある状態で、両チームの選手がボールの上に立って押し合う密集。ラックが形成されると手でボールを触ることはできず、足で掻き出すか、押し込みでボールを確保する。攻撃の継続性を左右する最も頻繁に発生するプレー。"
+  points:
+    - "ボールを確保するために入る"
+    - "立ったまま押し合う"
+    - "手でボールを触ってはいけない"
+    - "素早い到着が鍵"
+  relatedRuleIds: ["not-release", "not-roll-away", "off-feet", "ruck-entry", "sealing-off"]
+  relatedItemIds: ["tackle", "maul"]
+  illustration: "/rules/ruck.png"
+  conversation:
+    - speaker: "リッチーくん"
+      message: "ラックって毎回できるけど、何が起きてるの？"
+    - speaker: "ライゾウ"
+      message: "タックルの後、ボールを確保するための戦いだよ。到着スピードが攻撃のテンポを決める。"
+
+- id: "maul"
+  title: "モール"
+  icon: "🏋️"
+  description: "ボールを持った選手と、両チームの選手が立ったまま組んでいる状態。"
+  detail: "ボールキャリアが立った状態で、味方と相手の選手に囲まれて形成される密集。ラックとの違いは、ボールが地面にないこと。モールは前に押し込むことができ、ゴールライン前での攻撃手段として非常に強力。ラインアウトからのモールは得点パターンの定番。"
+  points:
+    - "ボールキャリアは立っている"
+    - "前に押し込むことができる"
+    - "崩すと反則になる"
+    - "ゴール前の強力な武器"
+  relatedRuleIds: []
+  relatedItemIds: ["ruck", "tackle"]
+  illustration: "/rules/maul.png"
+  conversation:
+    - speaker: "リッチーくん"
+      message: "モールとラックって何が違うの？"
+    - speaker: "ライゾウ"
+      message: "ラックはボールが地面、モールはボールキャリアが立ったまま。ゴール前のモールは本当に強力だよ。"
+
+- id: "open-play"
+  title: "オープンプレー"
+  icon: "🏃"
+  description: "セットピースの間やボールがデッドになるまでの「動きのあるプレー」全般。"
+  detail: "キックオフやセットピース（スクラム等）の後、ボールがデッドになるまでの動きのあるプレー全般を指す。パス、ラン、キックを組み合わせて攻撃を展開する。ラグビーの基本状態であり、最も観戦の醍醐味がある場面。"
+  points:
+    - "パス・ラン・キックを組み合わせる"
+    - "攻守が目まぐるしく入れ替わる"
+    - "観戦の醍醐味"
+  relatedRuleIds: ["offside", "knock-forward", "throw-forward"]
+  relatedItemIds: []
+  illustration: "/rules/open-play.png"
+  conversation: []
+
+- id: "steal"
+  title: "スティール / ジャッカル"
+  icon: "🦅"
+  description: "タックル直後の密集で、立ったままボールを奪い取るプレー。"
+  detail: "競技規則上の名称は「スティール（旧名称: ジャッカル）」。タックルが成立した直後、最初に到着した選手が立ったまま相手のボールを直接争奪する高度な技術。ラックが形成される前に行う必要があり、成功すれば攻守が逆転するターンオーバーとなる。"
+  points:
+    - "タックル成立直後に立ったまま行う"
+    - "ラック形成前に完了する必要がある"
+    - "正しい姿勢（自分の足で立つ）が必須"
+    - "成功すればターンオーバー"
+  relatedRuleIds: ["not-release-the-ball", "off-feet"]
+  relatedItemIds: ["tackle", "ruck"]
+  illustration: "/rules/steal.png"
+  conversation:
+    - speaker: "リッチーくん"
+      message: "うわ！いきなり取った！？何あれ！？"
+    - speaker: "ライゾウ"
+      message: "ジャッカルだ。最速で到着して、立ったままボールに手をかけた。"
+    - speaker: "リッチーくん"
+      message: "めちゃくちゃかっこいい…！でもなんで毎回できないの？"
+    - speaker: "ライゾウ"
+      message: "正しい姿勢とタイミングが揃わないと成立しない。足で立っていなかったり、ラックが形成された後に手を出すとペナルティになる。リスクとリターンが大きいプレーだ。"
+    - speaker: "リッチーくん"
+      message: "あれ、でも名前がスティールに変わったんだよね！？"
+    - speaker: "ライゾウ"
+      message: "...そうだな。"

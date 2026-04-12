@@ -87,3 +87,7 @@ levelGuide:
 cta: "なぜ10番はキックを選ぶのか？"
 icon: "/positions/so_10_icon.png"
 character: "/positions/so_10_character.png"
+
+createdAt: "2026-04-08"
+updatedAt: "2026-04-12"
+isFeatured: true

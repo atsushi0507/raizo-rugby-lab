@@ -13,3 +13,7 @@ season: "2025-26"
 home: "ブラックラムズ東京"
 away: "神戸スティーラーズ"
 date: "2026-04-05"
+
+createdAt: "2026-04-05"
+updatedAt: "2026-04-05"
+isFeatured: true

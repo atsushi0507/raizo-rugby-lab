@@ -1,0 +1,90 @@
+# 得点方法
+- id: "try"
+  title: "トライ"
+  points: 5
+  icon: "🏉"
+  description: "相手インゴールにボールをグラウンディングする。"
+  detail: "相手のインゴールエリアにボールを地面につける（グラウンディング）ことで得られる5点。ラグビーにおける最高得点であり、試合の最大の見せ場。トライ後にはコンバージョンキックの権利が与えられる。"
+  illustration: "/rules/try.png"
+  relatedItemIds: ["conversion"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "トライ！！やった！！…ってなんでトライって言うの？"
+    - speaker: "ライゾウ"
+      message: "昔はトライを決めてもそれだけでは得点にならなかった。ゴールキックを『試みる（try）』権利を得るだけだったんだ。"
+    - speaker: "リッチーくん"
+      message: "えっ！？じゃあ昔はキック決めないと意味なかったの！？"
+    - speaker: "ライゾウ"
+      message: "そう。今は5点入るけど、名前だけ当時のまま残ってる。"
+
+- id: "conversion"
+  title: "コンバージョン"
+  points: 2
+  icon: "🥅"
+  description: "トライ後に与えられるゴールキック。"
+  detail: "トライを決めた地点の延長線上からゴールを狙うキック。成功すれば2点が追加される。トライの位置によってキックの角度が変わるため、ゴールポストの正面に近い位置でトライすることが有利。"
+  illustration: "/rules/conversion.png"
+  relatedItemIds: ["try"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "なんで端っこでトライすると蹴りにくいの？真ん中から蹴ればいいじゃん！"
+    - speaker: "ライゾウ"
+      message: "トライした地点の延長線上からしか蹴れないルールだ。だからポスト正面でトライすると角度が楽になる。"
+    - speaker: "リッチーくん"
+      message: "じゃあトライする場所も戦術なんだ…！"
+    - speaker: "ライゾウ"
+      message: "そういうことだ。5点のトライを7点にできるかどうか、キッカーの技術にかかってる。"
+
+- id: "penalty-try"
+  title: "ペナルティトライ / 認定トライ"
+  points: 7
+  icon: "⚖️"
+  description: "反則がなければトライできたと見なされる場合に与えられる。コンバージョンは行わない。"
+  detail: "ディフェンス側の反則がなければ確実にトライが成立していたとレフリーが判断した場合に与えられる。ゴールポスト真下にトライが認定され、コンバージョンは行わずに自動的に7点が与えられる。"
+  illustration: "/rules/penalty-try.png"
+  relatedItemIds: ["try"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "え！？トライしてないのに7点入った！？なんで！？"
+    - speaker: "ライゾウ"
+      message: "ペナルティトライだ。相手の反則がなければ確実にトライできていた、とレフリーが判断した。"
+    - speaker: "リッチーくん"
+      message: "コンバージョンは蹴らないの？"
+    - speaker: "ライゾウ"
+      message: "自動で7点。ポスト真下のトライ扱いだから蹴る必要がない。反則した側にとっては最悪の結果だ。"
+
+- id: "penalty-goal"
+  title: "ペナルティゴール"
+  points: 3
+  icon: "🎯"
+  description: "重大な反則の後にゴールを狙って蹴るキック。"
+  detail: "ペナルティキックでゴールを狙い、成功すれば3点。反則が起きた地点からキックするため、距離と角度が重要。僅差の試合では勝敗を分ける重要な得点手段。"
+  illustration: "/rules/penalty-goal.png"
+  relatedItemIds: ["penalty-kick"]
+  conversation:
+    - speaker: "リッチーくん"
+      message: "あ、ゴール狙ってる！トライじゃなくていいの？"
+    - speaker: "ライゾウ"
+      message: "確実に3点取れる場面なら狙う価値がある。トライを狙って失敗するリスクと天秤にかけるんだ。"
+    - speaker: "リッチーくん"
+      message: "なるほど…！3点の積み重ねで勝つこともあるんだね！"
+    - speaker: "ライゾウ"
+      message: "接戦ではペナルティゴールが勝敗を分ける。キッカーへのプレッシャーは相当なものだ。"
+
+- id: "drop-goal"
+  title: "ドロップゴール"
+  points: 3
+  icon: "👟"
+  description: "プレー中にボールを一度地面に落としてから蹴る（ドロップキック）ゴール。"
+  detail: "オープンプレー中にボールを一度地面にバウンドさせてからゴールを狙うキック。成功すれば3点。試合終盤の僅差の場面で使われることが多く、劇的な逆転劇を生むことも。スタンドオフの技術が問われる。"
+  illustration: "/rules/drop-goal.png"
+  relatedItemIds: []
+  conversation:
+    - speaker: "リッチーくん"
+      message: "え！？プレー中にいきなりゴール蹴った！？そんなのアリなの！？"
+    - speaker: "ライゾウ"
+      message: "ドロップゴールだ。ボールを一度地面に落としてから蹴る。いつでも狙える。"
+    - speaker: "リッチーくん"
+      message: "すごい…！でもめちゃくちゃ難しそう…"
+    - speaker: "ライゾウ"
+      message: "走りながら正確にドロップキックを決めるのは至難の業だ。だからこそ、試合終盤の逆転ドロップゴールは伝説になる。"
