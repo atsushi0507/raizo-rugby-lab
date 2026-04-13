@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Clock } from 'lucide-react';
 import type { ArticleFrontmatter } from '@/lib/mdx';
+import { optimizeCloudinaryUrl } from '@/lib/cloudinary';
 import LikeButton from '@/components/LikeButton';
 
 interface ArticleCardProps {
@@ -24,7 +25,7 @@ export default function ArticleCard({ article, likeCount = 0 }: ArticleCardProps
         {/* サムネイル */}
         <div className="relative aspect-video overflow-hidden bg-gray-200">
           <Image
-            src={article.thumbnail}
+            src={optimizeCloudinaryUrl(article.thumbnail, 600)}
             alt={article.title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"

@@ -35,6 +35,7 @@ export interface ArticleFrontmatter {
   createdAt?: string;
   updatedAt?: string;
   isFeatured?: boolean;
+  relatedArticleIds?: string[];
 }
 
 export interface ArticleData extends ArticleFrontmatter {
@@ -174,6 +175,7 @@ export function validateArticleFrontmatter(
     ...(data.createdAt !== undefined && { createdAt: String(data.createdAt) }),
     ...(data.updatedAt !== undefined && { updatedAt: String(data.updatedAt) }),
     ...(data.isFeatured !== undefined && { isFeatured: Boolean(data.isFeatured) }),
+    ...(data.relatedArticleIds !== undefined && { relatedArticleIds: data.relatedArticleIds as string[] }),
   };
 }
 

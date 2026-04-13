@@ -4,6 +4,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
 import { getArticleById, getAllArticles, getAllPositions } from '@/lib/mdx';
+import { optimizeCloudinaryUrl } from '@/lib/cloudinary';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
@@ -50,20 +51,36 @@ export default async function ArticleDetailPage({ params }: PageProps) {
     // Firebase 接続失敗時はいいね数 0 で表示
   }
 
-  // 関連記事を取得（同カテゴリまたは共通タグ優先、最大2件）
+  // 関連記事を取得（relatedArticleIds 優先、足りない分は自動マッチングで補完、最大3件）
   let relatedArticles: Awaited<ReturnType<typeof getAllArticles>> = [];
   let relatedLikeCounts: Record<string, number> = {};
   try {
     const allArticles = await getAllArticles();
     const others = allArticles.filter((a) => a.id !== article.id);
-    const scored = others.map((a) => {
-      let score = 0;
-      if (a.category === article.category) score += 2;
-      score += a.tags.filter((t) => article.tags.includes(t)).length;
-      return { article: a, score };
-    });
-    scored.sort((a, b) => b.score - a.score);
-    relatedArticles = scored.slice(0, 2).map((s) => s.article);
+    const MAX_RELATED = 3;
+
+    // 明示的に指定された関連記事を優先
+    const explicit = (article.relatedArticleIds ?? [])
+      .map((rid) => others.find((a) => a.id === rid))
+      .filter(Boolean) as typeof relatedArticles;
+
+    // 足りない分を自動マッチングで補完
+    if (explicit.length < MAX_RELATED) {
+      const explicitIds = new Set(explicit.map((a) => a.id));
+      const remaining = others.filter((a) => !explicitIds.has(a.id));
+      const scored = remaining.map((a) => {
+        let score = 0;
+        if (a.category === article.category) score += 2;
+        score += a.tags.filter((t) => article.tags.includes(t)).length;
+        return { article: a, score };
+      });
+      scored.sort((a, b) => b.score - a.score);
+      const autoFill = scored.slice(0, MAX_RELATED - explicit.length).map((s) => s.article);
+      relatedArticles = [...explicit, ...autoFill];
+    } else {
+      relatedArticles = explicit.slice(0, MAX_RELATED);
+    }
+
     if (relatedArticles.length > 0) {
       relatedLikeCounts = await getLikeCounts(relatedArticles.map((a) => a.id));
     }
@@ -128,7 +145,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       {/* サムネイル */}
       <div className="relative aspect-video rounded-lg overflow-hidden mb-8 bg-gray-200">
         <Image
-          src={article.thumbnail}
+          src={optimizeCloudinaryUrl(article.thumbnail)}
           alt={article.title}
           fill
           className="object-cover"
