@@ -6,6 +6,12 @@ import { ArrowRight, BookOpen, Scale, Users, Image as ImageIcon } from 'lucide-r
 export const metadata: Metadata = {
   title: 'ラグビーの「なぜ」を読み解く解説メディア',
   description: 'プレーの裏にある戦術と判断を解き明かし、ラグビー観戦をもっと深く楽しくする。ライゾウとリッチーくんの会話で、難しい戦術もスッと理解できます。',
+  keywords: ['ラグビー', 'ラグビー観戦', '戦術解説', 'ラグビー分析', '観戦ガイド', 'ラグビー初心者'],
+  openGraph: {
+    title: 'ラグビーの「なぜ」を読み解く解説メディア',
+    description: 'プレーの裏にある戦術と判断を解き明かし、ラグビー観戦をもっと深く楽しくする。',
+    images: [{ url: '/raizo_with_ball.png', width: 1200, height: 630, alt: 'ライゾウのラグビーラボ' }],
+  },
 };
 import { getAllArticles, getAllPrinciples } from '@/lib/mdx';
 import { getLikeCounts } from '@/lib/likes';
@@ -13,6 +19,7 @@ import { getFeaturedNews } from '@/lib/news';
 import ArticleCard from '@/components/ArticleCard';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/rugby.raizo/';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
 
 export default async function HomePage() {
   const allArticles = await getAllArticles();
@@ -31,6 +38,25 @@ export default async function HomePage() {
   }
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'ライゾウのラグビーラボ',
+            url: SITE_URL,
+            description: 'ラグビーの観戦体験を深めるための解説・分析メディア。',
+            publisher: {
+              '@type': 'Organization',
+              name: 'ライゾウのラグビーラボ',
+              logo: { '@type': 'ImageObject', url: `${SITE_URL}/raizo_with_ball.png` },
+              sameAs: [INSTAGRAM_URL],
+            },
+          }),
+        }}
+      />
     <div>
       {/* ヒーローセクション */}
       <section className="bg-gradient-to-br from-green-700 via-green-600 to-emerald-700 text-white relative overflow-hidden">
@@ -318,5 +344,6 @@ export default async function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

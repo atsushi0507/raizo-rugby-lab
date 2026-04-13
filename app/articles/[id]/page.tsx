@@ -13,6 +13,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: article.title,
     description: article.excerpt,
+    keywords: ['ラグビー', article.category, article.level, ...article.tags],
     openGraph: {
       title: article.title,
       description: article.excerpt,

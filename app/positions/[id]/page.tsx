@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${position.name}（${position.number}番）- ${position.catch}`,
     description: `${position.name}の観戦ポイント・判断の分岐・思考プロセスを解説。${position.catch}。`,
+    keywords: ['ラグビー', 'ラグビーポジション', position.name, position.nameEn, position.category],
   };
 }
 

@@ -7,6 +7,12 @@ import type { RulePrinciple, RuleData } from '@/lib/mdx';
 export const metadata: Metadata = {
   title: 'ルール解説 - 大原則から理解するラグビーのルール',
   description: 'ラグビーのルールを6つの大原則から理解する。再開方法、密集、得点、試合の進め方まで網羅。',
+  keywords: ['ラグビールール', 'ラグビー反則', 'スクラム', 'ラインアウト', 'ラグビー得点', 'ラグビー初心者'],
+  openGraph: {
+    title: 'ルール解説 - 大原則から理解するラグビーのルール',
+    description: 'ラグビーのルールを6つの大原則から理解する。再開方法、密集、得点、試合の進め方まで網羅。',
+    images: [{ url: '/raizo_with_ball.png', width: 1200, height: 630, alt: 'ラグビールール解説' }],
+  },
 };
 
 const PRINCIPLE_COLORS: Record<string, { bg: string; border: string; text: string }> = {
@@ -37,7 +43,27 @@ export default async function RulesPage() {
 
   const rulesByPrinciple = (pid: string) => rules.filter((r) => r.principleId === pid);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'ラグビールール解説',
+    description: 'ラグビーのルールを6つの大原則から理解する。再開方法、密集、得点、試合の進め方まで網羅。',
+    url: `${siteUrl}/rules`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: principles.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: p.title,
+        description: p.subtitle,
+      })),
+    },
+  };
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12 text-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">ルール解説</h1>
@@ -203,6 +229,7 @@ export default async function RulesPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
 

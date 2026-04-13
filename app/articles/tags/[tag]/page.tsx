@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `#${decoded} の記事一覧`,
     description: `「${decoded}」タグがついた記事の一覧。`,
+    keywords: ['ラグビー', decoded, 'ラグビー解説'],
   };
 }
 

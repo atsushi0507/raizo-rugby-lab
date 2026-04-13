@@ -6,6 +6,12 @@ import { ArrowRight, Eye, GitBranch } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'ポジション解説 - 選手の判断と思考を追体験する',
   description: '15のポジションそれぞれの観戦ポイント・判断の分岐・思考プロセスを解説。試合中の選手の頭の中を覗いてみよう。',
+  keywords: ['ラグビーポジション', 'フォワード', 'バックス', 'ポジション解説', 'ラグビー役割', '15人制'],
+  openGraph: {
+    title: 'ポジション解説 - 選手の判断と思考を追体験する',
+    description: '15のポジションそれぞれの観戦ポイント・判断の分岐・思考プロセスを解説。',
+    images: [{ url: '/position_mapping.png', width: 1200, height: 630, alt: 'ラグビーポジション解説' }],
+  },
 };
 import { getAllPositions } from '@/lib/mdx';
 import type { PositionFrontmatter } from '@/lib/mdx';
@@ -16,7 +22,27 @@ export default async function PositionsPage() {
   const forwards = positions.filter((p) => p.category === 'フォワード');
   const backs = positions.filter((p) => p.category === 'バックス');
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'ラグビーポジション解説',
+    description: '15のポジションそれぞれの観戦ポイント・判断の分岐・思考プロセスを解説。',
+    url: `${siteUrl}/positions`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: positions.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: `${p.name}（${p.number}番）`,
+        url: `${siteUrl}/positions/${p.id}`,
+      })),
+    },
+  };
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12 text-center">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">ポジション解説</h1>
@@ -87,6 +113,7 @@ export default async function PositionsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

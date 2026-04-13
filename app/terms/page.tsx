@@ -4,6 +4,7 @@ import { Shield, Copyright, Ban, AlertTriangle, Instagram } from 'lucide-react';
 export const metadata: Metadata = {
   title: '利用規約',
   description: 'ライゾウのラグビーラボの利用規約。著作権、二次利用の禁止、許可される利用について。',
+  keywords: ['利用規約', '著作権', 'ライゾウのラグビーラボ'],
 };
 
 export default function TermsPage() {

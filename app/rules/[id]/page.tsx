@@ -26,27 +26,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params;
   if (id.startsWith('restart-')) {
     const item = await getRestartItemById(id.replace('restart-', ''));
-    return item ? { title: `${item.title} - 再開方法`, description: item.description } : { title: 'ページが見つかりません' };
+    return item ? { title: `${item.title} - 再開方法`, description: item.description, keywords: ['ラグビー', 'ラグビールール', item.title, '再開方法'] } : { title: 'ページが見つかりません' };
   }
   if (id.startsWith('phase-')) {
     const item = await getPhaseById(id.replace('phase-', ''));
-    return item ? { title: `${item.title} - プレーの流れ`, description: item.description } : { title: 'ページが見つかりません' };
+    return item ? { title: `${item.title} - プレーの流れ`, description: item.description, keywords: ['ラグビー', 'ラグビールール', item.title, 'プレーの流れ'] } : { title: 'ページが見つかりません' };
   }
   if (id.startsWith('scoring-')) {
     const item = await getScoringById(id.replace('scoring-', ''));
-    return item ? { title: `${item.title}（${item.points}点）`, description: item.description } : { title: 'ページが見つかりません' };
+    return item ? { title: `${item.title}（${item.points}点）`, description: item.description, keywords: ['ラグビー', 'ラグビー得点', item.title] } : { title: 'ページが見つかりません' };
   }
   if (id.startsWith('gameplay-')) {
     const item = await getGameplayById(id.replace('gameplay-', ''));
-    return item ? { title: `${item.title} - 試合の進め方`, description: item.description } : { title: 'ページが見つかりません' };
+    return item ? { title: `${item.title} - 試合の進め方`, description: item.description, keywords: ['ラグビー', 'ラグビールール', item.title, '試合の進め方'] } : { title: 'ページが見つかりません' };
   }
   // legacy setpiece- support
   if (id.startsWith('setpiece-')) {
     const item = await getRestartItemById(id.replace('setpiece-', ''));
-    return item ? { title: `${item.title} - 再開方法`, description: item.description } : { title: 'ページが見つかりません' };
+    return item ? { title: `${item.title} - 再開方法`, description: item.description, keywords: ['ラグビー', 'ラグビールール', item.title, '再開方法'] } : { title: 'ページが見つかりません' };
   }
   const rule = await getRuleById(id);
-  return rule ? { title: `${rule.title} - ルール解説`, description: rule.description } : { title: 'ルールが見つかりません' };
+  return rule ? { title: `${rule.title} - ルール解説`, description: rule.description, keywords: ['ラグビー', 'ラグビールール', rule.title, rule.level] } : { title: 'ルールが見つかりません' };
 }
 
 export default async function RuleDetailPage({ params }: PageProps) {

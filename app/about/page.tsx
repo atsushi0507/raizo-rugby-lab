@@ -6,10 +6,34 @@ import { ArrowRight, Search, Users, BarChart3 } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'このメディアについて - ライゾウのラグビーラボ',
   description: '「なんとなく観ている」から「理解して楽しむ」へ。プレーの裏にある戦術や判断を解き明かし、観戦体験を一段深くするメディアです。',
+  keywords: ['ラグビーメディア', 'ラグビー観戦', '戦術解説', 'ラグビーラボ', 'ライゾウ'],
+  openGraph: {
+    title: 'このメディアについて - ライゾウのラグビーラボ',
+    description: '「なんとなく観ている」から「理解して楽しむ」へ。観戦体験を一段深くするメディアです。',
+    images: [{ url: '/raizo_with_ball.png', width: 1200, height: 630, alt: 'ライゾウのラグビーラボについて' }],
+  },
 };
 
 export default function AboutPage() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'このメディアについて',
+    description: '「なんとなく観ている」から「理解して楽しむ」へ。観戦体験を一段深くするメディアです。',
+    url: `${siteUrl}/about`,
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'ライゾウのラグビーラボ',
+      url: siteUrl,
+      logo: { '@type': 'ImageObject', url: `${siteUrl}/raizo_with_ball.png` },
+      sameAs: ['https://www.instagram.com/rugby.raizo/'],
+    },
+  };
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
       {/* ── 1. コンセプト（共感） ── */}
@@ -246,5 +270,6 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
