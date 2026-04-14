@@ -11,9 +11,28 @@ const CHARACTER_ICONS: Record<string, string> = {
 };
 
 /**
+ * ポジション ID からキャラクター名を解決する。
+ * 新しいポジションキャラクターを追加する場合はここにエントリを追加する。
+ */
+const POSITION_CHARACTERS: Record<string, string> = {
+  'ho2': 'ダイチ',
+  'sh9': 'ソウ',
+  'so10': 'ライゾウ',
+  'wtb14': 'フウガ',
+};
+
+/**
  * speaker 名に対応するアイコン画像パスを返す。
  * 未登録のキャラクターの場合は null を返す（フォールバック表示用）。
  */
 export function getCharacterIcon(speaker: string): string | null {
   return CHARACTER_ICONS[speaker] ?? null;
+}
+
+/**
+ * ポジション ID に対応するキャラクター名を返す。
+ * 未登録のポジションの場合は null を返す。
+ */
+export function getCharacterName(positionId: string): string | null {
+  return POSITION_CHARACTERS[positionId] ?? null;
 }

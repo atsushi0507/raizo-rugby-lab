@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import fs from 'fs';
 import path from 'path';
+import { getAllPositions } from '@/lib/mdx';
 
 type PositionColor = 'forward' | 'half' | 'back';
 
@@ -48,17 +50,17 @@ function hasIcon(n: number): boolean {
   return fs.existsSync(path.join(process.cwd(), 'public', 'positions', p + '_icon.png'));
 }
 
-function PositionIcon({ pos }: { pos: PositionDef }) {
+function PositionIcon({ pos, linkedId }: { pos: PositionDef; linkedId?: string }) {
   const iconExists = hasIcon(pos.number);
   const prefix = PREFIX[pos.number];
   const colors = COLOR_MAP[pos.color];
 
-  return (
+  const content = (
     <div
-      className="absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2"
+      className={'absolute flex flex-col items-center -translate-x-1/2 -translate-y-1/2' + (linkedId ? ' group cursor-pointer' : '')}
       style={{ left: pos.x + '%', top: pos.y + '%' }}
     >
-      <div className={'w-9 h-9 md:w-11 md:h-11 rounded-full overflow-hidden border-2 shadow-lg ' + colors.border + ' ' + colors.bg}>
+      <div className={'w-9 h-9 md:w-11 md:h-11 rounded-full overflow-hidden border-2 shadow-lg transition-transform ' + colors.border + ' ' + colors.bg + (linkedId ? ' group-hover:scale-110 group-hover:shadow-xl' : '')}>
         {iconExists ? (
           <Image
             src={'/positions/' + prefix + '_icon.png'}
@@ -78,9 +80,17 @@ function PositionIcon({ pos }: { pos: PositionDef }) {
       </span>
     </div>
   );
+
+  if (linkedId) {
+    return <Link href={'/positions/' + linkedId}>{content}</Link>;
+  }
+  return content;
 }
 
-export function FieldMap() {
+export async function FieldMap() {
+  const allPositions = await getAllPositions();
+  const numberToId = new Map(allPositions.map((p) => [p.number, p.id]));
+
   return (
     <div className="mb-12">
       <div className="relative w-full max-w-3xl mx-auto" style={{ aspectRatio: '4 / 3' }}>
@@ -105,7 +115,7 @@ export function FieldMap() {
           <span className="absolute top-[90%] left-1/2 -translate-x-1/2 text-[9px] md:text-[10px] text-white/40 font-medium tracking-wider">GOAL LINE</span>
         </div>
         {POSITIONS.map((pos) => (
-          <PositionIcon key={pos.number} pos={pos} />
+          <PositionIcon key={pos.number} pos={pos} linkedId={numberToId.get(pos.number)} />
         ))}
         <div className="absolute bottom-2 right-3 flex items-center gap-3 text-[9px] md:text-[10px] text-white/80">
           <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-100 border border-red-300" />FW</span>

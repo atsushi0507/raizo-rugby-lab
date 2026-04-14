@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, Eye, GitBranch, Film, AlertTriangle, Link2, Zap, BookOpen, ArrowRight, MessageCircle } from 'lucide-react';
-import { getPositionById } from '@/lib/mdx';
+import { getPositionById, getAllPositions } from '@/lib/mdx';
+import { getCharacterName } from '@/lib/characters';
 import { Conversation } from '@/components/mdx/Conversation';
+import { GlossaryText } from '@/components/GlossaryText';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -31,6 +33,10 @@ export default async function PositionDetailPage({ params }: PageProps) {
   const accentBorder = isForward ? 'border-red-200' : 'border-blue-200';
   const accentColor = isForward ? 'text-red-700' : 'text-blue-700';
   const numberBadge = isForward ? 'bg-red-200 text-red-800' : 'bg-blue-200 text-blue-800';
+
+  // ポジション番号 → データのマッピングを構築（リンク・アイコン用）
+  const allPositions = await getAllPositions();
+  const numberToPosition = new Map(allPositions.map((p) => [p.number, p]));
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -90,7 +96,7 @@ export default async function PositionDetailPage({ params }: PageProps) {
                         </span>
                       )}
                       {wp.detail && (
-                        <span className="text-xs text-gray-500">{wp.detail}</span>
+                        <span className="text-xs text-gray-500"><GlossaryText text={wp.detail} /></span>
                       )}
                     </div>
                   </div>
@@ -114,7 +120,7 @@ export default async function PositionDetailPage({ params }: PageProps) {
                   <span className="font-semibold text-gray-800">{d.action}</span>
                 </div>
                 {d.reason && (
-                  <p className="text-xs text-gray-500 ml-1 mt-1">💡 {d.reason}</p>
+                  <p className="text-xs text-gray-500 ml-1 mt-1">💡 <GlossaryText text={d.reason} /></p>
                 )}
               </div>
             ))}
@@ -137,7 +143,7 @@ export default async function PositionDetailPage({ params }: PageProps) {
             <h2 className="text-lg font-bold mb-3 flex items-center gap-2"><Film size={18} className="text-orange-600" />よくあるシーン</h2>
             <div className="space-y-2">
               {position.scenes.map((scene, i) => (
-                <div key={i} className="bg-orange-50 border border-orange-200 rounded-lg p-3 text-sm text-gray-700">{scene}</div>
+                <div key={i} className="bg-orange-50 border border-orange-200 rounded-lg p-3 text-sm text-gray-700"><GlossaryText text={scene} /></div>
               ))}
             </div>
           </section>
@@ -148,7 +154,7 @@ export default async function PositionDetailPage({ params }: PageProps) {
             <h2 className="text-lg font-bold mb-3 flex items-center gap-2"><AlertTriangle size={18} className="text-red-500" />よくある失敗</h2>
             <div className="space-y-2">
               {position.commonMistakes.map((mistake, i) => (
-                <div key={i} className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-gray-700">{mistake}</div>
+                <div key={i} className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-gray-700"><GlossaryText text={mistake} /></div>
               ))}
             </div>
           </section>
@@ -162,18 +168,48 @@ export default async function PositionDetailPage({ params }: PageProps) {
           <div className="flex flex-col items-center gap-1">
             {position.relations.map((rel, i) => {
               const isSelf = rel.number === position.number;
+              const linkedPosition = numberToPosition.get(rel.number);
+              const isLinkable = !isSelf && linkedPosition;
+              const characterName = linkedPosition ? getCharacterName(linkedPosition.id) : null;
+
+              const avatar = linkedPosition ? (
+                <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 shadow-sm shrink-0">
+                  <Image src={linkedPosition.icon} alt={linkedPosition.name} width={40} height={40} className="w-full h-full object-cover" />
+                </div>
+              ) : (
+                <span className={'text-sm font-bold w-10 h-10 rounded-full flex items-center justify-center shrink-0 ' + (isSelf ? 'bg-green-200 text-green-800' : 'bg-gray-200 text-gray-700')}>{rel.number}</span>
+              );
+
+              const nameDisplay = linkedPosition
+                ? `${rel.number}: ${rel.name}`
+                : rel.name;
+
+              const cardContent = (
+                <div className={'flex items-center gap-3 rounded-lg p-4 w-full max-w-md ' + (isSelf ? 'bg-green-50 border-2 border-green-300' : 'bg-white border') + (isLinkable ? ' hover:shadow-md transition-shadow group' : '')}>
+                  {avatar}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className={'font-semibold text-sm' + (isLinkable ? ' group-hover:text-green-600 transition-colors' : '')}>{nameDisplay}</span>
+                      {characterName && !isSelf && (
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200">{characterName}</span>
+                      )}
+                      <span className={'text-xs px-2 py-0.5 rounded-full ' + (isSelf ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600')}>{rel.role}</span>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-0.5">{rel.description}</p>
+                  </div>
+                  {isLinkable && (
+                    <ArrowRight size={14} className="text-gray-300 group-hover:text-green-600 transition-colors shrink-0" />
+                  )}
+                </div>
+              );
+
               return (
                 <div key={i}>
-                  <div className={'flex items-center gap-3 rounded-lg p-4 w-full max-w-md ' + (isSelf ? 'bg-green-50 border-2 border-green-300' : 'bg-white border')}>
-                    <span className={'text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0 ' + (isSelf ? 'bg-green-200 text-green-800' : 'bg-gray-200 text-gray-700')}>{rel.number}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2">
-                        <span className="font-semibold text-sm">{rel.name}</span>
-                        <span className={'text-xs px-2 py-0.5 rounded-full ' + (isSelf ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600')}>{rel.role}</span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-0.5">{rel.description}</p>
-                    </div>
-                  </div>
+                  {isLinkable ? (
+                    <Link href={`/positions/${linkedPosition.id}`}>{cardContent}</Link>
+                  ) : (
+                    cardContent
+                  )}
                   {i < position.relations.length - 1 && (
                     <div className="flex justify-center py-0.5">
                       <ArrowRight size={16} className="text-gray-300 rotate-90" />
@@ -194,7 +230,7 @@ export default async function PositionDetailPage({ params }: PageProps) {
             {position.skills.map((skill, i) => (
               <div key={i} className="bg-white border rounded-lg p-4">
                 <span className="font-semibold text-sm text-gray-800">{skill.name}</span>
-                <p className="text-sm text-gray-500 mt-1">{skill.description}</p>
+                <p className="text-sm text-gray-500 mt-1"><GlossaryText text={skill.description} /></p>
               </div>
             ))}
           </div>
@@ -207,7 +243,7 @@ export default async function PositionDetailPage({ params }: PageProps) {
           <h2 className="text-lg font-bold mb-3 text-gray-600">主な役割</h2>
           <ul className="space-y-1">
             {position.roles.map((role, i) => (
-              <li key={i} className="text-sm text-gray-600 flex items-start gap-2"><span className="text-gray-400">•</span><span>{role}</span></li>
+              <li key={i} className="text-sm text-gray-600 flex items-start gap-2"><span className="text-gray-400">•</span><span><GlossaryText text={role} /></span></li>
             ))}
           </ul>
         </section>

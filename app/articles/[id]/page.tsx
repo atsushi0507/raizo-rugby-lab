@@ -28,6 +28,7 @@ import { Conversation } from '@/components/mdx/Conversation';
 import { Structure } from '@/components/mdx/Structure';
 import { Video } from '@/components/mdx/Video';
 import { WatchPoints } from '@/components/mdx/WatchPoints';
+import { GlossaryText } from '@/components/GlossaryText';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/rugby_insight/';
 
@@ -203,7 +204,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         {article.introduction && (
           <section className="mb-8">
             <h2>🧠 導入</h2>
-            <p>{article.introduction}</p>
+            <p><GlossaryText text={article.introduction} /></p>
           </section>
         )}
 

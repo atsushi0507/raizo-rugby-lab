@@ -8,6 +8,7 @@ import {
   getPhaseById, getScoringById, getGameplayById,
 } from '@/lib/mdx';
 import { Conversation } from '@/components/mdx/Conversation';
+import { GlossaryText } from '@/components/GlossaryText';
 
 const LEVEL_COLORS: Record<string, string> = {
   '初級': 'bg-green-100 text-green-700',
@@ -80,7 +81,7 @@ export default async function RuleDetailPage({ params }: PageProps) {
       <h1 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-3"><span className="text-3xl">{rule.icon}</span>{rule.title}</h1>
       <p className="text-gray-600 mb-8">{rule.description}</p>
       <IllustrationPlaceholder src={rule.illustration} />
-      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p>{rule.detail}</p></div>      <ConversationSection items={rule.conversation} />
+      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p><GlossaryText text={rule.detail} /></p></div>      <ConversationSection items={rule.conversation} />
       <RelatedRulesSection rules={relatedRules} />
       {relatedSetPieces.length > 0 && (
         <section className="mb-12">
@@ -168,7 +169,7 @@ async function GenericDetail({ type, itemId }: { type: 'restart' | 'phase' | 'ga
       <h1 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-3"><span className="text-3xl">{item.icon}</span>{item.title}</h1>
       <p className="text-gray-600 mb-8">{item.description}</p>
       <IllustrationPlaceholder src={item.illustration} />
-      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p>{item.detail}</p></div>
+      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p><GlossaryText text={item.detail} /></p></div>
       {item.points && item.points.length > 0 && (
         <section className="mb-8">
           <h2 className="text-xl font-bold mb-4">ポイント</h2>
@@ -217,7 +218,7 @@ async function ScoringDetail({ itemId }: { itemId: string }) {
       <h1 className="text-2xl md:text-3xl font-bold mb-2 flex items-center justify-center gap-3"><span className="text-3xl">{item.icon}</span>{item.title}</h1>
       <p className="text-gray-600 mb-8 text-center">{item.description}</p>
       <IllustrationPlaceholder src={item.illustration} />
-      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p>{item.detail}</p></div>
+      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p><GlossaryText text={item.detail} /></p></div>
       <ConversationSection items={item.conversation} />
     </div>
   );

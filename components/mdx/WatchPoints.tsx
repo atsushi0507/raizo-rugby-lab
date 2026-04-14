@@ -2,6 +2,8 @@ interface WatchPointsProps {
   items: string[];
 }
 
+import { GlossaryText } from '@/components/GlossaryText';
+
 export function WatchPoints({ items }: WatchPointsProps) {
   if (!items || items.length === 0) return null;
   return (
@@ -9,7 +11,7 @@ export function WatchPoints({ items }: WatchPointsProps) {
       {items.map((item, index) => (
         <li key={index} className="flex items-start gap-2">
           <span className="text-green-600 mt-0.5">•</span>
-          <span>{item}</span>
+          <span><GlossaryText text={item} /></span>
         </li>
       ))}
     </ul>

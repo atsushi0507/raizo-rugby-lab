@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { GlossaryText } from '@/components/GlossaryText';
 
 interface StructureProps {
   situation: string;
@@ -27,7 +28,7 @@ function Section({ label, emoji, text, image, colorClass, borderClass, headingCl
           <span>{emoji}</span>
           {label}
         </h3>
-        <p className="text-gray-800">{text}</p>
+        <p className="text-gray-800"><GlossaryText text={text} /></p>
       </div>
       {image && (
         <div className="rounded-lg overflow-hidden shadow-md mb-6 relative mx-auto" style={{ maxWidth: '400px', aspectRatio: '1280 / 1080' }}>
