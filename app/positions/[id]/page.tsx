@@ -3,10 +3,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowLeft, Eye, GitBranch, Film, AlertTriangle, Link2, Zap, BookOpen, ArrowRight, MessageCircle } from 'lucide-react';
-import { getPositionById, getAllPositions } from '@/lib/mdx';
+import { getPositionById, getAllPositions, getAllArticles } from '@/lib/mdx';
 import { getCharacterName } from '@/lib/characters';
 import { Conversation } from '@/components/mdx/Conversation';
 import { GlossaryText } from '@/components/GlossaryText';
+import { getLikeCounts } from '@/lib/likes';
+import ArticleCard from '@/components/ArticleCard';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -37,6 +39,20 @@ export default async function PositionDetailPage({ params }: PageProps) {
   // ポジション番号 → データのマッピングを構築（リンク・アイコン用）
   const allPositions = await getAllPositions();
   const numberToPosition = new Map(allPositions.map((p) => [p.number, p]));
+
+  // このポジションに関連する記事を取得
+  const allArticles = await getAllArticles();
+  const positionArticles = allArticles.filter(
+    (a) => a.position && a.position.toLowerCase() === position.id
+  );
+  let positionArticleLikeCounts: Record<string, number> = {};
+  if (positionArticles.length > 0) {
+    try {
+      positionArticleLikeCounts = await getLikeCounts(positionArticles.map((a) => a.id));
+    } catch {
+      // Firebase 接続失敗時はいいね数 0 で表示
+    }
+  }
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -246,6 +262,33 @@ export default async function PositionDetailPage({ params }: PageProps) {
               <li key={i} className="text-sm text-gray-600 flex items-start gap-2"><span className="text-gray-400">•</span><span><GlossaryText text={role} /></span></li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {/* このポジションが登場する記事 */}
+      {positionArticles.length > 0 && (
+        <section className="mb-10">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><BookOpen size={20} className="text-blue-600" />このポジションが登場する記事</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {positionArticles.slice(0, 3).map((article) => (
+              <ArticleCard
+                key={article.id}
+                article={article}
+                likeCount={positionArticleLikeCounts[article.id] ?? 0}
+              />
+            ))}
+          </div>
+          {positionArticles.length > 3 && (
+            <div className="text-center mt-6">
+              <Link
+                href={`/articles?position=${encodeURIComponent(positionArticles[0]?.position ?? position.id.toUpperCase())}`}
+                className="inline-flex items-center text-green-600 hover:text-green-700 font-semibold text-sm"
+              >
+                もっと見る（{positionArticles.length}件）
+                <ArrowRight size={16} className="ml-1" />
+              </Link>
+            </div>
+          )}
         </section>
       )}
     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Filter, X } from 'lucide-react';
 import type { ArticleFrontmatter } from '@/lib/mdx';
 import { sortArticles, type SortOrder } from '@/lib/sort';
@@ -16,10 +17,13 @@ export default function ArticleListClient({
   articles,
   likeCounts,
 }: ArticleListClientProps) {
+  const searchParams = useSearchParams();
+  const initialPosition = searchParams.get('position') ?? 'すべて';
+
   const [sortOrder, setSortOrder] = useState<SortOrder>('level');
-  const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(initialPosition !== 'すべて');
   const [selectedCategory, setSelectedCategory] = useState<string>('すべて');
-  const [selectedPosition, setSelectedPosition] = useState<string>('すべて');
+  const [selectedPosition, setSelectedPosition] = useState<string>(initialPosition);
   const [selectedTeam, setSelectedTeam] = useState<string>('すべて');
   const [selectedTag, setSelectedTag] = useState<string>('すべて');
 

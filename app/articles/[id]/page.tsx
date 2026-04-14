@@ -186,9 +186,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       {article.tags.length > 0 && (
         <div className="flex flex-wrap gap-1 mb-6">
           {article.tags.map((tag) => (
-            <span key={tag} className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
+            <Link key={tag} href={`/articles/tags/${encodeURIComponent(tag)}`} className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded hover:bg-green-100 hover:text-green-700 transition-colors">
               #{tag}
-            </span>
+            </Link>
           ))}
         </div>
       )}
