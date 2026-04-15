@@ -44,11 +44,39 @@ export default async function PositionsPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-12 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">ポジション解説</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          15のポジション、それぞれに独自の役割と魅力がある
-        </p>
+      <div className="mb-12">
+        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">ポジション解説</h1>
+
+        {/* キャラクター導入 */}
+        <div className="max-w-2xl mx-auto bg-white border rounded-xl p-6 mb-8">
+          <div className="space-y-4">
+            <div className="flex items-start gap-3 flex-row-reverse">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 shrink-0">
+                <Image src="/icons/richie.png" alt="リッチーくん" width={40} height={40} className="w-full h-full object-cover" />
+              </div>
+              <div className="bg-gray-100 rounded-lg rounded-tr-none px-4 py-2.5 text-right">
+                <p className="text-sm text-gray-700">ラグビーって15人もいるのに、みんな違うことしてるの？</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 shrink-0">
+                <Image src="/icons/raizo.png" alt="ライゾウ" width={40} height={40} className="w-full h-full object-cover" />
+              </div>
+              <div className="bg-blue-50 rounded-lg rounded-tl-none px-4 py-2.5">
+                <p className="text-sm text-gray-700">そう、15のポジションにはそれぞれ違う<span className="font-semibold text-blue-700">"頭の中"</span>がある。同じ試合を見ていても、見ているものが全然違うんだ。</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 flex-row-reverse">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 shrink-0">
+                <Image src="/icons/richie.png" alt="リッチーくん" width={40} height={40} className="w-full h-full object-cover" />
+              </div>
+              <div className="bg-gray-100 rounded-lg rounded-tr-none px-4 py-2.5 text-right">
+                <p className="text-sm text-gray-700">えー！じゃあ選手の頭の中を覗いてみたい！</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 text-center mt-4">気になるポジションをタップしてみよう 👇</p>
+        </div>
       </div>
 
       <FieldMap />
