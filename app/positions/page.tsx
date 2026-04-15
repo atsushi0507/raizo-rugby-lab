@@ -19,8 +19,8 @@ import { FieldMap } from '@/components/FieldMap';
 
 export default async function PositionsPage() {
   const positions = await getAllPositions();
-  const forwards = positions.filter((p) => p.category === 'フォワード');
-  const backs = positions.filter((p) => p.category === 'バックス');
+  const forwards = positions.filter((p) => p.category === 'フォワード').sort((a, b) => a.number - b.number);
+  const backs = positions.filter((p) => p.category === 'バックス').sort((a, b) => a.number - b.number);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
   const jsonLd = {
@@ -152,8 +152,8 @@ function PositionCard({ position }: { position: PositionFrontmatter }) {
   const numberBg = isForward ? 'bg-red-200 text-red-800' : 'bg-blue-200 text-blue-800';
 
   return (
-    <Link href={'/positions/' + position.id} className="group">
-      <div className={'bg-white border-2 rounded-lg overflow-hidden hover:shadow-lg transition-shadow ' + borderColor}>
+    <Link href={'/positions/' + position.id} className="group h-full">
+      <div className={'bg-white border-2 rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col ' + borderColor}>
         {/* ヘッダー */}
         <div className={'p-5 bg-gradient-to-br ' + gradientBg}>
           <div className="flex items-center gap-3 mb-3">
@@ -172,46 +172,48 @@ function PositionCard({ position }: { position: PositionFrontmatter }) {
         </div>
 
         {/* コンテンツ */}
-        <div className="p-5 space-y-4">
-          {/* 観戦ポイント（最大2つ） */}
-          {position.watchPoints.length > 0 && (
-            <div>
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 mb-2">
-                <Eye size={14} />
-                <span>観戦ポイント</span>
+        <div className="p-5 flex flex-col flex-1">
+          <div className="space-y-4 flex-1">
+            {/* 観戦ポイント（最大2つ） */}
+            {position.watchPoints.length > 0 && (
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 mb-2">
+                  <Eye size={14} />
+                  <span>観戦ポイント</span>
+                </div>
+                <ul className="space-y-1">
+                  {position.watchPoints.slice(0, 2).map((wp, i) => (
+                    <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
+                      <span className="text-green-500 mt-0.5">•</span>
+                      <span>{wp.text}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-1">
-                {position.watchPoints.slice(0, 2).map((wp, i) => (
-                  <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
-                    <span className="text-green-500 mt-0.5">•</span>
-                    <span>{wp.text}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+            )}
 
-          {/* 判断の分岐（簡易） */}
-          {position.decision.length > 0 && (
-            <div>
-              <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 mb-2">
-                <GitBranch size={14} />
-                <span>判断の分岐</span>
+            {/* 判断の分岐（簡易） */}
+            {position.decision.length > 0 && (
+              <div>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 mb-2">
+                  <GitBranch size={14} />
+                  <span>判断の分岐</span>
+                </div>
+                <div className="space-y-1">
+                  {position.decision.slice(0, 2).map((d, i) => (
+                    <div key={i} className="text-sm text-gray-700 flex items-center gap-1.5">
+                      <span className="text-gray-400">{d.condition}</span>
+                      <span className="text-gray-300">→</span>
+                      <span className="font-medium">{d.action}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="space-y-1">
-                {position.decision.slice(0, 2).map((d, i) => (
-                  <div key={i} className="text-sm text-gray-700 flex items-center gap-1.5">
-                    <span className="text-gray-400">{d.condition}</span>
-                    <span className="text-gray-300">→</span>
-                    <span className="font-medium">{d.action}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+            )}
+          </div>
 
-          {/* CTA */}
-          <div className="pt-2">
+          {/* CTA — 常にカード底部に固定 */}
+          <div className="pt-4 mt-auto">
             <span className="text-sm text-green-600 font-semibold group-hover:text-green-700 flex items-center gap-1">
               {position.cta}
               <ArrowRight size={14} />
