@@ -41,6 +41,9 @@
       message: "走ってたから前にいっちゃっただけじゃないの？"
     - speaker: "ライゾウ"
       message: "それでもダメだ。基準は“手から離れた瞬間の方向”だ。"
+  createdAt: "2026-04-10"
+  updatedAt: "2026-04-18"
+  isFeatured: true
 
 - id: "not-straight"
   title: "ノットストレート"
