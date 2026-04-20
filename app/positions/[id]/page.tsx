@@ -75,7 +75,28 @@ export default async function PositionDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <p className="text-xl font-semibold text-gray-800 mt-6 mb-10">{position.catch}</p>
+      <p className="text-xl font-semibold text-gray-800 mt-6 mb-6">{position.catch}</p>
+
+      {/* キャラクター紹介 */}
+      {position.characterName && (
+        <div className={'rounded-xl p-5 mb-10 border ' + accentBorder + ' ' + accentBg}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="font-bold text-lg">{position.characterName}</span>
+            {position.nickname && (
+              <span className="text-sm text-gray-500 italic">— "{position.nickname}"</span>
+            )}
+          </div>
+          {position.personality && (
+            <p className="text-sm text-gray-700 leading-relaxed mb-2">{position.personality}</p>
+          )}
+          {position.catchphrase && (
+            <p className="text-sm font-semibold text-green-700">「{position.catchphrase}」</p>
+          )}
+          {position.nameOrigin && (
+            <p className="text-xs text-gray-400 mt-2">名前の由来：{position.nameOrigin}</p>
+          )}
+        </div>
+      )}
 
       {/* レベル別導線 */}
       {position.levelGuide && (

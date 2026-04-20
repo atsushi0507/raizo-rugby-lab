@@ -3,6 +3,7 @@ number: 14
 name: "ウィング（オープンサイド）"
 nameEn: "Wing (Open Side)"
 category: "バックス"
+nickname: "Hunter"
 catch: "軌道を見つけて仕留めるフィニッシャー"
 
 watchPoints:
@@ -91,6 +92,12 @@ levelGuide:
 cta: "なぜウィングは最後に走るだけでトライできるのか？"
 icon: "/positions/rw_14_icon.png"
 character: "/positions/rw_14_character.png"
+
+# キャラクター設定
+characterName: "フウガ（風牙）"
+personality: "直感的で自由奔放なスピードスター。一度加速すれば誰も追いつけない、華やかな走りで魅せる\"風の疾走者\"。"
+nameOrigin: "「風」を切り裂いて走り、その身のこなしが「雅」やかな勝利の軌道を描くことから。"
+catchphrase: "軌道見つけた"
 
 createdAt: "2026-04-11"
 updatedAt: "2026-04-11"

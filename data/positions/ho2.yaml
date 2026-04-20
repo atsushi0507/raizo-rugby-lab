@@ -89,6 +89,12 @@ cta: "なぜフッカーはFWの中で唯一、ボールを投げる役目を担
 icon: "/positions/ho_2_icon.png"
 character: "/positions/ho_2_character.png"
 
+# キャラクター設定
+characterName: "ダイチ（大地）"
+personality: "温厚で包容力があり、チームの精神的支柱。泥臭い力仕事を黙々とこなし、仲間を底から支える\"不屈の土台\"。"
+nameOrigin: "スクラムの「大地」をしっかりと踏みしめ、揺るぎない安定感を提供する姿から。"
+catchphrase: "俺が支える。"
+
 createdAt: "2026-04-13"
 updatedAt: "2026-04-13"
 isFeatured: true

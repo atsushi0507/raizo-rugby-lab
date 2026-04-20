@@ -87,6 +87,12 @@ cta: "SHはどのようにテンポを刻むのか？"
 icon: "/positions/sh_9_icon.png"
 character: "/positions/sh_9_character.png"
 
+# キャラクター設定
+characterName: "ソウ（奏）"
+personality: "やんちゃで口数が多いムードメーカー。でもその裏には、誰よりも冷静に試合をコントロールする\"うるさい天才\"。"
+nameOrigin: "攻撃のテンポとリズムを自在に操り、試合を\"奏でる\"存在から。"
+catchphrase: "テンポ上げるぞ！"
+
 createdAt: "2026-04-14"
 updatedAt: "2026-04-14"
 isFeatured: true

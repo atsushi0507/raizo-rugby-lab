@@ -3,6 +3,7 @@ number: 10
 name: "スタンドオフ"
 nameEn: "Stand-off / Fly Half"
 category: "バックス"
+nickname: "The Game"
 catch: "攻撃の意思決定者"
 
 watchPoints:
@@ -87,6 +88,12 @@ levelGuide:
 cta: "なぜ10番はキックを選ぶのか？"
 icon: "/positions/so_10_icon.png"
 character: "/positions/so_10_character.png"
+
+# キャラクター設定
+characterName: "ライゾウ（雷蔵）"
+personality: "冷静沈着で知略に長けた司令塔。フィールド全体を俯瞰し、数手先の未来を読み切る\"戦略の指揮者\"。"
+nameOrigin: "「雷」のような鋭い判断力と、勝利へのシナリオを脳内に「蔵」める知性から。"
+catchphrase: "そこにスペースはあるか？"
 
 createdAt: "2026-04-08"
 updatedAt: "2026-04-12"

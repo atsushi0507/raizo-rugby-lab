@@ -89,6 +89,12 @@ cta: "なぜ7番は試合の流れを変えられるのか？"
 icon: "/positions/fl_7_icon.png"
 character: "/positions/fl_7_character.png"
 
+# キャラクター設定
+characterName: "ロウガ（狼牙）"
+personality: "鋭い嗅覚で獲物（ボール）を追うハンター。寡黙ながらもボールへの執着心は人一倍な\"静かなるスティーラー\"。"
+nameOrigin: "「狼」のような鋭い観察眼と、一度食らいついたら離さない「牙」を持つことから。"
+catchphrase: "逃がさない。"
+
 createdAt: "2026-04-16"
 updatedAt: "2026-04-16"
 isFeatured: true

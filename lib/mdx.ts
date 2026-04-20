@@ -52,6 +52,7 @@ export interface PositionFrontmatter {
   name: string;
   nameEn: string;
   category: 'フォワード' | 'バックス';
+  nickname?: string;
   catch: string;
   watchPoints: { text: string; timing?: string; detail?: string }[];
   decision: { condition: string; action: string; reason?: string }[];
@@ -65,6 +66,10 @@ export interface PositionFrontmatter {
   cta: string;
   icon: string;
   character: string;
+  characterName?: string;
+  personality?: string;
+  nameOrigin?: string;
+  catchphrase?: string;
   createdAt?: string;
   updatedAt?: string;
   isFeatured?: boolean;
@@ -189,6 +194,7 @@ function validatePositionFrontmatter(
     name: assertString(data, 'name', filePath),
     nameEn: assertString(data, 'nameEn', filePath),
     category: assertOneOf(data, 'category', ['フォワード', 'バックス'] as const, filePath),
+    ...(data.nickname !== undefined && { nickname: String(data.nickname) }),
     catch: assertString(data, 'catch', filePath),
     watchPoints: (data.watchPoints as { text: string; timing?: string; detail?: string }[]) ?? [],
     decision: (data.decision as { condition: string; action: string; reason?: string }[]) ?? [],
@@ -202,6 +208,10 @@ function validatePositionFrontmatter(
     cta: (data.cta as string) ?? 'このポジションの見方を知る',
     icon: assertString(data, 'icon', filePath),
     character: assertString(data, 'character', filePath),
+    ...(data.characterName !== undefined && { characterName: String(data.characterName) }),
+    ...(data.personality !== undefined && { personality: String(data.personality) }),
+    ...(data.nameOrigin !== undefined && { nameOrigin: String(data.nameOrigin) }),
+    ...(data.catchphrase !== undefined && { catchphrase: String(data.catchphrase) }),
     ...(data.createdAt !== undefined && { createdAt: String(data.createdAt) }),
     ...(data.updatedAt !== undefined && { updatedAt: String(data.updatedAt) }),
     ...(data.isFeatured !== undefined && { isFeatured: Boolean(data.isFeatured) }),
