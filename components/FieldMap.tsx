@@ -41,7 +41,7 @@ const COLOR_MAP: Record<PositionColor, { border: string; bg: string; text: strin
 const PREFIX: Record<number, string> = {
   1: 'lh_1', 2: 'ho_2', 3: 'th_3', 4: 'lk_4', 5: 'lk_5',
   6: 'fl_6', 7: 'fl_7', 8: 'no8_8', 9: 'sh_9', 10: 'so_10',
-  11: 'lw_11', 12: 'ic_12', 13: 'oc_13', 14: 'rw_14', 15: 'fb_15',
+  11: 'lw_11', 12: 'ctb_12', 13: 'oc_13', 14: 'rw_14', 15: 'fb_15',
 };
 
 function hasIcon(n: number): boolean {
