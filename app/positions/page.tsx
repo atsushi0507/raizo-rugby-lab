@@ -155,7 +155,7 @@ function PositionCard({ position }: { position: PositionFrontmatter }) {
     <Link href={'/positions/' + position.id} className="group h-full">
       <div className={'bg-white border-2 rounded-lg overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col ' + borderColor}>
         {/* ヘッダー */}
-        <div className={'p-5 bg-gradient-to-br ' + gradientBg}>
+        <div className={'p-5 bg-gradient-to-br min-h-[160px] flex flex-col justify-between ' + gradientBg}>
           <div className="flex items-center gap-3 mb-3">
             <div className="w-12 h-12 rounded-full overflow-hidden bg-white shadow-sm shrink-0">
               <Image src={position.icon} alt={position.name} width={48} height={48} className="w-full h-full object-cover" />
