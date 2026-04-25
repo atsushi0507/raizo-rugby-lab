@@ -39,9 +39,9 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
       {/* コレクションカード */}
       <button
         onClick={() => setIsOpen(true)}
-        className="text-left group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow w-full"
+        className="text-left group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow w-full h-full flex flex-col"
       >
-        <div className="aspect-square overflow-hidden bg-gray-200 relative">
+        <div className="aspect-[4/3] overflow-hidden bg-gray-200 relative rounded-t-lg">
           <Image
             src={album.coverImage}
             alt={album.title}
@@ -57,12 +57,12 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
             </div>
           </div>
         </div>
-        <div className="p-4">
-          <h3 className="font-bold text-lg mb-2 group-hover:text-green-600 transition-colors">
+        <div className="p-4 flex flex-col flex-1">
+          <h3 className="font-bold text-lg mb-2 group-hover:text-green-600 transition-colors line-clamp-1">
             {album.title}
           </h3>
-          <p className="text-sm text-gray-600 mb-3">{album.description}</p>
-          <div className="flex items-center justify-between text-xs text-gray-500">
+          <p className="text-sm text-gray-600 mb-3 line-clamp-2 flex-1">{album.description}</p>
+          <div className="flex items-center justify-between text-xs text-gray-500 mt-auto">
             <span className="font-semibold">{album.home} vs {album.away}</span>
             <span>
               {new Date(album.date).toLocaleDateString('ja-JP', {
