@@ -9,6 +9,11 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
   const [isOpen, setIsOpen] = useState(false);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
+  // カバー画像を先頭に含めた全画像リスト（重複排除）
+  const allImages = album.images.includes(album.coverImage)
+    ? album.images
+    : [album.coverImage, ...album.images];
+
   // 背景スクロールを無効化
   useEffect(() => {
     if (isOpen || viewerIndex !== null) {
@@ -22,12 +27,12 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (viewerIndex !== null) {
       if (e.key === 'Escape') setViewerIndex(null);
-      if (e.key === 'ArrowLeft') setViewerIndex((viewerIndex - 1 + album.images.length) % album.images.length);
-      if (e.key === 'ArrowRight') setViewerIndex((viewerIndex + 1) % album.images.length);
+      if (e.key === 'ArrowLeft') setViewerIndex((viewerIndex - 1 + allImages.length) % allImages.length);
+      if (e.key === 'ArrowRight') setViewerIndex((viewerIndex + 1) % allImages.length);
     } else if (isOpen && e.key === 'Escape') {
       setIsOpen(false);
     }
-  }, [isOpen, viewerIndex, album.images.length]);
+  }, [isOpen, viewerIndex, allImages.length]);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -52,7 +57,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
             <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
               <div className="flex items-center">
                 <ImageIcon size={16} className="mr-2" />
-                <span className="text-sm">{album.images.length}枚</span>
+                <span className="text-sm">{allImages.length}枚</span>
               </div>
             </div>
           </div>
@@ -89,7 +94,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
             <div className="flex items-center justify-between px-6 py-4 border-b shrink-0">
               <div>
                 <h3 className="font-bold text-lg">{album.title}</h3>
-                <p className="text-sm text-gray-500">{album.home} vs {album.away} · {album.images.length}枚</p>
+                <p className="text-sm text-gray-500">{album.home} vs {album.away} · {allImages.length}枚</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
@@ -103,7 +108,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
             {/* 画像グリッド（スクロール可能） */}
             <div className="overflow-y-auto p-4">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {album.images.map((src, i) => (
+                {allImages.map((src, i) => (
                   <button
                     key={i}
                     onClick={() => setViewerIndex(i)}
@@ -137,12 +142,12 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
             <X size={28} />
           </button>
 
-          {album.images.length > 1 && (
+          {allImages.length > 1 && (
             <>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  setViewerIndex((viewerIndex - 1 + album.images.length) % album.images.length);
+                  setViewerIndex((viewerIndex - 1 + allImages.length) % allImages.length);
                 }}
                 className="absolute left-4 text-white p-2 rounded-full hover:bg-white/20 transition-colors z-10"
                 aria-label="前の写真"
@@ -152,7 +157,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  setViewerIndex((viewerIndex + 1) % album.images.length);
+                  setViewerIndex((viewerIndex + 1) % allImages.length);
                 }}
                 className="absolute right-4 text-white p-2 rounded-full hover:bg-white/20 transition-colors z-10"
                 aria-label="次の写真"
@@ -164,7 +169,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
 
           <div className="relative w-full max-w-4xl aspect-video mx-8" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={album.images[viewerIndex]}
+              src={allImages[viewerIndex]}
               alt={`${album.title} - ${viewerIndex + 1}`}
               fill
               className="object-contain"
@@ -172,7 +177,7 @@ export function GalleryAlbum({ album }: { album: GalleryFrontmatter }) {
           </div>
 
           <div className="absolute bottom-4 text-white text-sm">
-            {viewerIndex + 1} / {album.images.length}
+            {viewerIndex + 1} / {allImages.length}
           </div>
         </div>
       )}
