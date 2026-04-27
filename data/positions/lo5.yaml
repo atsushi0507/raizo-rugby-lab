@@ -47,15 +47,15 @@ scenes:
 
 relations:
   - number: 3
-    name: "右プロップ（ツヨシ）"
+    name: "右プロップ"
     role: "直前の推進パートナー"
     description: "彼の真後ろからパワーを最大解放し、スクラムを完成させる"
   - number: 4
-    name: "左ロック（ソラ）"
+    name: "左ロック"
     role: "二列目の双璧"
     description: "「高さ」のソラと「強さ」のゴウとして、空中と地上の両面を支配する"
   - number: 2
-    name: "フッカー（ダイチ）"
+    name: "フッカー"
     role: "セットプレーの土台"
     description: "ダイチを中心としたスクラムやラインアウトを、背後から全力で支える"
 
