@@ -12,6 +12,7 @@ const CHARACTER_ICONS: Record<string, string> = {
   'ガイ': '/icons/guy.png',
   'ソラ': '/icons/sora.png',
   'ツヨシ': '/icons/tsuyoshi.png',
+  'ゴウ': '/icons/gou.png'
 };
 
 /**
@@ -22,6 +23,7 @@ const POSITION_CHARACTERS: Record<string, string> = {
   'ho2': 'ダイチ',
   'pr3': 'ツヨシ',
   'lo4': "ソラ",
+  'lo5': 'ゴウ',
   'fl7': 'ロウガ',
   'sh9': 'ソウ',
   'so10': 'ライゾウ',

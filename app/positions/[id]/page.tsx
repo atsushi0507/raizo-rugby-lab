@@ -61,9 +61,9 @@ export default async function PositionDetailPage({ params }: PageProps) {
       </Link>
 
       {/* ヘッダー */}
-      <div className="flex items-center gap-4 mb-2">
-        <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 shadow-sm shrink-0">
-          <Image src={position.character} alt={position.name} width={64} height={64} className="w-full h-full object-cover" />
+      <div className="flex items-center gap-5 mb-2">
+        <div className="w-24 h-24 md:w-28 md:h-28 rounded-xl overflow-hidden bg-gray-100 shadow-sm shrink-0">
+          <Image src={position.character} alt={position.name} width={112} height={112} className="w-full h-full object-contain" />
         </div>
         <div>
           <div className="flex items-center gap-2 mb-1">
