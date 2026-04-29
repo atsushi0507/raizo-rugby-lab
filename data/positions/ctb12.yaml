@@ -90,7 +90,7 @@ icon: "/positions/ctb_12_icon.png"
 character: "/positions/ctb_12_character.png"
 
 # キャラクター設定
-characterName: "牙威（ガイ）"
+characterName: "ガイ（牙威）"
 personality: "不言実行で義理堅い突撃隊長。どんなに厚い壁も自分の体でこじ開け、仲間に道を拓く\"不屈のブレイカー\"。"
 nameOrigin: "停滞を打ち破る「牙」となり、相手の守備を後退させる「威」圧的な一撃を持つことから。"
 catchphrase: "怖がってたらこの壁は壊せねえ。"

@@ -14,6 +14,7 @@ const CHARACTER_ICONS: Record<string, string> = {
   'ツヨシ': '/icons/tsuyoshi.png',
   'ゴウ': '/icons/gou.png',
   'ゲン': '/icons/gen.png',
+  'ハル': '/icons/hal.png'
 };
 
 /**
@@ -21,6 +22,7 @@ const CHARACTER_ICONS: Record<string, string> = {
  * 新しいポジションキャラクターを追加する場合はここにエントリを追加する。
  */
 const POSITION_CHARACTERS: Record<string, string> = {
+  'pr1': 'ハル',
   'ho2': 'ダイチ',
   'pr3': 'ツヨシ',
   'lo4': "ソラ",

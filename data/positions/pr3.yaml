@@ -90,7 +90,7 @@ icon: "/positions/pr_3_icon.png"
 character: "/positions/pr_3_character.png"
 
 # キャラクター設定
-characterName: "剛士（ツヨシ）"
+characterName: "ツヨシ（剛士）"
 personality: "豪放磊落で常に笑顔を絶やさない、チームの太陽。スクラムという最も過酷な戦場の中心にいながら、受ける重圧を笑い飛ばして推進力に変える\"不屈のアンカー\"。"
 nameOrigin: "どんな重圧にも屈しない「剛」健な肉体と、最前線で仲間を支えることに誇りを持つ武「士」のような在り方から。"
 catchphrase: "ガハハ！最高に楽しいな、この重圧！"
