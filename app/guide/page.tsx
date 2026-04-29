@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Ticket, Shirt, Clock, Tv, Heart, ArrowRight } from 'lucide-react';
+import { Ticket, Shirt, Clock, Tv, Heart, ArrowRight, Camera } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: '初めてのラグビー観戦ガイド',
@@ -71,7 +71,7 @@ export default function GuidePage() {
             ラグビーの試合を観に行ってみたいけど、ルールも持ち物もよくわからなくて不安なんだ……一人で行っても大丈夫かな？
           </Chat>
           <Chat speaker="raizo">
-            大丈夫、心配いらないよ。ラグビーは老若男女、一人で楽しんでいるファンもたくさんいるんだ。スタジアムにはその日だけの熱気と興奮が詰まっている。まずは一緒に準備のポイントを見ていこう。
+            心配する必要はない。ラグビーのスタジアムは、初めての人にも居心地がいい場所だ。一人で来ているファンも多い。まずは準備のポイントを押さえておこう。
           </Chat>
         </div>
       </section>
@@ -81,7 +81,7 @@ export default function GuidePage() {
         <div className="bg-white border rounded-xl p-6 space-y-4 mb-6">
           <Chat speaker="richie">まずは何を調べればいいの？</Chat>
           <Chat speaker="raizo">
-            まずはチームの公式サイトで試合日程と会場を確認しよう。リーグワンのシーズンは主に12月から5月頃まで開催されているよ。
+            基本だ。まずチームの公式サイトで試合日程と会場を確認する。リーグワンのシーズンは主に12月から5月。前売り券を押さえておけば、当日慌てることはない。
           </Chat>
         </div>
         <div className="bg-green-50 rounded-xl p-6">
@@ -99,7 +99,7 @@ export default function GuidePage() {
         <div className="bg-white border rounded-xl p-6 space-y-4 mb-6">
           <Chat speaker="richie">スタジアムにはどんな格好で行けばいいのかな？</Chat>
           <Chat speaker="raizo">
-            ラグビーは屋外競技だから、天候に合わせた準備が大切だね。特に冬はしっかりとした防寒を、春夏は日焼け対策を忘れずに。
+            ラグビーは屋外競技だ。天候への備えが観戦の質を左右する。冬場は防寒を徹底すること。春夏は日差し対策。準備が甘いと、試合に集中できなくなる。
           </Chat>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -133,7 +133,7 @@ export default function GuidePage() {
         <div className="bg-white border rounded-xl p-6 space-y-4 mb-6">
           <Chat speaker="richie">試合開始のギリギリに行けばいいの？</Chat>
           <Chat speaker="raizo">
-            いや、キックオフの1〜2時間前に到着するのがおすすめだよ。スタジアムの外にはグルメやグッズ、イベントもたくさんあるから、試合前からワクワクできるんだ。
+            キックオフの1〜2時間前に到着するのが正解だ。スタジアム周辺にはグルメやグッズ、イベントがある。試合前の時間も含めて「観戦体験」だと思った方がいい。
           </Chat>
         </div>
         <div className="bg-purple-50 rounded-xl p-6">
@@ -152,11 +152,11 @@ export default function GuidePage() {
         <div className="bg-white border rounded-xl p-6 space-y-4 mb-6">
           <Chat speaker="richie">やっぱりルールがわからないと楽しめない気がして……。</Chat>
           <Chat speaker="raizo">
-            そんなことはないよ。スタジアムの大型スクリーンで解説が出たり、場内アナウンスで反則を教えてくれたりもする。まずはトライの瞬間の盛り上がりや、選手がぶつかり合う音を肌で感じるだけで十分なんだ。
+            ルールを全部知っている必要はない。スタジアムの大型スクリーンや場内アナウンスが状況を教えてくれる。まずはトライの瞬間の歓声、スクラムの地響き、タックルの衝撃音。それを肌で感じるだけで、ラグビーの本質は伝わる。
           </Chat>
           <Chat speaker="richie">それなら安心かも！でも少しだけ予習しておきたいな。</Chat>
           <Chat speaker="raizo">
-            それなら、うちのサイトのルール解説やポジション解説を見ておくといいよ。全部覚える必要はない。気になるところだけでOKだ。
+            うちのルール解説とポジション解説に目を通しておけばいい。全部覚える必要はない。気になるところだけで十分だ。
           </Chat>
         </div>
 
@@ -186,6 +186,62 @@ export default function GuidePage() {
         </div>
       </StepSection>
 
+      {/* STEP 5: 撮影・SNSルール */}
+      <StepSection number={5} icon={<Camera size={24} className="text-indigo-600" />} title="写真・動画の撮影ルール">
+        <div className="bg-white border rounded-xl p-6 space-y-4 mb-6">
+          <Chat speaker="richie">スタジアムで写真撮ってSNSに載せてもいいの？</Chat>
+          <Chat speaker="raizo">
+            基本的にはOKだ。ただし、動画には明確なルールがある。ここを押さえておけば安心して撮影できる。
+          </Chat>
+        </div>
+
+        <div className="space-y-4">
+          {/* OK */}
+          <div className="bg-green-50 rounded-xl p-6">
+            <h3 className="font-bold mb-3 text-green-700">✅ できること</h3>
+            <div className="space-y-3 text-sm text-gray-700">
+              <div>
+                <p className="font-semibold mb-1">📸 写真</p>
+                <ul className="space-y-1 ml-4">
+                  <li>• 試合中を含め、スタジアム内での写真撮影は自由</li>
+                  <li>• 撮影した写真を自分のSNSに投稿するのもOK</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-semibold mb-1">🎥 動画</p>
+                <ul className="space-y-1 ml-4">
+                  <li>• キックオフ前・ハーフタイム・試合後の動画撮影とSNS投稿はOK</li>
+                  <li>• 試合中でも、グラウンドや大型スクリーン以外（スタンドの雰囲気など）の動画はOK</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* NG */}
+          <div className="bg-red-50 rounded-xl p-6">
+            <h3 className="font-bold mb-3 text-red-700">❌ 禁止されていること</h3>
+            <ul className="space-y-2 text-sm text-gray-700">
+              <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">×</span>試合中のグラウンド上のプレーを動画撮影・投稿すること</li>
+              <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">×</span>大型スクリーンの試合映像を動画撮影・投稿すること</li>
+              <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">×</span>試合のライブ配信</li>
+              <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">×</span>三脚・一脚・大型望遠レンズなど、周囲の迷惑になる機材の使用</li>
+              <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">×</span>フラッシュ撮影（競技の妨げになるため）</li>
+              <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">×</span>営利目的の撮影・投稿</li>
+            </ul>
+          </div>
+
+          {/* 注意 */}
+          <div className="bg-yellow-50 rounded-xl p-5">
+            <h3 className="font-bold mb-2">⚠️ 注意点</h3>
+            <ul className="space-y-1.5 text-sm text-gray-700">
+              <li>• 他の観客や関係者が個人を特定できる形で写り込む場合は、本人の許諾が必要な場合があります</li>
+              <li>• SNSの広告収益（プラットフォーム付随のもの）は「営利目的」には含まれません</li>
+            </ul>
+            <p className="text-xs text-gray-500 mt-3">出典：ジャパンラグビー リーグワン公式サイト</p>
+          </div>
+        </div>
+      </StepSection>
+
       {/* エピローグ */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
@@ -197,11 +253,11 @@ export default function GuidePage() {
         <div className="bg-white border rounded-xl p-6 space-y-4">
           <Chat speaker="richie">試合が終わった後はどうなるの？</Chat>
           <Chat speaker="raizo">
-            ラグビーには「ノーサイド」の精神があって、試合が終われば敵も味方も関係なく、お互いの健闘をたたえ合うんだ。両チームのファンが一緒になって拍手を送る光景は、ラグビーならではの素晴らしさだよ。
+            ラグビーには「ノーサイド」の精神がある。試合が終われば敵も味方もない。互いの健闘をたたえ合う。両チームのファンが一緒に拍手を送る光景は、このスポーツだけのものだ。
           </Chat>
           <Chat speaker="richie">なんだか安心した！僕もスタジアムで思いっきり応援してみるよ！</Chat>
           <Chat speaker="raizo">
-            その気持ちがあれば十分だ。スタジアムで待ってるよ。
+            その意気だ。スタジアムで待っている。
           </Chat>
         </div>
       </section>
