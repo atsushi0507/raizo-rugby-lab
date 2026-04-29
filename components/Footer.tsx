@@ -27,6 +27,7 @@ export function Footer() {
               <li><Link href="/rules" className="hover:text-green-600 transition-colors">ルール解説</Link></li>
               <li><Link href="/positions" className="hover:text-green-600 transition-colors">ポジション解説</Link></li>
               <li><Link href="/gallery" className="hover:text-green-600 transition-colors">ギャラリー</Link></li>
+              <li><Link href="/guide" className="hover:text-green-600 transition-colors">観戦ガイド</Link></li>
               <li><Link href="/about" className="hover:text-green-600 transition-colors">About</Link></li>
               <li><Link href="/terms" className="hover:text-green-600 transition-colors">利用規約</Link></li>
             </ul>

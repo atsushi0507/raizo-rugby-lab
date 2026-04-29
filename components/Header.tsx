@@ -11,6 +11,7 @@ const navItems = [
   { path: '/rules', label: 'ルール解説' },
   { path: '/positions', label: 'ポジション' },
   { path: '/gallery', label: 'ギャラリー' },
+  { path: '/guide', label: '観戦ガイド' },
   { path: '/about', label: 'About' },
 ];
 

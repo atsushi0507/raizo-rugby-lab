@@ -344,6 +344,28 @@ export default async function HomePage() {
         </div>
       </section>
     </div>
+
+    {/* 固定の観戦ガイド導線 */}
+    <Link
+      href="/guide"
+      className="fixed bottom-6 right-6 z-40 group"
+      aria-label="観戦ガイドを見る"
+    >
+      <div className="relative">
+        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden shadow-lg border-2 border-white group-hover:shadow-xl transition-shadow bg-green-50">
+          <Image
+            src="/raizo_with_ball.png"
+            alt="観戦ガイド"
+            width={96}
+            height={96}
+            className="w-full h-full object-contain"
+          />
+        </div>
+        <span className="absolute -top-2 -left-2 bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow whitespace-nowrap">
+          観戦ガイド
+        </span>
+      </div>
+    </Link>
     </>
   );
 }
