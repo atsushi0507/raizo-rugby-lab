@@ -23,7 +23,7 @@ export default function ArticleCard({ article, likeCount = 0 }: ArticleCardProps
     <Link href={`/articles/${article.id}`} className="group">
       <article className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         {/* サムネイル */}
-        <div className="relative aspect-video overflow-hidden bg-gray-200">
+        <div className="relative overflow-hidden bg-gray-200" style={{ aspectRatio: '4 / 5' }}>
           <Image
             src={optimizeCloudinaryUrl(article.thumbnail, 600)}
             alt={article.title}

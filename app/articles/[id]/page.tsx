@@ -145,7 +145,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       </Link>
 
       {/* サムネイル */}
-      <div className="relative aspect-video rounded-lg overflow-hidden mb-8 bg-gray-200">
+      <div className="relative rounded-lg overflow-hidden mb-8 bg-gray-200 mx-auto" style={{ maxWidth: '400px', aspectRatio: '4 / 5' }}>
         <Image
           src={optimizeCloudinaryUrl(article.thumbnail)}
           alt={article.title}
@@ -236,12 +236,11 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         {article.analysisVideoUrl && (
           <section className="mb-8">
             <h2>📐 プレー解説動画</h2>
-            <div className="my-4 rounded-lg overflow-hidden shadow-md bg-gray-900 mx-auto" style={{ maxWidth: '400px', aspectRatio: '1280 / 1080' }}>
+            <div className="my-4 rounded-lg overflow-hidden shadow-md bg-gray-900 mx-auto" style={{ maxWidth: '400px', aspectRatio: '4 / 5' }}>
               <video
                 controls
                 playsInline
-                className="w-full h-full object-cover"
-                style={{ objectPosition: 'center 50%', transform: 'scale(1.12)' }}
+                className="w-full h-full object-contain"
                 preload="metadata"
               >
                 <source src={article.analysisVideoUrl} type="video/mp4" />

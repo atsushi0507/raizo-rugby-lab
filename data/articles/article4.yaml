@@ -1,0 +1,68 @@
+id: "MNs9FE3SkZsdZ8FegGeE"
+title: "そのキックは守備じゃない｜最後尾から始まる50:22の反撃"
+category: "分析"
+tags: ["カウンター", "キック", "50:22", "判断力", "フルバック"]
+thumbnail: "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1777435687/1_zsmfhb.png"
+excerpt: "なぜ自陣から一気に敵陣深くまで運べたのか？フルバックが見ていたのはスペースではなく“戻りきらない時間”。守備から一瞬で攻撃に変わる50:22の本質を解き明かす。"
+date: "2026-04-24"
+readTime: "7分"
+level: "中級"
+team: "浦安D-Rocks"
+position: "FB"
+season: "2025-26"
+videoUrl: "https://www.youtube.com/shorts/S1NlI84Alvo"
+createdAt: "2026-04-29"
+updatedAt: "2026-04-29"
+isFeatured: true
+
+introduction: "なぜそのキックで、一気に局面をひっくり返せたのか？"
+
+conversations:
+  - speaker: "リッチーくん"
+    message: "え、ここから蹴るの！？めっちゃ自陣じゃん！"
+  - speaker: "ライゾウ"
+    message: "だからこそだ。ここしかないタイミングだった。"
+  - speaker: "リッチーくん"
+    message: "でも相手もそんなに崩れてるように見えないけど…？"
+  - speaker: "ゲン"
+    message: "……戻れていない。そこが見えていた。"
+  - speaker: "リッチーくん"
+    message: "戻れてない？"
+  - speaker: "ライゾウ"
+    message: "最前線はまだセンターラインの内側。守備は整っていない。"
+  - speaker: "リッチーくん"
+    message: "あ、だからスペースが空くのか！"
+  - speaker: "ゲン"
+    message: "……違う。スペースじゃない。“時間”だ。"
+  - speaker: "リッチーくん"
+    message: "時間？"
+  - speaker: "ライゾウ"
+    message: "戻りきる前の一瞬。その間なら深く蹴り込める。"
+  - speaker: "リッチーくん"
+    message: "なるほど…でもあれ、タッチに出ちゃわない？"
+  - speaker: "ゲン"
+    message: "……ギリギリで落とす。"
+  - speaker: "ライゾウ"
+    message: "そして50:22。守備から一気に反撃だ。"
+  - speaker: "ライゾウ"
+    message: "フルバックは最後の砦じゃない。最初の起点だ。"
+
+structure:
+  situation: "前半35分、浦安D-Rocksは0-28と大きくビハインド。敵陣22m手前でのスクラムは押し込まれ、静岡ブルーレヴズが外へ展開しキック。自陣22m付近でフルバックがボールをキャッチする。相手の最前線はまだセンターライン内側の10m付近に位置しており、守備は完全には整っていない状況だった。"
+  situationImage: "https://res.cloudinary.com/ddbfkxo9j/video/upload/so_8/v1777435705/2026.04.24_Fri_%E6%B5%A6%E5%AE%89D-Rocks_vs_%E9%9D%99%E5%B2%A1%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AC%E3%83%B4%E3%82%BA_%E7%A7%A9%E7%88%B6%E5%AE%AE%E3%83%A9%E3%82%B0%E3%83%93%E3%83%BC%E5%A0%B4_guhets.jpg"
+
+  decision: "フルバックはキャッチ後すぐに前進しながら状況を確認。見ていたのはスペースではなく、相手が戻りきれていない“時間”。この一瞬を逃さず、タッチライン際へ正確なロングキックを選択する。ギリギリでバウンドさせることでダイレクトタッチを回避しつつ、大きく陣地を回復する判断だった。"
+  decisionImage: "https://res.cloudinary.com/ddbfkxo9j/video/upload/so_16/v1777435705/2026.04.24_Fri_%E6%B5%A6%E5%AE%89D-Rocks_vs_%E9%9D%99%E5%B2%A1%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AC%E3%83%B4%E3%82%BA_%E7%A7%A9%E7%88%B6%E5%AE%AE%E3%83%A9%E3%82%B0%E3%83%93%E3%83%BC%E5%A0%B4_guhets.jpg"
+
+  result: "ボールは敵陣22mラインを越えてライン際に落ち、50:22が成立。一気に敵陣深くへ侵入するビッグプレーとなった。ラインアウトは確保できなかったものの、自陣から一瞬で流れを変える可能性を生んだプレーとなった。"
+  resultImage: "https://res.cloudinary.com/ddbfkxo9j/video/upload/so_22/v1777435705/2026.04.24_Fri_%E6%B5%A6%E5%AE%89D-Rocks_vs_%E9%9D%99%E5%B2%A1%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AC%E3%83%B4%E3%82%BA_%E7%A7%A9%E7%88%B6%E5%AE%AE%E3%83%A9%E3%82%B0%E3%83%93%E3%83%BC%E5%A0%B4_guhets.jpg"
+
+watchPoints:
+  - "相手の最前線がまだ戻りきれていない位置関係（センターライン内側）"
+  - "スペースではなく“戻りの遅れ＝時間”を見ている判断"
+  - "キャッチ後すぐに前進してキック体勢に入る流れ"
+  - "ダイレクトタッチを避けるためのバウンドのコントロール"
+  - "50:22というルールを最大限活用したキック選択"
+  - "フルバックが守備から攻撃の起点へと変わる役割"
+
+analysisVideoUrl: "https://res.cloudinary.com/ddbfkxo9j/video/upload/v1777435705/2026.04.24_Fri_%E6%B5%A6%E5%AE%89D-Rocks_vs_%E9%9D%99%E5%B2%A1%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AC%E3%83%B4%E3%82%BA_%E7%A7%A9%E7%88%B6%E5%AE%AE%E3%83%A9%E3%82%B0%E3%83%93%E3%83%BC%E5%A0%B4_guhets.mp4"
