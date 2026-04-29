@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     '/*': ['./data/**/*'],
   },
   images: {
+    formats: ['image/webp'],
     remotePatterns: [
       {
         protocol: 'https',

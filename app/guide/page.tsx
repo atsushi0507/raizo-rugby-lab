@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 function Chat({ speaker, children }: { speaker: 'raizo' | 'richie'; children: React.ReactNode }) {
   const isRaizo = speaker === 'raizo';
   return (
-    <div className={`flex items-start gap-3 ${isRaizo ? '' : 'flex-row-reverse'}`}>
+    <div className={`flex items-start gap-3 ${isRaizo ? '' : 'flex-row-reverse'}`} role="listitem" aria-label={`${isRaizo ? 'ライゾウ' : 'リッチーくん'}の発言`}>
       <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 shrink-0">
         <Image
           src={isRaizo ? '/icons/raizo.png' : '/icons/richie.png'}

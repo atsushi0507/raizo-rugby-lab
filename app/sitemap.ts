@@ -1,14 +1,18 @@
 import type { MetadataRoute } from 'next';
-import { getAllArticles, getAllRules, getAllSetPieces, getAllPositions } from '@/lib/mdx';
+import { getAllArticles, getAllRules, getAllSetPieces, getAllPositions, getRestartData, getAllPhases, getAllScoring, getAllGameplay } from '@/lib/mdx';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [articles, rules, setPieces, positions] = await Promise.all([
+  const [articles, rules, setPieces, positions, restartData, phases, scoring, gameplay] = await Promise.all([
     getAllArticles(),
     getAllRules(),
     getAllSetPieces(),
     getAllPositions(),
+    getRestartData(),
+    getAllPhases(),
+    getAllScoring(),
+    getAllGameplay(),
   ]);
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -50,5 +54,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...articlePages, ...rulePages, ...setPiecePages, ...positionPages];
+  const restartPages: MetadataRoute.Sitemap = restartData.items.map((r) => ({
+    url: `${BASE_URL}/rules/restart-${r.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  const phasePages: MetadataRoute.Sitemap = phases.map((p) => ({
+    url: `${BASE_URL}/rules/phase-${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  const scoringPages: MetadataRoute.Sitemap = scoring.map((s) => ({
+    url: `${BASE_URL}/rules/scoring-${s.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  const gameplayPages: MetadataRoute.Sitemap = gameplay.map((g) => ({
+    url: `${BASE_URL}/rules/gameplay-${g.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...articlePages, ...rulePages, ...setPiecePages, ...restartPages, ...phasePages, ...scoringPages, ...gameplayPages, ...positionPages];
 }
