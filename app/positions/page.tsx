@@ -45,7 +45,7 @@ export default async function PositionsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">ポジション解説</h1>
+        <h1 id="positions-top" className="text-3xl md:text-4xl font-bold mb-8 text-center">ポジション解説</h1>
 
         {/* キャラクター導入 */}
         <div className="max-w-2xl mx-auto bg-white border rounded-xl p-6 mb-8">
@@ -128,16 +128,20 @@ export default async function PositionsPage() {
         </div>
       </div>
 
-      {/* Coming Soon */}
+      {/* All Positions Complete */}
       <div className="mt-16 relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-600 via-emerald-600 to-teal-700 p-8 md:p-12 text-white text-center">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255,255,255,0.2) 0%, transparent 50%)' }} />
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-green-300 animate-pulse" />
-            随時追加中
+            <span className="text-base">🎉</span>
+            全15ポジション 解説完成
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">全15ポジション、順次公開予定</h2>
-          <p className="text-green-100 max-w-lg mx-auto">各ポジションの役割・魅力・観戦ポイントを、キャラクターと一緒に深掘りしていきます。お楽しみに。</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">フォワード8人、バックス7人。<br className="hidden sm:inline" />15人全員の頭の中が、ここにある。</h2>
+          <p className="text-green-100 max-w-lg mx-auto mb-8">各ポジションには、それぞれ違う判断基準と観戦ポイントがある。気になるキャラクターから読み直してみよう。</p>
+          <a href="#positions-top" className="inline-flex items-center gap-2 bg-white text-green-700 font-bold px-6 py-3 rounded-full hover:bg-green-50 transition-colors">
+            ポジション一覧に戻る
+            <ArrowRight size={16} />
+          </a>
         </div>
       </div>
     </div>
