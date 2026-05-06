@@ -151,10 +151,12 @@ export default async function PositionDetailPage({ params }: PageProps) {
           <div className="space-y-3">
             {position.decision.map((d, i) => (
               <div key={i} className="bg-white border rounded-lg p-4">
-                <div className="flex items-center gap-3 mb-1">
-                  <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full whitespace-nowrap">{d.condition}</span>
-                  <span className="text-gray-300">→</span>
-                  <span className="font-semibold text-gray-800">{d.action}</span>
+                <div className="mb-1">
+                  <span className="inline-block text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full mb-2">{d.condition}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-400 text-sm shrink-0">→</span>
+                    <span className="font-semibold text-gray-800">{d.action}</span>
+                  </div>
                 </div>
                 {d.reason && (
                   <p className="text-xs text-gray-500 ml-1 mt-1">💡 <GlossaryText text={d.reason} /></p>
