@@ -18,6 +18,22 @@ export interface StructureData {
   resultImage?: string;
 }
 
+export interface TechniqueOverview {
+  title: string;
+  body: string;
+  image?: string;
+}
+
+export interface TechniqueSection {
+  title: string;
+  body: string;
+}
+
+export interface TechniqueBreakdownData {
+  overview: TechniqueOverview;
+  sections: TechniqueSection[];
+}
+
 export interface ArticleFrontmatter {
   id: string;
   title: string;
@@ -41,7 +57,8 @@ export interface ArticleFrontmatter {
 export interface ArticleData extends ArticleFrontmatter {
   introduction: string;
   conversations: ConversationItem[];
-  structure: StructureData;
+  structure?: StructureData;
+  techniqueBreakdown?: TechniqueBreakdownData;
   watchPoints: string[];
   analysisVideoUrl?: string;
 }
@@ -289,7 +306,8 @@ export async function getArticleById(
         ...frontmatter,
         introduction: (data.introduction as string) ?? '',
         conversations: (data.conversations as ConversationItem[]) ?? [],
-        structure: (data.structure as StructureData) ?? { situation: '', decision: '', result: '' },
+        structure: data.structure ? (data.structure as StructureData) : undefined,
+        techniqueBreakdown: data.techniqueBreakdown ? (data.techniqueBreakdown as TechniqueBreakdownData) : undefined,
         watchPoints: (data.watchPoints as string[]) ?? [],
         analysisVideoUrl: (data.analysisVideoUrl as string) ?? undefined,
       };

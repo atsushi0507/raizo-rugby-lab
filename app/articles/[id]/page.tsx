@@ -26,6 +26,7 @@ import LikeButton from '@/components/LikeButton';
 import ArticleCard from '@/components/ArticleCard';
 import { Conversation } from '@/components/mdx/Conversation';
 import { Structure } from '@/components/mdx/Structure';
+import { TechniqueBreakdown } from '@/components/mdx/TechniqueBreakdown';
 import { Video } from '@/components/mdx/Video';
 import { WatchPoints } from '@/components/mdx/WatchPoints';
 import { GlossaryText } from '@/components/GlossaryText';
@@ -216,11 +217,19 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* プレー構造を分解 */}
+        {/* プレー構造を分解 (structure) */}
         {article.structure && (
           <section className="mb-8">
             <h2>🧩 プレー構造を分解</h2>
             <Structure {...article.structure} />
+          </section>
+        )}
+
+        {/* テクニック分解 (techniqueBreakdown) */}
+        {article.techniqueBreakdown && (
+          <section className="mb-8">
+            <h2>🔬 テクニックを分解する</h2>
+            <TechniqueBreakdown {...article.techniqueBreakdown} />
           </section>
         )}
 
