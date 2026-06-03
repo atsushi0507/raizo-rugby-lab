@@ -209,6 +209,18 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </section>
         )}
 
+        {/* 試合背景 */}
+        {article.storyContext && (
+          <section className="mb-8">
+            <h2>📖 {article.storyContext.title}</h2>
+            <div className="border-l-4 border-gray-300 bg-gray-50 rounded-r-lg px-5 py-4">
+              <div className="text-sm text-gray-600 leading-loose whitespace-pre-line">
+                {article.storyContext.body}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* 会話で理解する */}
         {article.conversations.length > 0 && (
           <section className="mb-8">

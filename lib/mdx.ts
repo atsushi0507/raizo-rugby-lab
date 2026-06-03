@@ -34,6 +34,11 @@ export interface TechniqueBreakdownData {
   sections: TechniqueSection[];
 }
 
+export interface StoryContextData {
+  title: string;
+  body: string;
+}
+
 export interface ArticleFrontmatter {
   id: string;
   title: string;
@@ -56,6 +61,7 @@ export interface ArticleFrontmatter {
 
 export interface ArticleData extends ArticleFrontmatter {
   introduction: string;
+  storyContext?: StoryContextData;
   conversations: ConversationItem[];
   structure?: StructureData;
   techniqueBreakdown?: TechniqueBreakdownData;
@@ -305,6 +311,7 @@ export async function getArticleById(
       return {
         ...frontmatter,
         introduction: (data.introduction as string) ?? '',
+        storyContext: data.storyContext ? (data.storyContext as StoryContextData) : undefined,
         conversations: (data.conversations as ConversationItem[]) ?? [],
         structure: data.structure ? (data.structure as StructureData) : undefined,
         techniqueBreakdown: data.techniqueBreakdown ? (data.techniqueBreakdown as TechniqueBreakdownData) : undefined,
