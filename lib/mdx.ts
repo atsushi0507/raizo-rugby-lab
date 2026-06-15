@@ -6,7 +6,12 @@ import yaml from 'js-yaml';
 
 export interface ConversationItem {
   speaker: string;
-  message: string;
+  message: string | string[];
+}
+
+export interface DetailSection {
+  heading: string;
+  body: string;
 }
 
 export interface StructureData {
@@ -369,13 +374,14 @@ export interface RuleData {
   title: string;
   description: string;
   detail: string;
+  detailSections?: DetailSection[];
   level: '初級' | '中級' | '上級';
   principleId: string;
   icon: string;
   illustration: string;
   relatedRuleIds: string[];
   relatedSetPieceIds: string[];
-  conversation: { speaker: string; message: string }[];
+  conversation: ConversationItem[];
 }
 
 export interface SetPieceData {

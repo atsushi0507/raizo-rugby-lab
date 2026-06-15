@@ -81,7 +81,12 @@ export default async function RuleDetailPage({ params }: PageProps) {
       <h1 className="text-2xl md:text-3xl font-bold mb-2 flex items-center gap-3"><span className="text-3xl">{rule.icon}</span>{rule.title}</h1>
       <p className="text-gray-600 mb-8">{rule.description}</p>
       <IllustrationPlaceholder src={rule.illustration} />
-      <div className="prose prose-gray max-w-none mb-8"><h2>詳しく解説</h2><p><GlossaryText text={rule.detail} /></p></div>      <ConversationSection items={rule.conversation} />
+      <ConversationSection items={rule.conversation} />
+      {rule.detailSections && rule.detailSections.length > 0 ? (
+        <DetailSectionsBlock sections={rule.detailSections} />
+      ) : (
+        <DetailBlock text={rule.detail} />
+      )}
       <RelatedRulesSection rules={relatedRules} />
       {relatedSetPieces.length > 0 && (
         <section className="mb-12">
@@ -231,6 +236,41 @@ function BackLink() {
     <Link href="/rules" className="inline-flex items-center text-sm text-gray-500 hover:text-green-600 mb-8 transition-colors">
       <ArrowLeft size={16} className="mr-1" />ルール解説に戻る
     </Link>
+  );
+}
+
+function DetailBlock({ text }: { text: string }) {
+  return (
+    <div className="mb-10">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="h-1 w-8 bg-green-500 rounded-full" />
+        <h2 className="text-xl font-bold text-gray-900">もっと詳しく</h2>
+        <div className="flex-1 h-px bg-gray-200" />
+      </div>
+      <div className="bg-gray-50 rounded-xl p-6">
+        <p className="text-gray-700 leading-relaxed text-sm"><GlossaryText text={text} /></p>
+      </div>
+    </div>
+  );
+}
+
+function DetailSectionsBlock({ sections }: { sections: { heading: string; body: string }[] }) {
+  return (
+    <div className="mb-10">
+      <div className="flex items-center gap-3 mb-6">
+        <div className="h-1 w-8 bg-green-500 rounded-full" />
+        <h2 className="text-xl font-bold text-gray-900">もっと詳しく</h2>
+        <div className="flex-1 h-px bg-gray-200" />
+      </div>
+      <div className="space-y-4">
+        {sections.map((section, i) => (
+          <div key={i} className="bg-gray-50 rounded-xl p-6">
+            <h3 className="font-bold text-gray-800 mb-2 text-base">{section.heading}</h3>
+            <p className="text-gray-700 leading-relaxed text-sm"><GlossaryText text={section.body} /></p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
