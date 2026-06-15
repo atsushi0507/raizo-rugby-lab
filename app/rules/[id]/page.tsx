@@ -6,6 +6,7 @@ import {
   getRuleById, getAllRules, getAllPrinciples,
   getRestartData, getRestartItemById,
   getPhaseById, getScoringById, getGameplayById,
+  type ConversationItem,
 } from '@/lib/mdx';
 import { Conversation } from '@/components/mdx/Conversation';
 import { GlossaryText } from '@/components/GlossaryText';
@@ -116,7 +117,7 @@ export default async function RuleDetailPage({ params }: PageProps) {
 // ─── Generic Detail (restart, phase, gameplay) ────────────────────────────────
 
 async function GenericDetail({ type, itemId }: { type: 'restart' | 'phase' | 'gameplay'; itemId: string }) {
-  let item: { id: string; title: string; icon: string; description: string; detail: string; points?: string[]; relatedRuleIds: string[]; relatedItemIds: string[]; illustration?: string; conversation: { speaker: string; message: string }[] } | null = null;
+  let item: { id: string; title: string; icon: string; description: string; detail: string; points?: string[]; relatedRuleIds: string[]; relatedItemIds: string[]; illustration?: string; conversation: ConversationItem[] } | null = null;
   let typeLabel = '';
   let linkPrefix = '';
 
@@ -296,7 +297,7 @@ function IllustrationPlaceholder({ src }: { src?: string }) {
   );
 }
 
-function ConversationSection({ items }: { items: { speaker: string; message: string }[] }) {
+function ConversationSection({ items }: { items: ConversationItem[] }) {
   if (!items || items.length === 0) return null;
   return (
     <section className="mb-12">
