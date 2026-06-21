@@ -14,6 +14,11 @@ export interface DetailSection {
   body: string;
 }
 
+export interface PlayerMindData {
+  heading: string;
+  body: string;
+}
+
 export interface StructureData {
   situation: string;
   situationImage?: string;
@@ -375,6 +380,7 @@ export interface RuleData {
   description: string;
   detail: string;
   detailSections?: DetailSection[];
+  playerMind?: PlayerMindData;
   level: '初級' | '中級' | '上級';
   principleId: string;
   icon: string;

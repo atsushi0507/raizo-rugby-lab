@@ -7,6 +7,7 @@ import {
   getRestartData, getRestartItemById,
   getPhaseById, getScoringById, getGameplayById,
   type ConversationItem,
+  type PlayerMindData,
 } from '@/lib/mdx';
 import { Conversation } from '@/components/mdx/Conversation';
 import { GlossaryText } from '@/components/GlossaryText';
@@ -83,6 +84,7 @@ export default async function RuleDetailPage({ params }: PageProps) {
       <p className="text-gray-600 mb-8">{rule.description}</p>
       <IllustrationPlaceholder src={rule.illustration} />
       <ConversationSection items={rule.conversation} />
+      {rule.playerMind && <PlayerMindBlock data={rule.playerMind} />}
       {rule.detailSections && rule.detailSections.length > 0 ? (
         <DetailSectionsBlock sections={rule.detailSections} />
       ) : (
@@ -237,6 +239,22 @@ function BackLink() {
     <Link href="/rules" className="inline-flex items-center text-sm text-gray-500 hover:text-green-600 mb-8 transition-colors">
       <ArrowLeft size={16} className="mr-1" />ルール解説に戻る
     </Link>
+  );
+}
+
+function PlayerMindBlock({ data }: { data: PlayerMindData }) {
+  return (
+    <div className="mb-10">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="h-1 w-8 bg-orange-400 rounded-full" />
+        <h2 className="text-xl font-bold text-gray-900">{data.heading}</h2>
+        <div className="flex-1 h-px bg-gray-200" />
+      </div>
+      <div className="relative bg-orange-50 border border-orange-200 rounded-xl p-6">
+        <span className="absolute top-4 right-4 text-2xl select-none">🏉</span>
+        <p className="text-gray-700 leading-relaxed text-sm pr-8 whitespace-pre-line">{data.body}</p>
+      </div>
+    </div>
   );
 }
 
