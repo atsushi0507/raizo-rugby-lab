@@ -27,6 +27,9 @@ import ArticleCard from '@/components/ArticleCard';
 import { Conversation } from '@/components/mdx/Conversation';
 import { Structure } from '@/components/mdx/Structure';
 import { TechniqueBreakdown } from '@/components/mdx/TechniqueBreakdown';
+import { FeatureBreakdown } from '@/components/mdx/FeatureBreakdown';
+import { WhyItMatters } from '@/components/mdx/WhyItMatters';
+import { ViewingPoints } from '@/components/mdx/ViewingPoints';
 import { Video } from '@/components/mdx/Video';
 import { WatchPoints } from '@/components/mdx/WatchPoints';
 import { GlossaryText } from '@/components/GlossaryText';
@@ -113,7 +116,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   const categoryColorClass =
     article.category === '解説'
       ? 'bg-blue-100 text-blue-700'
-      : 'bg-purple-100 text-purple-700';
+      : article.category === '観戦ガイド'
+        ? 'bg-teal-100 text-teal-700'
+        : 'bg-purple-100 text-purple-700';
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://raizo-rugby-lab.com';
 
@@ -146,15 +151,36 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       </Link>
 
       {/* サムネイル */}
-      <div className="relative rounded-lg overflow-hidden mb-8 bg-gray-200 mx-auto" style={{ maxWidth: '400px', aspectRatio: '4 / 5' }}>
-        <Image
-          src={optimizeCloudinaryUrl(article.thumbnail)}
-          alt={article.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      {(() => {
+        const hasSize = article.thumbnailWidth && article.thumbnailHeight;
+        const isLandscape = hasSize && article.thumbnailWidth! > article.thumbnailHeight!;
+        const aspectRatio = hasSize
+          ? `${article.thumbnailWidth} / ${article.thumbnailHeight}`
+          : '4 / 5';
+        const maxWidth = isLandscape ? '100%' : '400px';
+
+        return (
+          <div
+            className="relative rounded-lg overflow-hidden mb-8 bg-gray-200 mx-auto"
+            style={{ maxWidth, aspectRatio }}
+          >
+            {article.thumbnail && !article.thumbnail.includes('example.com') ? (
+              <Image
+                src={optimizeCloudinaryUrl(article.thumbnail)}
+                alt={article.title}
+                fill
+                className={isLandscape ? 'object-contain' : 'object-cover'}
+                priority
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-teal-800 to-emerald-900 text-white">
+                <span className="text-5xl mb-3">🏉</span>
+                <span className="text-sm font-medium opacity-70">画像準備中</span>
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {/* メタ情報 */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -245,7 +271,31 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* 観戦ポイント */}
+        {/* 特集解説 (featureBreakdown) */}
+        {article.featureBreakdown && (
+          <section className="mb-8">
+            <h2>🌏 深掘りする</h2>
+            <FeatureBreakdown {...article.featureBreakdown} />
+          </section>
+        )}
+
+        {/* なぜ重要か (whyItMatters) */}
+        {article.whyItMatters && (
+          <section className="mb-8">
+            <h2>💡 なぜこれを知ると面白くなるのか</h2>
+            <WhyItMatters {...article.whyItMatters} />
+          </section>
+        )}
+
+        {/* 観戦ポイント（文化・特集記事用）(viewingPoints) */}
+        {article.viewingPoints && article.viewingPoints.length > 0 && (
+          <section className="mb-8">
+            <h2>👀 見どころチェックリスト</h2>
+            <ViewingPoints items={article.viewingPoints} />
+          </section>
+        )}
+
+        {/* 観戦ポイント（プレー解説記事用）(watchPoints) */}
         {article.watchPoints.length > 0 && (
           <section className="mb-8">
             <h2>👀 観戦ポイント</h2>
@@ -340,6 +390,29 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               ))}
             </div>
           )}
+        </section>
+      )}
+
+      {/* 関連コンテンツリンク (relatedArticles — パス指定) */}
+      {article.relatedArticles && article.relatedArticles.length > 0 && (
+        <section className="mt-10">
+          <h2 className="text-xl font-bold mb-4">関連コンテンツ</h2>
+          <ul className="space-y-3">
+            {article.relatedArticles.map((item, i) => (
+              <li key={i}>
+                <Link
+                  href={item.path}
+                  className="flex items-center gap-3 bg-teal-50 border border-teal-100 rounded-xl px-5 py-4 hover:bg-teal-100 hover:border-teal-300 transition-colors group"
+                >
+                  <span className="text-teal-500 group-hover:text-teal-700 transition-colors shrink-0">📖</span>
+                  <span className="text-sm font-medium text-gray-800 group-hover:text-teal-700 transition-colors leading-snug">
+                    {item.title}
+                  </span>
+                  <ArrowRight size={14} className="ml-auto text-gray-400 group-hover:text-teal-600 transition-colors shrink-0" />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </div>

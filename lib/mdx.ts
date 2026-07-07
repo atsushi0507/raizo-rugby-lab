@@ -44,6 +44,22 @@ export interface TechniqueBreakdownData {
   sections: TechniqueSection[];
 }
 
+// FeatureBreakdown — 文化・特集記事用（TechniqueBreakdownと同構造）
+export interface FeatureBreakdownData {
+  overview: TechniqueOverview;
+  sections: TechniqueSection[];
+}
+
+export interface WhyItMattersData {
+  title: string;
+  body: string;
+}
+
+export interface RelatedArticleLink {
+  title: string;
+  path: string;
+}
+
 export interface StoryContextData {
   title: string;
   body: string;
@@ -52,7 +68,7 @@ export interface StoryContextData {
 export interface ArticleFrontmatter {
   id: string;
   title: string;
-  category: '解説' | '分析';
+  category: '解説' | '分析' | '観戦ガイド';
   tags: string[];
   thumbnail: string;
   excerpt: string;
@@ -63,6 +79,8 @@ export interface ArticleFrontmatter {
   position?: string;
   season?: string;
   videoUrl?: string;
+  thumbnailWidth?: number;
+  thumbnailHeight?: number;
   createdAt?: string;
   updatedAt?: string;
   isFeatured?: boolean;
@@ -75,6 +93,10 @@ export interface ArticleData extends ArticleFrontmatter {
   conversations: ConversationItem[];
   structure?: StructureData;
   techniqueBreakdown?: TechniqueBreakdownData;
+  featureBreakdown?: FeatureBreakdownData;
+  whyItMatters?: WhyItMattersData;
+  viewingPoints?: string[];
+  relatedArticles?: RelatedArticleLink[];
   watchPoints: string[];
   analysisVideoUrl?: string;
 }
@@ -199,7 +221,7 @@ export function validateArticleFrontmatter(
   return {
     id: assertString(data, 'id', filePath),
     title: assertString(data, 'title', filePath),
-    category: assertOneOf(data, 'category', ['解説', '分析'] as const, filePath),
+    category: assertOneOf(data, 'category', ['解説', '分析', '観戦ガイド'] as const, filePath),
     tags: assertStringArray(data, 'tags', filePath),
     thumbnail: assertString(data, 'thumbnail', filePath),
     excerpt: assertString(data, 'excerpt', filePath),
@@ -210,6 +232,8 @@ export function validateArticleFrontmatter(
     ...(data.position !== undefined && { position: assertString(data, 'position', filePath) }),
     ...(data.season !== undefined && { season: assertString(data, 'season', filePath) }),
     ...(data.videoUrl !== undefined && { videoUrl: assertString(data, 'videoUrl', filePath) }),
+    ...(data.thumbnailWidth !== undefined && { thumbnailWidth: Number(data.thumbnailWidth) }),
+    ...(data.thumbnailHeight !== undefined && { thumbnailHeight: Number(data.thumbnailHeight) }),
     ...(data.createdAt !== undefined && { createdAt: String(data.createdAt) }),
     ...(data.updatedAt !== undefined && { updatedAt: String(data.updatedAt) }),
     ...(data.isFeatured !== undefined && { isFeatured: Boolean(data.isFeatured) }),
@@ -325,6 +349,10 @@ export async function getArticleById(
         conversations: (data.conversations as ConversationItem[]) ?? [],
         structure: data.structure ? (data.structure as StructureData) : undefined,
         techniqueBreakdown: data.techniqueBreakdown ? (data.techniqueBreakdown as TechniqueBreakdownData) : undefined,
+        featureBreakdown: data.featureBreakdown ? (data.featureBreakdown as FeatureBreakdownData) : undefined,
+        whyItMatters: data.whyItMatters ? (data.whyItMatters as WhyItMattersData) : undefined,
+        viewingPoints: data.viewingPoints ? (data.viewingPoints as string[]) : undefined,
+        relatedArticles: data.relatedArticles ? (data.relatedArticles as RelatedArticleLink[]) : undefined,
         watchPoints: (data.watchPoints as string[]) ?? [],
         analysisVideoUrl: (data.analysisVideoUrl as string) ?? undefined,
       };

@@ -37,12 +37,14 @@ export default function ArticleCard({ article, likeCount = 0 }: ArticleCardProps
         <div className="p-4">
           {/* ラベル行 */}
           <div className="flex items-center gap-2 mb-2 flex-wrap">
-            {/* カテゴリラベル（解説/分析） */}
+            {/* カテゴリラベル（解説/分析/観戦ガイド） */}
             <span
               className={`text-xs font-semibold px-2 py-1 rounded ${
                 article.category === '解説'
                   ? 'bg-blue-100 text-blue-700'
-                  : 'bg-purple-100 text-purple-700'
+                  : article.category === '観戦ガイド'
+                    ? 'bg-teal-100 text-teal-700'
+                    : 'bg-purple-100 text-purple-700'
               }`}
             >
               {article.category}
