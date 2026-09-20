@@ -1,0 +1,20 @@
+id: "17"
+title: "アメリカ表🇺🇸 vs カナダ代表🇨🇦"
+description: "PNC3位決定戦🏉"
+coverImage: "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878726/img_4680_jxbldn.jpg"
+images:
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878732/img_4651_lcso8c.jpg"
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878735/img_4659_ybraet.jpg"
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878736/img_4673_o9neqp.jpg"
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878736/img_4689_wyfdgf.jpg"
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878741/img_4686_bh0ah2.jpg"
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878744/img_4656_zqypd4.jpg"
+  - "https://res.cloudinary.com/ddbfkxo9j/image/upload/v1789878745/img_4692_o6zinl.jpg"
+season: "Pacific Nation Cup 2026"
+home: "アメリカ代表"
+away: "カナダ代表"
+date: "2026-09-19"
+
+createdAt: "2026-09-20"
+updatedAt: "2026-09-20"
+isFeatured: true
