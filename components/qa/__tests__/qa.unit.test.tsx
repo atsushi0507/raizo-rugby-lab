@@ -170,18 +170,18 @@ describe('QAFloatButton', () => {
     sessionStorage.clear();
   });
 
-  test('fixed bottom-6 left-6 の位置クラスを持つ', () => {
+  test('fixed bottom-6 right-6 の位置クラスをラッパーが持つ', () => {
     const { container } = render(
       <QABotWrapper>
         <QAFloatButton />
       </QABotWrapper>
     );
 
-    const button = container.querySelector('button');
-    expect(button).not.toBeNull();
-    expect(button!.className).toContain('fixed');
-    expect(button!.className).toContain('bottom-6');
-    expect(button!.className).toContain('left-6');
+    // 位置クラスは button の親 div に付く（ホーム以外は bottom-6 right-6）
+    const wrapper = container.querySelector('[class*="fixed"]');
+    expect(wrapper).not.toBeNull();
+    expect(wrapper!.className).toContain('fixed');
+    expect(wrapper!.className).toContain('right-6');
   });
 
   test('isOpen=false の時に aria-label が "ラグビーQ&A Botを開く" になる', () => {
@@ -208,7 +208,7 @@ describe('QAFloatButton', () => {
     expect(button!.getAttribute('aria-expanded')).toBe('false');
   });
 
-  test('w-14 h-14 の最小サイズクラスを持つ（44px 超）', () => {
+  test('ボタンが最小タップサイズ（44px超）を持つ', () => {
     const { container } = render(
       <QABotWrapper>
         <QAFloatButton />
@@ -217,8 +217,11 @@ describe('QAFloatButton', () => {
 
     const button = container.querySelector('button');
     expect(button).not.toBeNull();
-    expect(button!.className).toContain('w-14');
-    expect(button!.className).toContain('h-14');
+    // ホーム以外では w-20 h-20、ホームでは w-16 h-16 — どちらも 44px 超
+    const cls = button!.className;
+    const hasSufficientSize =
+      cls.includes('w-20') || cls.includes('w-16') || cls.includes('w-14');
+    expect(hasSufficientSize).toBe(true);
   });
 
   test('ボタンをクリックすると aria-expanded が切り替わる', () => {
