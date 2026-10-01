@@ -1,0 +1,87 @@
+- id: "what-is-scrum"
+  categoryId: "setpieces"
+  subcategoryId: "scrum"
+  question: "スクラムってなぜ組むの？"
+  richieMessage: "スクラムってなぜ組むの？"
+  raizoMessages:
+    - "スクラムはノックフォワードなどの小さな反則があったときに試合を再開するためのプレーだ。"
+    - "8人ずつが組み合って押し合い、足元に転がすボールをフッカーが後ろにかき出す。フォワードの力の見せ場だよ。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "scrum-dominant"
+  categoryId: "setpieces"
+  subcategoryId: "scrum"
+  question: "スクラムで押し勝つと何が有利なの？"
+  richieMessage: "スクラムで押し勝つと何が有利なの？"
+  raizoMessages:
+    - "スクラムで押し勝つとボールの出が安定して、スクラムハーフがスムーズに展開できる。"
+    - "さらに押し込めばペナルティも狙える。逆に押し負けると自分たちのボールでもスムーズに出せなくなるから、スクラムは試合の支配権に直結するんだ。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "what-is-lineout"
+  categoryId: "setpieces"
+  subcategoryId: "lineout"
+  question: "ラインアウトってどんな競技？"
+  richieMessage: "ラインアウトってどんなルールなの？"
+  raizoMessages:
+    - "ボールがタッチを割ったとき、ゴールラインに向かって両チームが並んで、フッカーがサインに従ってボールを投げ入れるプレーだ。"
+    - "投げ入れる側がどの選手をリフトして受けさせるかを決める。相手はそれを読んで邪魔しようとする。空中での読み合いが面白い。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "lineout-steal"
+  categoryId: "setpieces"
+  subcategoryId: "lineout"
+  question: "ラインアウトでボールを奪えるの？"
+  richieMessage: "相手のラインアウトのボールを奪えるの？"
+  raizoMessages:
+    - "奪える。相手のサインを読んで選手をリフトし、空中でボールに競ることができる。これをスチールという。"
+    - "成功すれば攻守が一気に入れ替わる場面になる。だからラインアウトのサインは毎試合変えるんだ。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "what-is-ruck"
+  categoryId: "setpieces"
+  subcategoryId: "ruck"
+  question: "タックル後に選手が集まるのは何？"
+  richieMessage: "タックルされた後に選手が集まるのは何？"
+  raizoMessages:
+    - "それはラックだ。タックルされてボールが地面にある状態で、両チームの選手が立ったままボールをまたいで押し合う。"
+    - "ラックでは手を使ってボールを取れない。足でかき出すか、スクラムハーフがボールをピックアップするんだ。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "ruck-entry"
+  categoryId: "setpieces"
+  subcategoryId: "ruck"
+  question: "ラックに入るのに決まりはあるの？"
+  richieMessage: "ラックに入るのに決まりはあるの？"
+  raizoMessages:
+    - "ある。ラックには必ず自陣側の最後尾から入らないといけない。横から飛び込むとサイドエントリーという反則になる。"
+    - "また立ったまま参加するのが条件で、倒れた状態で入るとオフフィートという反則になる。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "what-is-maul"
+  categoryId: "setpieces"
+  subcategoryId: "maul"
+  question: "モールってラックと何が違うの？"
+  richieMessage: "モールってラックと何が違うの？"
+  raizoMessages:
+    - "モールはボールキャリアーが立ったまま相手に捕まった状態で、味方と相手が押し合いながら進むプレーだ。"
+    - "ラックはボールが地面にあるのに対して、モールはボールキャリアーが立っている。ボールが地面に着いた瞬間にラックに変わるんだ。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false
+
+- id: "maul-offside"
+  categoryId: "setpieces"
+  subcategoryId: "maul"
+  question: "モール中はどこにいればいいの？"
+  richieMessage: "モール中はどこにいればいいの？"
+  raizoMessages:
+    - "モールに参加していない選手は、モールの一番後ろの選手の足のラインより後ろにいないといけない。"
+    - "これを超えて前に出るとオフサイドになる。モールが動くたびにそのラインも移動するから、常に位置を把握しておく必要がある。"
+  knowledgeBaseRefs: ["rules/setpieces"]
+  aiEnabled: false

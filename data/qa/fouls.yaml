@@ -1,0 +1,87 @@
+- id: "what-is-knock-forward"
+  categoryId: "fouls"
+  subcategoryId: "basic-fouls"
+  question: "ノックフォワードって何？"
+  richieMessage: "ノックフォワードって何？"
+  raizoMessages:
+    - "ボールを手や腕で前方（相手のゴール方向）に落としてしまう反則だ。スクラムで再開になる。"
+    - "後ろや横に落とすのは反則じゃない。「前に落とした」かどうかがポイントだ。地面につく前に自分で捕り直せばセーフになる。"
+  knowledgeBaseRefs: ["rules/knock-forward"]
+  aiEnabled: false
+
+- id: "what-is-throw-forward"
+  categoryId: "fouls"
+  subcategoryId: "basic-fouls"
+  question: "スローフォワードって何？"
+  richieMessage: "スローフォワードって何？"
+  raizoMessages:
+    - "ボールを前方の味方にパスしてしまう反則だ。ラグビーではパスは必ず自分より後ろか真横に投げなければいけない。"
+    - "走りながら投げると慣性でボールが前に流れることがある。その場合でも反則になる。基準は「手から離れた瞬間の方向」だ。"
+  knowledgeBaseRefs: ["rules/throw-forward"]
+  aiEnabled: false
+
+- id: "what-is-not-release"
+  categoryId: "fouls"
+  subcategoryId: "basic-fouls"
+  question: "倒れた後にボールを離さないとダメ？"
+  richieMessage: "タックルされた後にボールを離さないとダメなの？"
+  raizoMessages:
+    - "ダメだ。タックルされて地面に倒れたら、ただちにボールを放さないといけない。これを「ノットリリースザボール」という反則だ。"
+    - "倒れた選手がボールを抱えたままにすると、相手が正当に奪うチャンスがなくなる。ラグビーは「ボールの争奪」が核心だから、公平な状態を保つためのルールだ。"
+  knowledgeBaseRefs: ["rules/not-release-the-ball"]
+  aiEnabled: false
+
+- id: "what-is-yellow-card"
+  categoryId: "fouls"
+  subcategoryId: "cards"
+  question: "イエローカードって何？"
+  richieMessage: "イエローカードって何分間退場するの？"
+  raizoMessages:
+    - "イエローカードは10分間の一時退場だ。その間チームは14人で戦わなければいけない。"
+    - "危険なプレーや繰り返しの反則、試合の流れを止めるような意図的な違反に出される。10分後に自動的に復帰できる。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "what-is-red-card"
+  categoryId: "fouls"
+  subcategoryId: "cards"
+  question: "レッドカードって何？"
+  richieMessage: "レッドカードを出されたらどうなるの？"
+  raizoMessages:
+    - "レッドカードは試合からの永久退場だ。退場した選手は戻れないし、交代選手も出せない。チームは14人のままで試合を続けなければいけない。"
+    - "極めて危険なプレーや悪質な反則に出される。HIA（頭部損傷評価）の結果次第でイエローがレッドに格上げになることもある。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "yellow-vs-red"
+  categoryId: "fouls"
+  subcategoryId: "cards"
+  question: "イエローとレッドの差は何？"
+  richieMessage: "イエローとレッドはどう違うの？"
+  raizoMessages:
+    - "イエローは10分の一時退場で復帰できる。レッドは永久退場で交代もできない。"
+    - "危険度と悪意の程度で判断される。また試合後に映像を確認して追加処分が出る場合もある。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "what-is-offside-basic"
+  categoryId: "fouls"
+  subcategoryId: "offside"
+  question: "オフサイドってどういう状態？"
+  richieMessage: "オフサイドってどういう状態なの？"
+  raizoMessages:
+    - "ボールを保持している味方、または最後にプレーした味方より前にいる状態のことだ。その状態でプレーに関与すると反則になる。"
+    - "ラグビーの基本原則は「ボールより後ろにいること」。だからオフサイドは最も基本的な反則の一つなんだ。"
+  knowledgeBaseRefs: ["rules/offside"]
+  aiEnabled: false
+
+- id: "offside-after-kick"
+  categoryId: "fouls"
+  subcategoryId: "offside"
+  question: "キック後にオフサイドになるのはなぜ？"
+  richieMessage: "キックした後に仲間がオフサイドになるのはなぜ？"
+  raizoMessages:
+    - "味方がキックした瞬間、そのキッカーより前にいた選手は全員オフサイドになる。"
+    - "オンサイドに戻るには、キッカーより後ろまで下がるか、ボールの落下地点から10m以内に近づかないようにする必要がある。これを10メートル規則という。"
+  knowledgeBaseRefs: ["rules/ten-meter-rule"]
+  aiEnabled: false

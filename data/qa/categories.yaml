@@ -1,0 +1,64 @@
+categories:
+  - id: "scoring"
+    label: "🏉 得点・トライ"
+    subcategories:
+      - id: "try"
+        label: "トライ"
+      - id: "conversion"
+        label: "コンバージョン"
+      - id: "penalty-goal"
+        label: "ペナルティゴール"
+      - id: "drop-goal"
+        label: "ドロップゴール"
+
+  - id: "setpieces"
+    label: "⚡ 密集・セットプレー"
+    subcategories:
+      - id: "scrum"
+        label: "スクラム"
+      - id: "lineout"
+        label: "ラインアウト"
+      - id: "ruck"
+        label: "ラック"
+      - id: "maul"
+        label: "モール"
+
+  - id: "fouls"
+    label: "🟡 反則・カード"
+    subcategories:
+      - id: "basic-fouls"
+        label: "基本的な反則"
+      - id: "cards"
+        label: "カードの種類"
+      - id: "offside"
+        label: "オフサイド"
+
+  - id: "restarts"
+    label: "🔄 試合の再開方法"
+    subcategories:
+      - id: "kickoff"
+        label: "キックオフ"
+      - id: "penalty-kick"
+        label: "ペナルティ後の再開"
+      - id: "lineout-restart"
+        label: "タッチアウト後の再開"
+
+  - id: "positions"
+    label: "👤 ポジション"
+    subcategories:
+      - id: "forwards"
+        label: "フォワード"
+      - id: "backs"
+        label: "バックス"
+      - id: "key-positions"
+        label: "注目ポジション"
+
+  - id: "gameplay"
+    label: "📺 試合の進め方"
+    subcategories:
+      - id: "match-flow"
+        label: "試合の流れ"
+      - id: "attack"
+        label: "攻撃の仕組み"
+      - id: "defense"
+        label: "守備の仕組み"

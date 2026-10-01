@@ -1,0 +1,65 @@
+- id: "what-are-forwards"
+  categoryId: "positions"
+  subcategoryId: "forwards"
+  question: "フォワードってどんな役割？"
+  richieMessage: "フォワードってどんな役割なの？"
+  raizoMessages:
+    - "フォワードは1〜8番の8人で、スクラムやラインアウトなどのセットプレーと、タックル・ラックでの接触プレーを担う。"
+    - "チームの「エンジン」と呼ばれることが多い。ボールを前に運んで陣地を稼ぎ、スペースを作るのが主な仕事だ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "what-are-forwards-numbers"
+  categoryId: "positions"
+  subcategoryId: "forwards"
+  question: "フォワードの番号と役割は？"
+  richieMessage: "フォワードの番号と役割を教えて！"
+  raizoMessages:
+    - "1・3番がプロップ（スクラムの両側）、2番がフッカー（ボールをかき出す）、4・5番がロック（スクラムの後列で押す）。"
+    - "6・7番がフランカー（密集でボールを奪う）、8番がナンバーエイト（最後列で司令塔的役割）。それぞれの専門性が高いんだ。"
+  knowledgeBaseRefs: ["positions/p1", "positions/ho2"]
+  aiEnabled: false
+
+- id: "what-are-backs"
+  categoryId: "positions"
+  subcategoryId: "backs"
+  question: "バックスってどんな役割？"
+  richieMessage: "バックスってどんな役割なの？"
+  raizoMessages:
+    - "バックスは9〜15番の7人で、スピードと技術を活かして攻撃を展開する役割だ。"
+    - "スクラムハーフがフォワードからボールをもらい、スタンドオフが攻撃を組み立てて、ウィングやフルバックが走り切る。「表」の得点を作るのがバックスの仕事だ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "backs-positions"
+  categoryId: "positions"
+  subcategoryId: "backs"
+  question: "バックスの番号と役割は？"
+  richieMessage: "バックスの番号と役割を教えて！"
+  raizoMessages:
+    - "9番スクラムハーフ（密集からボールを出す）、10番スタンドオフ（攻撃の司令塔）、11・14番ウィング（サイドを突破）。"
+    - "12・13番センター（中央で攻防）、15番フルバック（最後方で守りつつ攻撃参加）。それぞれが高い専門性を持つ。"
+  knowledgeBaseRefs: ["positions/sh9", "positions/so10"]
+  aiEnabled: false
+
+- id: "what-is-scrum-half"
+  categoryId: "positions"
+  subcategoryId: "key-positions"
+  question: "スクラムハーフって何が大事なの？"
+  richieMessage: "スクラムハーフって何が大事なの？"
+  raizoMessages:
+    - "スクラムハーフはフォワードとバックスをつなぐ「ハブ」だ。ラックやスクラムからボールを取り出してスタンドオフや他のバックスに配球する。"
+    - "判断の速さとパスの正確さが命だ。どのタイミングでどこに出すかで攻撃のリズムが決まる。試合の流れを読む力が最も必要なポジションの一つだよ。"
+  knowledgeBaseRefs: ["positions/sh9"]
+  aiEnabled: false
+
+- id: "what-is-flanker"
+  categoryId: "positions"
+  subcategoryId: "key-positions"
+  question: "フランカーって何が得意なの？"
+  richieMessage: "フランカーって何が得意なの？"
+  raizoMessages:
+    - "フランカーはボールを奪う「スチール（ジャッカル）」と、密集での激しい接触が得意なポジションだ。6番と7番の2人がいる。"
+    - "スクラムやラインアウトを離れて、いち早くタックルやラックへ駆けつける運動量も求められる。試合中最も走り回るポジションの一つだよ。"
+  knowledgeBaseRefs: ["positions/fl6", "positions/fl7"]
+  aiEnabled: false
