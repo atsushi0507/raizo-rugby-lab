@@ -14,4 +14,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, '.'),
     },
   },
+  esbuild: {
+    jsxImportSource: 'react',
+    jsx: 'automatic',
+  },
 });

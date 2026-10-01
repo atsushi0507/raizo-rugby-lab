@@ -1,0 +1,87 @@
+- id: "what-is-try"
+  categoryId: "scoring"
+  subcategoryId: "try"
+  question: "トライって何？なんで5点なの？"
+  richieMessage: "トライって何？なんで5点なの？"
+  raizoMessages:
+    - "トライはラグビーで一番大事な得点だ。相手のインゴールにボールを地面に押しつけることで5点が入る。"
+    - "昔はトライを決めてもそれだけでは得点にならなかった。コンバージョンキックを「試みる（try）」権利を得るだけだったから、この名前がついた。今では5点＋コンバージョン2点で合計7点を狙える。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "try-in-goal"
+  categoryId: "scoring"
+  subcategoryId: "try"
+  question: "インゴールってどこ？"
+  richieMessage: "インゴールってどこ？ボールはどう置けばいい？"
+  raizoMessages:
+    - "インゴールはゴールラインとデッドボールラインの間のエリアだ。フィールドの両端にある。"
+    - "ボールを持って走り込むか、転がってきたボールを押さえるかで5点。大事なのは「地面に押しつける」こと。持ち上げるだけじゃダメだ。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "what-is-conversion"
+  categoryId: "scoring"
+  subcategoryId: "conversion"
+  question: "コンバージョンキックって何？"
+  richieMessage: "コンバージョンキックって何？"
+  raizoMessages:
+    - "トライを決めた後に蹴れるボーナスキックだ。ゴールポストの間を通れば2点追加になる。"
+    - "キックする場所はトライした地点の真後ろ（延長線上）で、どこからでも蹴れる。だからインゴールのどこでトライするかも戦略のひとつだよ。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "conversion-spot"
+  categoryId: "scoring"
+  subcategoryId: "conversion"
+  question: "なぜポスト正面でトライするといいの？"
+  richieMessage: "なぜポスト正面でトライするといいの？"
+  raizoMessages:
+    - "コンバージョンはトライした地点の延長線上から蹴るから、正面に近いほど角度がつかずキックが簡単になる。"
+    - "端でトライすると鋭い角度から蹴らないといけない。だから攻撃側は「なるべく中央でトライする」ことを狙うんだ。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "what-is-penalty-goal"
+  categoryId: "scoring"
+  subcategoryId: "penalty-goal"
+  question: "ペナルティゴールって何点？"
+  richieMessage: "ペナルティゴールって何点？"
+  raizoMessages:
+    - "ペナルティゴールは3点だ。相手が反則をした地点からゴールポストを狙ってキックする。"
+    - "ゴールに近い場面ではトライを狙うより確実に3点取る選択をすることが多い。試合終盤の1点差局面では特に重要な選択肢になるよ。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "penalty-kick-choice"
+  categoryId: "scoring"
+  subcategoryId: "penalty-goal"
+  question: "反則後にゴールを狙うかスクラムにするか何で決める？"
+  richieMessage: "反則後にゴールを狙うかスクラムにするか何で決める？"
+  raizoMessages:
+    - "大きく3つの選択肢がある。ゴールを狙う（3点）、タッチキックでエリアを取る、そのまま素早く再開して攻め続けるかだ。"
+    - "点差と残り時間で判断が変わる。ゴール前なら勝負できるし、遠い位置なら蹴って陣地を取る方が賢い場合もある。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "what-is-drop-goal"
+  categoryId: "scoring"
+  subcategoryId: "drop-goal"
+  question: "ドロップゴールって何？"
+  richieMessage: "ドロップゴールって何？"
+  raizoMessages:
+    - "ドロップゴールは流れの中でボールを地面に落とし、バウンドした瞬間に蹴ってゴールポストを通すプレーだ。決まれば3点になる。"
+    - "セットプレーなしで瞬時に得点できるから、試合終盤のクロスゲームでは決定的な武器になる。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "drop-goal-timing"
+  categoryId: "scoring"
+  subcategoryId: "drop-goal"
+  question: "いつドロップゴールを使うの？"
+  richieMessage: "いつドロップゴールを狙うの？"
+  raizoMessages:
+    - "点差が拮抗した終盤で、ペナルティがもらえない状況や、トライを取るほどの余裕がないときに選択される。"
+    - "相手ディフェンスが固まっている状況でも、スペースさえあれば1本で試合を決められる。ワールドカップの決勝でも使われた場面がある重要な戦術だ。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false

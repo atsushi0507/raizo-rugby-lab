@@ -44,6 +44,16 @@ const config: Config = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      keyframes: {
+        'bounce-once': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '30%': { transform: 'translateY(-6px)' },
+          '60%': { transform: 'translateY(-3px)' },
+        },
+      },
+      animation: {
+        'bounce-once': 'bounce-once 0.8s ease-in-out 0.5s both',
+      },
     },
   },
   plugins: [],

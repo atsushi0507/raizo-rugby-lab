@@ -1,0 +1,65 @@
+- id: "what-is-kickoff"
+  categoryId: "restarts"
+  subcategoryId: "kickoff"
+  question: "キックオフってどんなルールがあるの？"
+  richieMessage: "キックオフってどんなルールがあるの？"
+  raizoMessages:
+    - "キックオフはハーフウェイラインから行う。前半開始、後半開始、そして得点後の再開時にもキックオフが行われる。"
+    - "ボールはキッカーより前にいる味方（オフサイドの選手）がプレーできるのは、キックオフが10m以上飛んで地面に着くか、相手チームが触れた後だ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "kickoff-after-score"
+  categoryId: "restarts"
+  subcategoryId: "kickoff"
+  question: "得点後はどちらがキックオフするの？"
+  richieMessage: "得点後はどちらがキックオフするの？"
+  raizoMessages:
+    - "得点を許したチームがキックオフする。つまり「やられた側」が蹴って試合を再開する。"
+    - "サッカーとは逆のルールだから覚えておくといい。トライ＋コンバージョンの後も、ペナルティゴール後も同様に、失点したチームがキックオフだ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "penalty-kick-options"
+  categoryId: "restarts"
+  subcategoryId: "penalty-kick"
+  question: "ペナルティ後の選択肢は何があるの？"
+  richieMessage: "ペナルティをもらった後の選択肢って何があるの？"
+  raizoMessages:
+    - "大きく3つある。①ゴールを狙う（3点）②タッチキックでエリアを取ってラインアウト再開③素早く再開して攻め続けるか、だ。"
+    - "どれを選ぶかは点差・残り時間・位置によって変わる。ゴール前でリードしていれば3点確実にする選択が多い。"
+  knowledgeBaseRefs: ["rules/scoring"]
+  aiEnabled: false
+
+- id: "quick-tap-penalty"
+  categoryId: "restarts"
+  subcategoryId: "penalty-kick"
+  question: "ペナルティをすぐ蹴って素早く再開できるの？"
+  richieMessage: "ペナルティをすぐ蹴って素早く再開できるの？"
+  raizoMessages:
+    - "できる。「クイックタップ」といって、ペナルティ地点でボールを軽く蹴り上げてそのまま攻撃を続けることができる。"
+    - "相手ディフェンスが整っていない隙を突く有効な手だ。ただしレフリーがプレーを止めていなければ、いつでも使える。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "lineout-after-touch"
+  categoryId: "restarts"
+  subcategoryId: "lineout-restart"
+  question: "タッチを割ったらどう再開するの？"
+  richieMessage: "ボールがタッチを割ったらどう再開するの？"
+  raizoMessages:
+    - "ラインアウトで再開する。ボールがタッチを割った地点で、両チームが並んでボールを投げ入れる。"
+    - "通常は蹴られたのと逆の選手（タッチを割った地点に近い側）のチームがスローインする。ただし直接タッチを蹴り出したチームが持っていたボールは、相手のスローインになることが多い。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "direct-touch-rule"
+  categoryId: "restarts"
+  subcategoryId: "lineout-restart"
+  question: "キックで直接タッチを出すと何が起きるの？"
+  richieMessage: "キックで直接タッチを出すと何が起きるの？"
+  raizoMessages:
+    - "自陣の22m内から蹴った場合は、蹴った地点のラインアウトで蹴ったチームが投げ入れる。これが22mドロップアウトの特権だ。"
+    - "22mの外から蹴って直接タッチを割ると、蹴った地点から下がった場所のラインアウトで相手のスローインになる。陣地を損することが多いから注意が必要だ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false

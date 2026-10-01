@@ -1,0 +1,65 @@
+- id: "how-long-is-match"
+  categoryId: "gameplay"
+  subcategoryId: "match-flow"
+  question: "試合は何分間？"
+  richieMessage: "試合って何分間なの？"
+  raizoMessages:
+    - "前半40分・後半40分の合計80分だ。サッカーより10分短い。"
+    - "時間が来ても、次にボールがデッドになるまでプレーが続く。ペナルティをもらえば得点チャンスもある。だから80分を過ぎてもドラマが起きる。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "how-does-match-start"
+  categoryId: "gameplay"
+  subcategoryId: "match-flow"
+  question: "試合の始まりと終わりは？"
+  richieMessage: "試合はどうやって始まって終わるの？"
+  raizoMessages:
+    - "キックオフで始まる。ハーフウェイラインから蹴り上げて相手に競らせるか、相手が確保してから攻撃が始まる。"
+    - "終わりは時計が0になった後にボールがデッドになった時点だ。あと1プレーで逆転できる状況ならその1プレーを続けられる。最後まで油断できない。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "what-is-phase-play"
+  categoryId: "gameplay"
+  subcategoryId: "attack"
+  question: "フェーズって何？"
+  richieMessage: "フェーズって何のこと？"
+  raizoMessages:
+    - "フェーズはラックやモールを経由するたびに1フェーズとカウントされる。つまり何回連続してボールをキープして攻撃できているかを表す言葉だ。"
+    - "フェーズを重ねるほどディフェンスを疲れさせて、スペースを作りやすくなる。有名な「ピック&ゴー」も複数フェーズの積み重ねで陣地を稼ぐ戦術だよ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "what-is-breakdown"
+  categoryId: "gameplay"
+  subcategoryId: "attack"
+  question: "ブレイクダウンって何？"
+  richieMessage: "ブレイクダウンって何のこと？"
+  raizoMessages:
+    - "ブレイクダウンはタックルが起きた後の密集争奪のことを指す。ラックが典型的なブレイクダウンだ。"
+    - "ここでボールを守るか奪うかで攻守が決まる。フランカーが素早くブレイクダウンに到達してボールを奪う「ジャッカル」はファンが沸く場面の一つだよ。"
+  knowledgeBaseRefs: ["rules/not-release-the-ball"]
+  aiEnabled: false
+
+- id: "what-is-blitz-defense"
+  categoryId: "gameplay"
+  subcategoryId: "defense"
+  question: "ディフェンスラインはどう機能するの？"
+  richieMessage: "ディフェンスラインってどう機能するの？"
+  raizoMessages:
+    - "ディフェンスは横一線に並んで攻撃側に向かって前進する。これをラインディフェンスという。"
+    - "一人が抜かれると隣がカバーに動く。ラインの連携が崩れるとビッグゲインを許してしまう。だからディフェンスはチーム全体の連動が重要なんだ。"
+  knowledgeBaseRefs: []
+  aiEnabled: false
+
+- id: "what-is-tackle"
+  categoryId: "gameplay"
+  subcategoryId: "defense"
+  question: "タックルって何に気をつけるの？"
+  richieMessage: "タックルって何に気をつけるの？"
+  raizoMessages:
+    - "タックルは腕で相手を捕まえてボールキャリアーを地面に倒すプレーだ。肩より上への接触は危険なハイタックルとして厳しく罰せられる。"
+    - "倒した後も仕事がある。タックラーはただちに相手を放し、ボールから離れるか立ち上がらなければいけない。これを怠るとノットロールアウェイという反則になる。"
+  knowledgeBaseRefs: ["rules/high-tackle", "rules/not-roll-away"]
+  aiEnabled: false
