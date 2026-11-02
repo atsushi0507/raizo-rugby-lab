@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Menu, X, Instagram } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { InstagramIcon } from '@/components/InstagramIcon';
 
 const navItems = [
   { path: '/', label: 'ホーム' },
@@ -60,7 +61,7 @@ export function Header() {
               className="text-gray-700 hover:text-pink-600 transition-colors"
               aria-label="Instagram"
             >
-              <Instagram size={20} />
+              <InstagramIcon size={20} />
             </a>
 
             <button

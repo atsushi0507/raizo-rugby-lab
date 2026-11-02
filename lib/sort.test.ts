@@ -18,6 +18,7 @@ const articleArbitrary: fc.Arbitrary<ArticleFrontmatter> = fc.record({
   thumbnail: fc.constant('https://example.com/img.jpg'),
   excerpt: fc.string({ minLength: 1, maxLength: 100 }),
   date: fc.date({ min: new Date('2020-01-01'), max: new Date('2030-12-31') })
+    .filter((d) => !Number.isNaN(d.getTime()))
     .map((d) => d.toISOString().slice(0, 10)),
   readTime: fc.constant('5分'),
   level: fc.constantFrom('初級' as const, '中級' as const, '上級' as const),

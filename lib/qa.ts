@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import yaml from 'js-yaml';
+import { load as yamlLoad } from 'js-yaml';
 import type { QACategory, QAData, QAItem } from '@/lib/qa-types';
 import { validateQAItem, validateQACategory } from '@/lib/qa-types';
 
@@ -37,7 +37,7 @@ export async function getQAData(): Promise<QAData> {
   let categories: QACategory[] = [];
   if (fs.existsSync(categoriesFilePath)) {
     const raw = fs.readFileSync(categoriesFilePath, 'utf-8');
-    const parsed = yaml.load(raw) as Record<string, unknown>;
+    const parsed = yamlLoad(raw) as Record<string, unknown>;
     if (parsed && Array.isArray(parsed['categories'])) {
       categories = (parsed['categories'] as unknown[]).map((cat) =>
         validateQACategory(cat)
@@ -54,7 +54,7 @@ export async function getQAData(): Promise<QAData> {
   for (const filename of allFiles) {
     const filePath = path.join(QA_DATA_DIR, filename);
     const raw = fs.readFileSync(filePath, 'utf-8');
-    const parsed = yaml.load(raw);
+    const parsed = yamlLoad(raw);
     if (!Array.isArray(parsed)) continue;
     for (const entry of parsed as unknown[]) {
       try {

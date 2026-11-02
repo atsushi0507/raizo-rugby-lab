@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import yaml from 'js-yaml';
+import { load as yamlLoad } from 'js-yaml';
 
 // ─── Type Definitions ────────────────────────────────────────────────────────
 
@@ -313,7 +313,7 @@ function getMdxFiles(dir: string): string[] {
 
 function parseYaml(filePath: string): Record<string, unknown> {
   const raw = fs.readFileSync(filePath, 'utf-8');
-  const data = yaml.load(raw);
+  const data = yamlLoad(raw);
   if (typeof data !== 'object' || data === null) {
     throw new Error(`Parse error in "${filePath}": file must contain a YAML object`);
   }
@@ -437,14 +437,14 @@ export async function getAllPrinciples(): Promise<RulePrinciple[]> {
   const filePath = path.join(getDataDir('rules'), 'principles.yaml');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as RulePrinciple[];
+  return yamlLoad(raw) as RulePrinciple[];
 }
 
 export async function getAllRules(): Promise<RuleData[]> {
   const filePath = path.join(getDataDir('rules'), 'rules.yaml');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as RuleData[];
+  return yamlLoad(raw) as RuleData[];
 }
 
 export async function getRuleById(id: string): Promise<RuleData | null> {
@@ -456,7 +456,7 @@ export async function getAllSetPieces(): Promise<SetPieceData[]> {
   const filePath = path.join(getDataDir('rules'), 'setpieces.yaml');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as SetPieceData[];
+  return yamlLoad(raw) as SetPieceData[];
 }
 
 export async function getSetPieceById(id: string): Promise<SetPieceData | null> {
@@ -543,7 +543,7 @@ export async function getRestartData(): Promise<RestartData> {
   const filePath = path.join(getDataDir('rules'), 'restarts.yaml');
   if (!fs.existsSync(filePath)) return { categories: [], levelDefinitions: [], items: [] };
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as RestartData;
+  return yamlLoad(raw) as RestartData;
 }
 
 export async function getRestartItemById(id: string): Promise<RestartItem | null> {
@@ -555,7 +555,7 @@ export async function getAllPhases(): Promise<PhaseData[]> {
   const filePath = path.join(getDataDir('rules'), 'phases.yaml');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as PhaseData[];
+  return yamlLoad(raw) as PhaseData[];
 }
 
 export async function getPhaseById(id: string): Promise<PhaseData | null> {
@@ -567,7 +567,7 @@ export async function getAllScoring(): Promise<ScoringData[]> {
   const filePath = path.join(getDataDir('rules'), 'scoring.yaml');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as ScoringData[];
+  return yamlLoad(raw) as ScoringData[];
 }
 
 export async function getScoringById(id: string): Promise<ScoringData | null> {
@@ -579,7 +579,7 @@ export async function getAllGameplay(): Promise<GameplayData[]> {
   const filePath = path.join(getDataDir('rules'), 'gameplay.yaml');
   if (!fs.existsSync(filePath)) return [];
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return yaml.load(raw) as GameplayData[];
+  return yamlLoad(raw) as GameplayData[];
 }
 
 export async function getGameplayById(id: string): Promise<GameplayData | null> {

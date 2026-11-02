@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Instagram, Twitter } from 'lucide-react';
+import { InstagramIcon } from '@/components/InstagramIcon';
 
 export function Footer() {
   return (
@@ -44,7 +44,7 @@ export function Footer() {
                 className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 text-white hover:opacity-80 transition-opacity"
                 aria-label="Instagram"
               >
-                <Instagram size={20} />
+                <InstagramIcon size={20} />
               </a>
               {/* <a
                 href="https://twitter.com"
